@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :courses
   # get 'static_pages/landing_page'
   # get 'static_pages/privacy_policy'
   match '/privacy', to: 'static_pages#privacy_policy', via: 'get'
