@@ -74,3 +74,7 @@ end
 gem "cssbundling-rails", "~> 1.1"
 
 gem "font-awesome-sass", "~> 6.3"
+
+gem "haml-rails", "~> 2.1"
+
+gem "html2haml", "~> 2.3"
