@@ -88,6 +88,8 @@ GEM
     date (3.3.3)
     debug (1.7.1)
     erubi (1.12.0)
+    faker (3.1.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     font-awesome-sass (6.3.0)
       sassc (~> 2.0)
@@ -214,6 +216,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails (~> 1.1)
   debug
+  faker (~> 3.1)
   font-awesome-sass (~> 6.3)
   importmap-rails
   jbuilder

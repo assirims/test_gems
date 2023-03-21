@@ -74,3 +74,6 @@ end
 gem "cssbundling-rails", "~> 1.1"
 
 gem "font-awesome-sass", "~> 6.3"
+
+# https://github.com/faker-ruby/faker
+gem "faker", "~> 3.1"
