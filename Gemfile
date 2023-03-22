@@ -77,3 +77,6 @@ gem "font-awesome-sass", "~> 6.3"
 
 # https://github.com/faker-ruby/faker
 gem "faker", "~> 3.1"
+
+# https://github.com/norman/friendly_id
+gem "friendly_id", "~> 5.5"
