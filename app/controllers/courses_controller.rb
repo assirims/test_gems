@@ -1,12 +1,17 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
-  # GET /courses or /courses.json
+  # GET /courses
   def index
-    @courses = Course.all
+    # @courses = Course.all
+    if params[:title]
+      @courses = Course.where("title LIKE ?", "%#{params[:title]}%") #case-insensitive
+    else
+      @courses = Course.all
+    end
   end
 
-  # GET /courses/1 or /courses/1.json
+  # GET /courses/1
   def show
   end
 
@@ -19,42 +24,30 @@ class CoursesController < ApplicationController
   def edit
   end
 
-  # POST /courses or /courses.json
+  # POST /courses
   def create
     @course = Course.new(course_params)
 
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
-        format.json { render :show, status: :created, location: @course }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    if @course.save
+      redirect_to @course, notice: "Course was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /courses/1 or /courses/1.json
+  # PATCH/PUT /courses/1
   def update
-    respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
-        format.json { render :show, status: :ok, location: @course }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    if @course.update(course_params)
+      redirect_to @course, notice: "Course was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /courses/1 or /courses/1.json
+  # DELETE /courses/1
   def destroy
     @course.destroy
-
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to courses_url, notice: "Course was successfully destroyed."
   end
 
   private
@@ -65,6 +58,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description)
+      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price)
     end
 end

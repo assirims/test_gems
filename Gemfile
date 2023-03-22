@@ -25,7 +25,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
+# gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
@@ -80,3 +80,6 @@ gem "faker", "~> 3.1"
 
 # https://github.com/norman/friendly_id
 gem "friendly_id", "~> 5.5"
+
+# https://github.com/activerecord-hackery/ransack
+# gem "ransack", "~> 4.0"

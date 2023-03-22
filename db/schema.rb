@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_051533) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_224354) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.text "short_description"
+    t.string "language", default: "English", null: false
+    t.string "level", default: "Beginner", null: false
+    t.integer "price", default: 0, null: false
     t.index ["slug"], name: "index_courses_on_slug", unique: true
   end
 

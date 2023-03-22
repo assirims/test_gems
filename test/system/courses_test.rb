@@ -15,6 +15,10 @@ class CoursesTest < ApplicationSystemTestCase
     click_on "New course"
 
     fill_in "Description", with: @course.description
+    fill_in "Language", with: @course.language
+    fill_in "Level", with: @course.level
+    fill_in "Price", with: @course.price
+    fill_in "Short description", with: @course.short_description
     fill_in "Title", with: @course.title
     click_on "Create Course"
 
@@ -27,6 +31,10 @@ class CoursesTest < ApplicationSystemTestCase
     click_on "Edit this course", match: :first
 
     fill_in "Description", with: @course.description
+    fill_in "Language", with: @course.language
+    fill_in "Level", with: @course.level
+    fill_in "Price", with: @course.price
+    fill_in "Short description", with: @course.short_description
     fill_in "Title", with: @course.title
     click_on "Update Course"
 

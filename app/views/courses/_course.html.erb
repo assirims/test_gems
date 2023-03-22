@@ -1,3 +1,48 @@
+<div class="card">
+  <div class="card-header">
+    <div class="fa fa-graduation-cap"></div>
+    <%= link_to course.title, course_path(course) %>
+  </div>
+  <div class="card-body">
+    <small>
+      <%= simple_format(course.short_description) %>
+    </small>
+  </div>
+  <div class="card-footer">
+    <div class="text-center">
+      <%= number_to_currency(course.price) %>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="fa fa-globe-africa"></div>
+        <%= course.language %>
+      </div>
+      <div class="col-md-6">
+        <div class="text-right">
+          <div class="fa fa-signal"></div>
+          <%= course.level %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="far fa-clock"></div>
+        <%= course.created_at.strftime('%d-%b-%Y') %>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %>
+    <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' %>
+  </div>
+</div>
+
+
+<!--
 <div id="<%= dom_id course %>">
   <p>
     <strong>Title:</strong>
@@ -9,4 +54,25 @@
     <%= course.description %>
   </p>
 
+  <p>
+    <strong>Short description:</strong>
+    <%= course.short_description %>
+  </p>
+
+  <p>
+    <strong>Language:</strong>
+    <%= course.language %>
+  </p>
+
+  <p>
+    <strong>Level:</strong>
+    <%= course.level %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= course.price %>
+  </p>
+
 </div>
+-->

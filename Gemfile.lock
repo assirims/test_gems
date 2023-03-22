@@ -102,9 +102,6 @@ GEM
     importmap-rails (1.1.5)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -222,7 +219,6 @@ DEPENDENCIES
   font-awesome-sass (~> 6.3)
   friendly_id (~> 5.5)
   importmap-rails
-  jbuilder
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
   redis (~> 4.0)
