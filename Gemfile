@@ -82,4 +82,4 @@ gem "faker", "~> 3.1"
 gem "friendly_id", "~> 5.5"
 
 # https://github.com/activerecord-hackery/ransack
-# gem "ransack", "~> 4.0"
+gem "ransack", "~> 4.0"

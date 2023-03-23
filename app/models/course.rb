@@ -18,4 +18,19 @@ class Course < ApplicationRecord
   # def to_s
   #   slug
   # end
+
+  LANGUAGES = ["English", "Russian", "Polish", "Spanish"]
+  def self.languages
+    LANGUAGES.map { |language| language }
+  end
+
+  LEVELS = ["Beginner", "Intermediate", "Advanced"]
+  def self.levels
+    LEVELS.map { |level| level }
+  end
+
+  # ransack search attributes
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at"]
+  end
 end

@@ -1,6 +1,37 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Courses</h1>
+<h1>Courses: <%= @courses.count %></h1>
+<div class="d-flex-table p-2 justify-content-center">
+    <%= search_form_for @q do |form| %>
+    <div>
+      <%= form.label :title %>
+      <%= form.search_field :title_cont, class: "form-control-sm", placeholder: "Title" %>
+
+      <%= form.label :description %>
+      <%= form.search_field :description_cont, class: "form-control-sm", placeholder: "Description" %>
+      </div>
+      <div>
+      <%= form.label :price %>
+      <%= form.search_field :price_eq, class: "form-control-sm", placeholder: "Price" %>
+
+      <%= form.label :short_description %>
+      <%= form.search_field :short_description_cont, class: "form-control-sm", placeholder: "Short description" %>
+      </div>
+      <div>
+      <%= form.label :language %>
+      <%#= form.select :language_cont, options_for_select(Course::LANGUAGES), {}, class: "form-control", default: "", include_blank: true %>
+      <%#= form.search_field :language_cont, class: "form-control", placeholder: "Language" %>
+      <%= form.select :language_cont, Course.languages, include_blank: true, class: "form-control" %>
+
+      <%= form.label :level %>
+      <%#= form.select :level_cont, options_for_select(Course::LEVELS), {}, class: "form-control", default: "", include_blank: true %>
+      <%= form.select :level_cont, Course.levels, include_blank: true, class: "form-control" %>
+      </div>
+      <%= form.submit "Search", class: "btn btn-primary" %><%= link_to "Reset", courses_path, class: "btn btn-secondary" %>
+    <% end %>
+</div>
+
+<br />
 
 <div id="courses">
   <% @courses.each do |course| %>
