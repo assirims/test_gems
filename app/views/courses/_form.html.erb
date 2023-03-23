@@ -18,12 +18,12 @@
 
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <%= form.rich_text_area :description, :cols => 50, :rows => 10 %>
   </div>
 
   <div>
     <%= form.label :short_description, style: "display: block" %>
-    <%= form.text_area :short_description %>
+    <%= form.rich_text_area :short_description %>
   </div>
 
   <div>
