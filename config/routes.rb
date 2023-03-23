@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   resources :courses
+  resources :users, only: [:index]
   # get 'static_pages/landing_page'
   # get 'static_pages/privacy_policy'
   match '/privacy', to: 'static_pages#privacy_policy', via: 'get'

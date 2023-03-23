@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-header">
+    <p class="card-text"><%= user.email %></p>
+  </div>
+  <div class="card-footer">
+    Signed up: <%= time_ago_in_words(user.created_at) %> ago
+  </div>
+  <div class="card-footer">
+    <%='sign_in_count'.humanize %>
+    <%= user.sign_in_count %> <br />
+    <%='current_sign_in_at'.humanize %>
+    <%= user.current_sign_in_at %> <br />
+    <%='last_sign_in_at'.humanize %>
+    <%= user.last_sign_in_at %> <br />
+    <%='current_sign_in_ip'.humanize %>
+    <%= user.current_sign_in_ip %> <br />
+    <%= 'last_sign_in_ip'.humanize %>
+    <%= user.last_sign_in_ip %>
+  </div>
+  <br />
