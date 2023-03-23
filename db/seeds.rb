@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-#User.create!(email: 'admin@example.com', password: 'admin@example.com', password_confirmation: 'admin@example.com')
+User.create!(email: 'qme@msn.com', password: '000000', password_confirmation: '000000')
 
 30.times do
   Course.create!([{
@@ -16,7 +16,8 @@
     short_description: Faker::Quote.famous_last_words,
     language: Faker::ProgrammingLanguage.name,
     level: 'Beginner',
-    price: Faker::Number.between(from: 1000, to: 20000)
+    price: Faker::Number.between(from: 1000, to: 20000),
+    user_id: User.first.id
   }])
 end
 
