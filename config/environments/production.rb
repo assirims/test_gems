@@ -3,6 +3,26 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # setting for email sending in production
+  config.action_mailer.default_url_options = { host: '10.0.0.8', port: 8080 }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+
+  # SMTP settings for Amazon SES
+  # EDITOR='code --wait' rails credentials:edit
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: "email-smtp.us-east-1.amazonaws.com",
+    user_name: 'SMTP_CREDENTIALS_USERNAME',
+    password: 'SMTP_CREDENTIALS_PASSWORD',
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
+  # allow sqlite3 in production
+  config.active_record.sqlite3_production_warning=false
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -22,10 +42,12 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  # config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  config.serve_static_files = true
 
   # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
+  # https://stackoverflow.com/a/68747486
+  config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
