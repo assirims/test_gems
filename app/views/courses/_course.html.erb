@@ -1,52 +1,26 @@
-<div class="card">
-  <div class="card-header">
-    <div class="fa fa-graduation-cap"></div>
-    <%= link_to course.title, course_path(course) %>
-  </div>
+<div class="card border-secondary">
   <div class="card-body">
-    <small>
+    <h5 class="card-header text-primary text-center">
+      <%= link_to course.title, course_path(course) %>
+    </h5>
+    <div class="card-text text-center">
       <%= simple_format(course.short_description) %>
-    </small>
-  </div>
-  <div class="card-footer">
-  <div class="text-center">
-  <%= course.user.username %>
-  </div>
-  <div class="card-footer">
-    <div class="text-center">
-      <%= number_to_currency(course.price) %>
     </div>
-  </div>
-  <div class="card-footer">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="fa fa-globe-africa"></div>
-        <%= course.language %>
+    <div class="card-footer text-center">
+      By: <%= course.user.username %> <hr />
+      <%= number_to_currency(course.price) %> <hr />
+      <%= course.language %><hr />
+      <%= course.level %><hr />
+      <%= course.created_at.strftime('%d-%b-%Y') %>
       </div>
-      <div class="col-md-6">
-        <div class="text-right">
-          <div class="fa fa-signal"></div>
-          <%= course.level %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-footer">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="far fa-clock"></div>
-        <%= course.created_at.strftime('%d-%b-%Y') %>
-      </div>
-    </div>
-  </div>
-  <div class="card-footer">
-    <%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %>
-    <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' %>
   </div>
 </div>
-
-
 <!--
+      <div class="card-footer text-center">
+      <%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %>
+      <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' %>
+    </div>
+
 <div id="<%= dom_id course %>">
   <p>
     <strong>Title:</strong>

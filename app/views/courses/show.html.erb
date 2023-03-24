@@ -1,7 +1,7 @@
 <%= render @course %>
-<div>
-  <%= link_to "Edit this course", edit_course_path(@course) %> |
-  <%= link_to "Back to courses", courses_path %>
-
-  <%= button_to "Destroy this course", @course, method: :delete %>
+<div class="text-center">
+<br />
+  <%= link_to "Edit this course", edit_course_path(@course), class: 'btn btn-sm btn-primary' %> |
+  <%= link_to "Back to courses", courses_path , class: 'btn btn-sm btn-warning' %> <br /> <br />
+  <%= button_to "Destroy this course", @course, method: :delete, class: 'btn btn-sm btn-danger' %>
 </div>
