@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:privacy_policy]
 
   before_action :set_global_search_variable, if: :user_signed_in?
   def set_global_search_variable
