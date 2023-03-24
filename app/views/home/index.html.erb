@@ -6,11 +6,13 @@
   </div>
   <div class="p-4">
   </div>
+  <% if user_signed_in? %>
   <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
     <div class="input-group">
       <%= f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off  %>
       <%= f.submit 'Search', class: 'btn btn-primary btn-sm' %>
     </div>
+  <% end %>
   <% end %>
   <br />
   <hr />
@@ -27,21 +29,23 @@
   <h2>Popular courses</h2>
   <div class="card-group">
   <% @courses.each do |course| %>
-    <%= render 'courses/course', course: course %>
+    <%= render 'courses/course_breif', course: course %>
   <% end %>
   </div>
+  <!--
   <hr/>
   <h2>Top rated courses</h2>
   <div class="card-group">
   <% @courses.each do |course| %>
-    <%= render 'courses/course', course: course %>
+    <%= render 'courses/course_breif', course: course %>
   <% end %>
   </div>
+  -->
   <hr/>
   <h2>Latest courses</h2>
   <div class="card-group">
   <% @latest_couses.each do |course| %>
-    <%= render 'courses/course', course: course %>
+    <%= render 'courses/course_breif', course: course %>
   <% end %>
   </div>
 <br /> <br />

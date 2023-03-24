@@ -1,0 +1,10 @@
+<div class="card border-secondary">
+  <div class="card-body">
+    <h5 class="card-header text-primary text-center">
+      <%= link_to course.title, course_path(course) %>
+    </h5>
+    <div class="card-text text-center">
+      <%= simple_format(course.short_description) %>
+    </div>
+  </div>
+</div>

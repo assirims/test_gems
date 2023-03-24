@@ -2,7 +2,10 @@
 
   <div class="d-flex justify-content-center">
     Copyright © <%= Time.now.year %> |
-    <%= link_to ' Privacy ', privacy_path, class: "px-2 nav-link" %> |
+    <%= link_to ' Privacy ', privacy_path, class: "px-2 nav-link" %>
+    <% if signed_in? %>
+    |
     <%= link_to ' New Course ', new_course_path, class: "px-2 nav-link" %>
+    <% end %>
   </div>
 </footer>
