@@ -86,3 +86,6 @@ gem "friendly_id", "~> 5.5"
 gem "ransack", "~> 4.0"
 
 gem "devise", "~> 4.9"
+
+# https://github.com/public-activity/public_activity
+gem "public_activity", "~> 2.0"

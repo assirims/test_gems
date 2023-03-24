@@ -1,0 +1,24 @@
+<h1>
+  Activity: <%= @activities.count %>
+</h1>
+<br />
+
+<ul class="list-group">
+  <% @activities.each do |activity| %>
+    <li class="list-group-item">
+      (<%= activity.id  %>)
+      <span  class="text-warning">For</span>
+      <%= activity.trackable_type %>
+      <%= activity.trackable_id %>
+      <span  class="text-warning">in </span>
+      <%= link_to activity.trackable, activity.trackable %>.
+      <span  class="text-warning">This action:</span>
+      <span  class="text-light bg-dark">
+        <%= activity.key %>
+        <%= activity.parameters  %>
+      </span>
+      <span  class="text-danger">was done by</span>
+      <%= activity.owner %>
+    </li>
+  <% end %>
+</ul>
