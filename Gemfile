@@ -89,3 +89,6 @@ gem "devise", "~> 4.9"
 
 # https://github.com/public-activity/public_activity
 gem "public_activity", "~> 2.0"
+
+# https://github.com/RolifyCommunity/rolify
+gem "rolify", "~> 6.0"

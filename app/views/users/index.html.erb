@@ -23,6 +23,7 @@
         <th><%= sort_link(@ransack_users, :last_sign_in_at, 'Last sign in at') %></th>
         <th><%= sort_link(@ransack_users, :current_sign_in_ip, 'Current sign in ip') %></th>
         <th><%= sort_link(@ransack_users, :last_sign_in_ip, 'Last sign in ip') %></th>
+        <th><%= sort_link(@ransack_users, :roles, 'Roles') %></th>
       </tr>
       <!--<th><%= 'sign_in_count'.humanize %></th>
       <th><%= 'current_sign_in_at'.humanize %></th>
@@ -42,6 +43,13 @@
           <td><%= user.last_sign_in_at %></td>
           <td><%= user.current_sign_in_ip %></td>
           <td><%= user.last_sign_in_ip %></td>
+          <td><%= user.roles.map(&:name).join(', ') %></td>
+          <!--<td><%= user.roles.each do |role| %>
+            <%= role.name %>
+            <% end %> </td>
+            role.each(&:name)
+            rold.each { |r| r.name}
+            -->
         </tr>
       <% end %>
     </tbody>
