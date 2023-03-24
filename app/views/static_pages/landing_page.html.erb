@@ -1,19 +1,25 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Hellow World</h1>
+  <div class="jumbotron">
+    <div class="display-4">
+      What do you want to learn today?
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <p>
-        <%= link_to "Privacy Policy!", privacy_path %>
-      </p>
+  <div class="p-4">
+  </div>
+  <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
+    <div class="input-group">
+      <%= f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off  %>
+      <%= f.submit 'Search', class: 'btn btn-primary btn-sm' %>
     </div>
-
-    <div class="col-md-12">
-      <p>
-        <%= link_to "Courses", courses_path %>
-      </p>
-
+  <% end %>
+  <br />
+  <hr />
+  <div class="card-group">
+    <div class="card card-body">
+      <%= Course.count  %> online courses
+    </div>
+    <div class="card card-body">
+      <%= User.count %> active learners
+    </div>
+  </div>
+</div>

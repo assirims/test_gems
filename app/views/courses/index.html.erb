@@ -1,24 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Courses: <%= @courses.count %></h1>
 
 <div class="d-flex-table p-2 justify-content-center">
-    <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |form| %>
-      <%= form.search_field :title_cont, placeholder: "Title" %>
-      <%= form.search_field :description_cont, placeholder: "Description" %>
-      <%= form.search_field :price_eq, placeholder: "Price" %>
-      <%= form.search_field :short_description_cont, placeholder: "Short description" %>
-      <%= form.select :language_cont, Course.languages, include_blank: true %>
-      <%= form.select :level_cont, Course.levels, include_blank: true %>
-      <%= form.submit "Search", class: "btn btn-primary" %>
-      <%= link_to "Reset", courses_path, class: "btn btn-secondary" %>
-    <% end %>
+  <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |form| %>
+    <%= form.search_field :title_cont, placeholder: "Title" %>
+    <%= form.search_field :description_cont, placeholder: "Description" %>
+    <%= form.search_field :price_eq, placeholder: "Price" %>
+    <%= form.search_field :short_description_cont, placeholder: "Short description" %>
+    <%= form.select :language_cont, Course.languages, include_blank: true %>
+    <%= form.select :level_cont, Course.levels, include_blank: true %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+    <%= link_to "Reset", courses_path, class: "btn btn-secondary" %>
+  <% end %>
 </div>
 
-<br />
-<%= link_to "New course", new_course_path %>
-<br />
-<br />
+<br /><%= link_to "New course", new_course_path, class: "btn btn-success" %><br /><br />
+
 <table class="table table-bordered">
   <thead>
     <tr>
