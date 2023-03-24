@@ -1,0 +1,30 @@
+<div class="card border-secondary text-center w-50 mx-auto">
+  <div class="card-body">
+    <h5 class="card-header text-primary">
+      Editing roles for
+      <%= @user.email %>
+    </h5>
+  </div>
+  <div class="card-text">
+    <%= form_for @user do |f| %>
+      <%#= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
+      <%= f.collection_check_boxes :role_ids, Role.all, :id, :name do |b| %>
+        <div class="form-check form-switch">
+          <%= b.label class: 'form-check-label' do %>
+            <%= b.check_box class: 'form-check-input' %>
+            <%= b.text %>
+          <% end %>
+        </div>
+      <% end %>
+      <!--<%#= f.error :role_ids, class: 'text-danger' %> # this works with simple form gem but not with form_for -->
+      <hr/>
+      <%= f.submit 'Save', class: "btn btn-success mb-2" %>
+    <% end %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Cancel', users_path, class: 'btn btn-info' %>
+  </div>
+  <div class="card-footer">
+    <%= button_to "Delete this user", @user, method: :delete, class: 'btn btn-sm btn-danger' %>
+  </div>
+</div>

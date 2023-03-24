@@ -24,6 +24,7 @@
         <th><%= sort_link(@ransack_users, :current_sign_in_ip, 'Current sign in ip') %></th>
         <th><%= sort_link(@ransack_users, :last_sign_in_ip, 'Last sign in ip') %></th>
         <th><%= sort_link(@ransack_users, :roles, 'Roles') %></th>
+        <th>Edit roles</th>
       </tr>
       <!--<th><%= 'sign_in_count'.humanize %></th>
       <th><%= 'current_sign_in_at'.humanize %></th>
@@ -50,6 +51,7 @@
             role.each(&:name)
             rold.each { |r| r.name}
             -->
+          <td><%= link_to '>>', edit_user_path(user), class: 'btn btn-warning' %></td>
         </tr>
       <% end %>
     </tbody>
