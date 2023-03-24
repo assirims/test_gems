@@ -7,7 +7,7 @@
 <h1>Users: <%= @users.count %></h1>
 <br />
 <div class="form-inline">
-  <%= search_form_for @q do |form| %>
+  <%= search_form_for @ransack_users do |form| %>
     <%= form.search_field :email_cont, placeholder: 'email' %>
     <%= form.search_field :sign_in_count_eq, placeholder: 'sign in count' %>
     <%= form.search_field :email_or_sign_in_count_eq, placeholder: 'email or sign in count' %>
@@ -19,14 +19,14 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th><%= sort_link(@q, :id, 'ID') %></th>
-      <th><%= sort_link(@q, :email, 'Email') %></th>
-      <th><%= sort_link(@q, :created_at, 'Created at') %></th>
-      <th><%= sort_link(@q, :sign_in_count, 'Sign in count') %></th>
-      <th><%= sort_link(@q, :current_sign_in_at, 'Current sign in at') %></th>
-      <th><%= sort_link(@q, :last_sign_in_at, 'Last sign in at') %></th>
-      <th><%= sort_link(@q, :current_sign_in_ip, 'Current sign in ip') %></th>
-      <th><%= sort_link(@q, :last_sign_in_ip, 'Last sign in ip') %></th>
+      <th><%= sort_link(@ransack_users, :id, 'ID') %></th>
+      <th><%= sort_link(@ransack_users, :email, 'Email') %></th>
+      <th><%= sort_link(@ransack_users, :created_at, 'Created at') %></th>
+      <th><%= sort_link(@ransack_users, :sign_in_count, 'Sign in count') %></th>
+      <th><%= sort_link(@ransack_users, :current_sign_in_at, 'Current sign in at') %></th>
+      <th><%= sort_link(@ransack_users, :last_sign_in_at, 'Last sign in at') %></th>
+      <th><%= sort_link(@ransack_users, :current_sign_in_ip, 'Current sign in ip') %></th>
+      <th><%= sort_link(@ransack_users, :last_sign_in_ip, 'Last sign in ip') %></th>
     </tr>
       <!--<th><%= 'sign_in_count'.humanize %></th>
       <th><%= 'current_sign_in_at'.humanize %></th>

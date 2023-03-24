@@ -3,7 +3,7 @@
 <h1>Courses: <%= @courses.count %></h1>
 
 <div class="d-flex-table p-2 justify-content-center">
-    <%= search_form_for @q do |form| %>
+    <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |form| %>
       <%= form.search_field :title_cont, placeholder: "Title" %>
       <%= form.search_field :description_cont, placeholder: "Description" %>
       <%= form.search_field :price_eq, placeholder: "Price" %>
@@ -22,14 +22,14 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th><%= sort_link(@q, :id, 'ID') %></th>
-      <th><%= sort_link(@q, :title, 'Title') %></th>
-      <th><%= sort_link(@q, :price, 'Price') %></th>
-      <th><%= sort_link(@q, :short_description, 'Short description') %></th>
-      <th><%= sort_link(@q, :language, 'Language') %></th>
-      <th><%= sort_link(@q, :level, 'Level') %></th>
-      <th><%= sort_link(@q, :user_id, 'User') %></th>
-      <th><%= sort_link(@q, :created_at, 'Created at') %></th>
+      <th><%= sort_link(@ransack_courses, :id, 'ID') %></th>
+      <th><%= sort_link(@ransack_courses, :title, 'Title') %></th>
+      <th><%= sort_link(@ransack_courses, :price, 'Price') %></th>
+      <th><%= sort_link(@ransack_courses, :short_description, 'Short description') %></th>
+      <th><%= sort_link(@ransack_courses, :language, 'Language') %></th>
+      <th><%= sort_link(@ransack_courses, :level, 'Level') %></th>
+      <th><%= sort_link(@ransack_courses, :user_id, 'User') %></th>
+      <th><%= sort_link(@ransack_courses, :created_at, 'Created at') %></th>
       <th>Actions</th>
     </tr>
   </thead>
