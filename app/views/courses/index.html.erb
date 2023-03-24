@@ -1,43 +1,61 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Courses: <%= @courses.count %></h1>
+
 <div class="d-flex-table p-2 justify-content-center">
     <%= search_form_for @q do |form| %>
-    <div>
-      <%= form.label :title %>
-      <%= form.search_field :title_cont, class: "form-control-sm", placeholder: "Title" %>
-
-      <%= form.label :description %>
-      <%= form.search_field :description_cont, class: "form-control-sm", placeholder: "Description" %>
-      </div>
-      <div>
-      <%= form.label :price %>
-      <%= form.search_field :price_eq, class: "form-control-sm", placeholder: "Price" %>
-
-      <%= form.label :short_description %>
-      <%= form.search_field :short_description_cont, class: "form-control-sm", placeholder: "Short description" %>
-      </div>
-      <div>
-      <%= form.label :language %>
-      <%#= form.select :language_cont, options_for_select(Course::LANGUAGES), {}, class: "form-control", default: "", include_blank: true %>
-      <%#= form.search_field :language_cont, class: "form-control", placeholder: "Language" %>
-      <%= form.select :language_cont, Course.languages, include_blank: true, class: "form-control" %>
-
-      <%= form.label :level %>
-      <%#= form.select :level_cont, options_for_select(Course::LEVELS), {}, class: "form-control", default: "", include_blank: true %>
-      <%= form.select :level_cont, Course.levels, include_blank: true, class: "form-control" %>
-      </div>
-      <%= form.submit "Search", class: "btn btn-primary" %><%= link_to "Reset", courses_path, class: "btn btn-secondary" %>
+      <%= form.search_field :title_cont, placeholder: "Title" %>
+      <%= form.search_field :description_cont, placeholder: "Description" %>
+      <%= form.search_field :price_eq, placeholder: "Price" %>
+      <%= form.search_field :short_description_cont, placeholder: "Short description" %>
+      <%= form.select :language_cont, Course.languages, include_blank: true %>
+      <%= form.select :level_cont, Course.levels, include_blank: true %>
+      <%= form.submit "Search", class: "btn btn-primary" %>
+      <%= link_to "Reset", courses_path, class: "btn btn-secondary" %>
     <% end %>
 </div>
 
 <br />
-
+<%= link_to "New course", new_course_path %>
+<br />
+<br />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :id, 'ID') %></th>
+      <th><%= sort_link(@q, :title, 'Title') %></th>
+      <th><%= sort_link(@q, :price, 'Price') %></th>
+      <th><%= sort_link(@q, :short_description, 'Short description') %></th>
+      <th><%= sort_link(@q, :language, 'Language') %></th>
+      <th><%= sort_link(@q, :level, 'Level') %></th>
+      <th><%= sort_link(@q, :user_id, 'User') %></th>
+      <th><%= sort_link(@q, :created_at, 'Created at') %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.id %></td>
+        <td><%= course.title %></td>
+        <td><%= number_to_currency(course.price) %></td>
+        <td><%= simple_format(course.short_description) %></td>
+        <td><%= course.language %></td>
+        <td><%= course.level %></td>
+        <td><%= course.user.username %></td>
+        <td><%= course.created_at.strftime('%d-%b-%Y') %></td>
+        <td>
+          <%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %>
+          <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!--
 <div id="courses">
   <% @courses.each do |course| %>
-    <%= render course %>
+    <%#= render course %>
     <br />
   <% end %>
-</div>
-
-<%= link_to "New course", new_course_path %>
+</div>-->

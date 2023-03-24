@@ -1,7 +1,5 @@
 <div class="card">
-  <div class="card-header">
-    <p class="card-text"><%= user.email %></p>
-  </div>
+  <div class="card-header"><%= user.email %></div>
   <div class="card-footer">
     Signed up: <%= time_ago_in_words(user.created_at) %> ago
   </div>

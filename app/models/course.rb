@@ -40,4 +40,7 @@ class Course < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at"]
   end
+  def self.ransackable_associations(auth_object = nil)
+    ["rich_text_description", "user"]
+    end
 end

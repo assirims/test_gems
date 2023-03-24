@@ -1,5 +1,52 @@
-<div class="card-columns">
-    <% @users.each do |user| %>
-    <%= render "users/user", user: user %>
-    <% end %>
+<%# <div class="card-columns"> %>
+  <%# @users.each do |user| %>
+    <%#= render "users/user", user: user %>
+  <%# end %>
+<%# </div> %>
+<br />
+<h1>Users: <%= @users.count %></h1>
+<br />
+<div class="form-inline">
+  <%= search_form_for @q do |form| %>
+    <%= form.search_field :email_cont, placeholder: 'email' %>
+    <%= form.search_field :sign_in_count_eq, placeholder: 'sign in count' %>
+    <%= form.search_field :email_or_sign_in_count_eq, placeholder: 'email or sign in count' %>
+    <%= form.submit "Search", class: "btn btn-primary" %>
+    <%= link_to "Reset", users_path, class: "btn btn-secondary" %>
+  <% end %>
 </div>
+<br />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :id, 'ID') %></th>
+      <th><%= sort_link(@q, :email, 'Email') %></th>
+      <th><%= sort_link(@q, :created_at, 'Created at') %></th>
+      <th><%= sort_link(@q, :sign_in_count, 'Sign in count') %></th>
+      <th><%= sort_link(@q, :current_sign_in_at, 'Current sign in at') %></th>
+      <th><%= sort_link(@q, :last_sign_in_at, 'Last sign in at') %></th>
+      <th><%= sort_link(@q, :current_sign_in_ip, 'Current sign in ip') %></th>
+      <th><%= sort_link(@q, :last_sign_in_ip, 'Last sign in ip') %></th>
+    </tr>
+      <!--<th><%= 'sign_in_count'.humanize %></th>
+      <th><%= 'current_sign_in_at'.humanize %></th>
+      <th><%= 'last_sign_in_at'.humanize %></th>
+      <th><%= 'current_sign_in_ip'.humanize %></th>
+      <th><%= 'last_sign_in_ip'.humanize %></th>
+    </tr>-->
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at %></td>
+      <td><%= user.sign_in_count %></td>
+      <td><%= user.current_sign_in_at %></td>
+      <td><%= user.last_sign_in_at %></td>
+      <td><%= user.current_sign_in_ip %></td>
+      <td><%= user.last_sign_in_ip %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
