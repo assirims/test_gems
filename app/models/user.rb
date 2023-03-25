@@ -36,4 +36,15 @@ class User < ApplicationRecord
     ["courses"]
   end
 
+  # works with simple_form_for only
+  # validate :must_have_a_role, on: :update
+  # private
+  # def must_have_a_role
+  #   unless roles.any?
+  #     # trying to show the error message on the roles field
+  #     # but it's not working
+  #     errors.add(:roles, "must have at least one role")
+  #   end
+  # end
+
 end

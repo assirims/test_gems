@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user! #gem devise
+  # https://www.veracode.com/blog/managing-appsec/when-rails-protectfromforgery-fails
+  protect_from_forgery with: :exception
 
   include Pundit::Authorization #gem pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized #gem pundit

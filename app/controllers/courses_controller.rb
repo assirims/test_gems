@@ -26,6 +26,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    authorize @course #gem pundit it must be after @course = Course.new
   end
 
   # GET /courses/1/edit
@@ -36,6 +37,7 @@ class CoursesController < ApplicationController
   # POST /courses
   def create
     @course = Course.new(course_params)
+    authorize @course #gem pundit it must be after @course = Course.new
     @course.user = current_user
     if @course.save
       redirect_to @course, notice: "Course was successfully created."
@@ -46,6 +48,7 @@ class CoursesController < ApplicationController
 
   # PATCH/PUT /courses/1
   def update
+    authorize @course #gem pundit
     if @course.update(course_params)
       redirect_to @course, notice: "Course was successfully updated."
     else
@@ -55,6 +58,7 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1
   def destroy
+    authorize @course #gem pundit
     @course.destroy
     redirect_to courses_url, notice: "Course was successfully destroyed."
   end

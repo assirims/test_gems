@@ -10,9 +10,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user #  gem pundit
   end
 
   def update
+    authorize @user #  gem pundit
     if @user.update(user_params)
       redirect_to users_path, notice: 'User was successfully updated.'
     else

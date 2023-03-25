@@ -1,5 +1,6 @@
 <div class="container">
-  <h1>Users: <%= @users.count %></h1><br />
+  <h1>Users: <%= @users.count %></h1>
+  <br />
 
   <div class="form-inline">
     <%= search_form_for @ransack_users do |form| %>
@@ -51,7 +52,11 @@
             role.each(&:name)
             rold.each { |r| r.name}
             -->
-          <td><%= link_to '>>', edit_user_path(user), class: 'btn btn-warning' %></td>
+          <td>
+            <% if policy(user).edit? %>
+              <%= link_to '>>', edit_user_path(user), class: 'btn btn-warning' %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
