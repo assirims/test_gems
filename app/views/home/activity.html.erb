@@ -1,18 +1,4 @@
-<!-- This is a test page for the activity gem
-<% if current_user.has_role? :admin %>
-<h2 class="text-danger">Your Role is admin</h2><br />
-<% end %>
-<% if current_user.has_role? :teacher %>
-<h2 class="text-warning">Your Role is teacher</h2><br />
-<% end %>
-<% if current_user.has_role? :student %>
-<h2 class="text-info">Your Role is student</h2><br />
-<% end %>
--->
-
-<h1>
-  Activity: <%= @activities.count %>
-</h1>
+<h1>Activity: <%= @activities.count %></h1>
 <br />
 
 <ul class="list-group">

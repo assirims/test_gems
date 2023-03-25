@@ -1,56 +1,18 @@
-<div class="card border-secondary">
+<div class="card border-secondary text-center w-50 mx-auto mt-2">
   <div class="card-body">
-    <h5 class="card-header text-primary text-center">
-      <%= link_to course.title, course_path(course) %>
-    </h5>
-    <div class="card-text text-center">
+    <div class="card-title">
+    <h5 class="text-primary"><%= course.title %></h5>
+      <h6 class="card-header text-secondary"><%= course.lessons.count %> lesson(s) </h6>
+    </div>
+    <div class="card-text">
       <%= simple_format(course.short_description) %>
     </div>
-    <div class="card-footer text-center">
-      By: <%= course.user.username %> <hr />
-      <%= number_to_currency(course.price) %> <hr />
-      <%= course.language %><hr />
-      <%= course.level %><hr />
+    <div class="card-footer">
+      By: <%= course.user.username %> |
+      Price: <%= number_to_currency(course.price) %> |
+      Language: <%= course.language %> |
+      Level: <%= course.level %> |
       <%= course.created_at.strftime('%d-%b-%Y') %>
       </div>
   </div>
 </div>
-<!--
-      <div class="card-footer text-center">
-      <%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %>
-      <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' %>
-    </div>
-
-<div id="<%= dom_id course %>">
-  <p>
-    <strong>Title:</strong>
-    <%= course.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= course.description %>
-  </p>
-
-  <p>
-    <strong>Short description:</strong>
-    <%= course.short_description %>
-  </p>
-
-  <p>
-    <strong>Language:</strong>
-    <%= course.language %>
-  </p>
-
-  <p>
-    <strong>Level:</strong>
-    <%= course.level %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= course.price %>
-  </p>
-
-</div>
--->

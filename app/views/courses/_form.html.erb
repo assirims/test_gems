@@ -28,13 +28,11 @@
 
   <div>
     <%= form.label :language, style: "display: block" %>
-    <%#= form.collection_select :language, [ "English", "Polish", "Russian"], :to_s, :to_s %>
     <%= form.collection_select :language, Course.languages, :to_s, :to_s, include_blank: true %>
   </div>
 
   <div>
     <%= form.label :level, style: "display: block" %>
-    <%#= form.text_field :level %>
     <%= form.collection_select :level, Course.levels, :to_s, :to_s, include_blank: true %>
   </div>
 

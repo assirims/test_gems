@@ -1,4 +1,7 @@
-<%= render @course %>
+<%= render 'courses/course', course: @course %>
+<% @lessons.each do |lesson| %>
+  <%= render 'lessons/lesson', lesson: lesson %>
+<% end %>
 <div class="card border-secondary w-25 mx-auto mt-2">
   <div class="card-body">
     <div class="card-text text-center">
@@ -15,27 +18,3 @@
     </div>
   </div>
 </div>
-<!--
-<div class="text-center">
-  <br />
-  <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col-md-auto">
-        <%= link_to "Back to courses", courses_path , class: 'btn btn-sm btn-info' %>
-      </div>
-      <div class="col-md-auto">
-        <% if policy(@course).edit? %>
-          <%= link_to 'Edit', edit_course_path(@course), class: 'btn btn-sm btn-warning' %>
-        <% end %>
-      </div>
-      <div class="col-md-auto">
-        <% if policy(@course).destroy? %>
-          <%= button_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <%#= link_to "Edit this course", edit_course_path(@course), class: 'btn btn-sm btn-primary' %>
-  <%#= button_to "Destroy this course", @course, method: :delete, class: 'btn btn-sm btn-danger' %>
-</div>
--->
