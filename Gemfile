@@ -92,3 +92,6 @@ gem "public_activity", "~> 2.0"
 
 # https://github.com/RolifyCommunity/rolify
 gem "rolify", "~> 6.0"
+
+# https://github.com/varvet/pundit
+gem "pundit", "~> 2.3"

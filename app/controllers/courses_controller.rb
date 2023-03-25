@@ -12,8 +12,8 @@ class CoursesController < ApplicationController
       # @courses = @q.result(distinct: true)
     # end
     # if current_user.has_role? :admin
-      @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
-      @courses = @ransack_courses.result.includes(:user)
+      @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search) #navbar search
+      @courses = @ransack_courses.result.includes(:user) #navbar search
     # else
     #   redirect_to root_path, alert: "You are not authorized to access this page."
     # end
@@ -30,6 +30,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+    authorize @course #gem pundit
   end
 
   # POST /courses
