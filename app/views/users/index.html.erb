@@ -16,6 +16,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th> Online </th>
         <th><%= sort_link(@ransack_users, :id, 'ID') %></th>
         <th><%= sort_link(@ransack_users, :email, 'Email') %></th>
         <th><%= sort_link(@ransack_users, :created_at, 'Created at') %></th>
@@ -37,6 +38,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
+          <td><%= user.online? ? "\u{2705}" : "\u274C" %></td>
           <td><%= user.id %></td>
           <td><%= link_to user.email, user_path(user) %></td>
           <td><%= user.created_at %></td>

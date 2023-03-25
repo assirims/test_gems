@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # https://www.veracode.com/blog/managing-appsec/when-rails-protectfromforgery-fails
   protect_from_forgery with: :exception
 
+  after_action :user_activity #gem public_activity
+
   include Pundit::Authorization #gem pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized #gem pundit
 
@@ -19,5 +21,9 @@ class ApplicationController < ActionController::Base
   def user_not_authorized #gem pundit
     flash[:alert] = "You are not authorized to perform this action."
     redirect_back(fallback_location: root_path)
+  end
+
+  def user_activity #gem public_activity
+    current_user.try :touch
   end
 end

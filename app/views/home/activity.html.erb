@@ -1,3 +1,4 @@
+<!-- This is a test page for the activity gem
 <% if current_user.has_role? :admin %>
 <h2 class="text-danger">Your Role is admin</h2><br />
 <% end %>
@@ -7,6 +8,7 @@
 <% if current_user.has_role? :student %>
 <h2 class="text-info">Your Role is student</h2><br />
 <% end %>
+-->
 
 <h1>
   Activity: <%= @activities.count %>
@@ -17,18 +19,22 @@
   <% @activities.each do |activity| %>
     <li class="list-group-item">
       (<%= activity.id  %>)
-      <span  class="text-warning">For</span>
+      <span  class="text-danger">The user: </span>
+      <%= activity.owner %>
+      <span  class="text-warning">took this action =></span>
+      <span  class="text-light bg-dark"><%= activity.key %></span>
+      <span  class="text-info"> on this object</span>
+      <span  class="text-light bg-dark">
       <%= activity.trackable_type %>
       <%= activity.trackable_id %>
-      <span  class="text-warning">in </span>
-      <%= link_to activity.trackable, activity.trackable %>.
-      <span  class="text-warning">This action:</span>
-      <span  class="text-light bg-dark">
-        <%= activity.key %>
-        <%= activity.parameters  %>
       </span>
-      <span  class="text-danger">was done by</span>
-      <%= activity.owner %>
+      <span  class="text-warning"> with these parameters</span>
+      <span  class="text-light bg-dark"><%= activity.parameters  %></span>
+      <span  class="text-danger">at </span>
+      <%= link_to activity.trackable, activity.trackable %>.
     </li>
   <% end %>
 </ul>
+
+<br /><br />
+

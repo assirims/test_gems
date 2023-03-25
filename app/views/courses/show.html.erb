@@ -4,6 +4,7 @@
     <div class="card-text text-center">
       <%= link_to "Back to courses", courses_path , class: 'btn btn-sm btn-info' %>
       <hr />
+      <%# if current_user %>
       <% if policy(@course).edit? %>
         <%= link_to 'Edit', edit_course_path(@course), class: 'btn btn-sm btn-warning' %>
       <% end %>

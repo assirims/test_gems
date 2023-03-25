@@ -24,6 +24,10 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :email, use: :slugged
 
+  def online?
+    updated_at > 2.minutes.ago
+  end
+
   def to_s
     email
   end
