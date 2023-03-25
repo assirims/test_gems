@@ -1,19 +1,30 @@
-<div class="card">
-  <div class="card-header"><%= user.email %></div>
+<div class="card w-25 mx-auto mt-2">
+  <div class="card-header"><%= user.email %> (ID: <%= user.id %>)</div>
   <div class="card-footer">
     Signed up: <%= time_ago_in_words(user.created_at) %> ago
   </div>
   <div class="card-footer">
-    <%='sign_in_count'.humanize %>
+    <%='sign_in_count'.humanize + ":"%>
     <%= user.sign_in_count %> <br />
-    <%='current_sign_in_at'.humanize %>
-    <%= user.current_sign_in_at %> <br />
-    <%='last_sign_in_at'.humanize %>
-    <%= user.last_sign_in_at %> <br />
-    <%='current_sign_in_ip'.humanize %>
+    <%='current_sign_in_at'.humanize + ":"%>
+    <%= user.current_sign_in_at.strftime('%d-%b-%Y') %> <br />
+    <%='last_sign_in_at'.humanize + ":"%>
+    <%= user.last_sign_in_at.strftime('%d-%b-%Y') %> <br />
+    <%='current_sign_in_ip'.humanize + ":"%>
     <%= user.current_sign_in_ip %> <br />
-    <%= 'last_sign_in_ip'.humanize %>
+    <%= 'last_sign_in_ip'.humanize + ":"%>
     <%= user.last_sign_in_ip %>
+  </div>
+  <div class="card-footer">
+    <%= user.roles.map(&:name).join(', ') %>
+  </div>
+  <div class="card-footer text-center">
+    <% if policy(user).edit? %>
+      <%= link_to 'Edit Role', edit_user_path(user), class: 'btn btn-warning' %>
+    <% end %>
+    <% if policy(user).destroy? %>
+      <%= link_to 'Remove User', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <% end %>
   </div>
   <div class="card-footer">
     Confirmed email?
@@ -23,5 +34,13 @@
       <div class="badge badge-danger" style="color:red">No</div>
     <% end %>
   </div>
+  <div class="card-footer">
+    <%='confirmed_at'.humanize + ":"%>
+    <%= user.confirmed_at.strftime('%d-%b-%Y') %> <br />
+    <%='confirmation_sent_at'.humanize + ":"%>
+    <%= user.confirmation_sent_at %> <br />
+    <%='unconfirmed_email'.humanize + ":"%>
+    <%= user.unconfirmed_email %> <br />
+  </div>
 </div>
-  <br />
+<br />

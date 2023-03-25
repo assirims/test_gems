@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
   def index
     # @users = User.all.order(created_at: :desc)
     # @q = User.ransack(params[:q])
@@ -7,6 +7,9 @@ class UsersController < ApplicationController
     @ransack_users = User.ransack(params[:users_search], search_key: :users_search)
     @ransack_users.sorts = ['id desc'] if @ransack_users.sorts.empty?
     @users = @ransack_users.result.includes(:courses)
+  end
+
+  def show
   end
 
   def edit
@@ -23,13 +26,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    authorize @user #  gem pundit
     @user.destroy
     redirect_to users_path, notice: 'User was successfully destroyed.'
   end
 
   private
   def set_user
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def user_params

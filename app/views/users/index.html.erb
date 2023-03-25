@@ -38,7 +38,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= user.email %></td>
+          <td><%= link_to user.email, user_path(user) %></td>
           <td><%= user.created_at %></td>
           <td><%= user.sign_in_count %></td>
           <td><%= user.current_sign_in_at %></td>
