@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.0"
 
+# drop table from rails console
+# ActiveRecord::Migration.drop_table(:users)
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
@@ -95,3 +98,6 @@ gem "rolify", "~> 6.0"
 
 # https://github.com/varvet/pundit
 gem "pundit", "~> 2.3"
+
+# https://github.com/heartcombo/simple_form
+gem "simple_form", "~> 5.2"

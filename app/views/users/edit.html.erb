@@ -6,8 +6,7 @@
     </h5>
   </div>
   <div class="card-text">
-    <%= form_for @user do |f| %>
-      <%#= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
+    <%= simple_form_for @user do |f|  %>
       <%= f.collection_check_boxes :role_ids, Role.all, :id, :name do |b| %>
         <div class="form-check form-switch">
           <%= b.label class: 'form-check-label' do %>
@@ -16,9 +15,12 @@
           <% end %>
         </div>
       <% end %>
-      <!--<%#= f.error :role_ids, class: 'text-danger' %> # this works with simple form gem but not with form_for -->
+      <%= f.hint 'At least one role must be selected.' %>
+      <%# the error message is not working %>
+      <%#= f.error :roles, class: 'text-danger', wrap_with: { tag: 'div' } %>
       <hr/>
-      <%= f.submit 'Save', class: "btn btn-success mb-2" %>
+      <%= f.button :submit, class: "btn btn-success mb-2"  %>
+      <%#= f.submit 'Save', class: "btn btn-success mb-2" %>
     <% end %>
   </div>
   <div class="card-footer">
