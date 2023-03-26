@@ -1,11 +1,13 @@
-<h1>Lessons: <%= @lessons.count %></h1>
+<% controller.redirect_to courses_path %>
+
+<!--<h1>Lessons: <%= @lessons.count %></h1>
 
 <div class="d-flex-table p-2 justify-content-center">
-  <%= search_form_for @ransack_lessons, as: :lessons_search, url: lessons_path do |form| %>
+  <%= search_form_for @ransack_lessons, as: :lessons_search, url: course_lessons_path do |form| %>
     <%= form.search_field :title_cont, placeholder: "Title" %>
     <%= form.search_field :content_cont, placeholder: "Content" %>
     <%= form.submit "Search", class: "btn btn-primary" %>
-    <%= link_to "Reset", lessons_path, class: "btn btn-secondary" %>
+    <%= link_to "Reset", course_lessons_path, class: "btn btn-secondary" %>
   <% end %>
 </div>
 
@@ -30,9 +32,10 @@
         <td><%= lesson.content %></td>
         <td><%= lesson.course %></td>
         <td><%= lesson.created_at.strftime('%d-%b-%Y') %></td>
-        <td><%= link_to '>>', lesson, class: 'btn btn-sm btn-primary' %></td>
+        <td><%= link_to '>>', course_lesson_path(lesson.course_id, lesson), class: 'btn btn-sm btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br/>
+-->

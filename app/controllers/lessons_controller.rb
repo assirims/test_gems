@@ -16,6 +16,7 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @course = Course.friendly.find(params[:course_id])
     authorize_valuations
   end
 
@@ -26,9 +27,11 @@ class LessonsController < ApplicationController
   # POST /lessons
   def create
     @lesson = Lesson.new(lesson_params)
+    @course = Course.friendly.find(params[:course_id])
+    @lesson.course_id = @course.id
     authorize_valuations
     if @lesson.save
-      redirect_to @lesson, notice: "Lesson was successfully created."
+      redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +40,7 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1
   def update
     if @lesson.update(lesson_params)
-      redirect_to @lesson, notice: "Lesson was successfully updated."
+      redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,12 +49,13 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   def destroy
     @lesson.destroy
-    redirect_to lessons_url, notice: "Lesson was successfully destroyed."
+    redirect_to course_lessons_url, notice: "Lesson was successfully destroyed."
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
     def set_lesson
+      @course = Course.friendly.find(params[:course_id])
       @lesson = Lesson.friendly.find(params[:id])
     end
 

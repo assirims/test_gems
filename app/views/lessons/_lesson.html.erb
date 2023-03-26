@@ -1,7 +1,7 @@
 <div class="card border-secondary text-center w-50 mx-auto mt-2">
   <div class="card-body">
     <div class="card-title">
-      <h5 class="text-primary"><%= lesson.title %></h5>
+      <h5 class="text-primary"><%= link_to lesson.title, course_lesson_path(@course, lesson) %></h5>
     </div>
   </div>
   <% if policy(lesson).show? %>
@@ -10,12 +10,12 @@
   <% end %>
   <% if policy(lesson).edit? %>
   <div class="card-footer">
-    <%= link_to 'Edit', edit_lesson_path(lesson), class: 'btn btn-sm btn-warning' %>
+    <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: 'btn btn-sm btn-warning' %>
   </div>
   <% end %>
   <% if policy(lesson).destroy? %>
   <div class="card-footer">
-    <%= button_to 'Destroy this lesson', @lesson, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+    <%= button_to 'Destroy this lesson', [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
   </div>
   <% end %>
 </div>

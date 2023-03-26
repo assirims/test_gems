@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  resources :lessons
   devise_for :users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
-  resources :courses
+  resources :courses do
+    resources :lessons
+  end
   resources :users, only: [:index , :edit, :show, :update, :destroy]
 
   get 'home/activity'

@@ -16,7 +16,7 @@
     </div>
     <% if policy(@lessons).new? %>
       <div class="card-footer">
-        <%= link_to 'Add Lesson', new_lesson_path(course_id: @course.id), class: 'btn btn-sm btn-primary' %>
+        <%= link_to 'Add Lesson', new_course_lesson_path(@course, @lesson), class: 'btn btn-sm btn-primary' %>
       </div>
     <% end %>
     <% if policy(@course).edit? %>

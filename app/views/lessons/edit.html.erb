@@ -5,8 +5,8 @@
 <br>
 
 <div>
-  <%= link_to "Show this lesson", @lesson %> |
-  <%= link_to "Back to lessons", lessons_path %>
+  <%= link_to "Show this lesson", course_lesson_path(@lesson.course_id, @lesson) %> |
+  <%= link_to "Back to the course", course_path(@course) %>
 </div>
 
 
