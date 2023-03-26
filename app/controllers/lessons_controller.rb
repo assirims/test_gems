@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: %i[ show edit update destroy ]
+  before_action :authorize_valuations, except: %i[ index new create]
 
   # GET /lessons
   def index
@@ -15,6 +16,7 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    authorize_valuations
   end
 
   # GET /lessons/1/edit
@@ -24,7 +26,7 @@ class LessonsController < ApplicationController
   # POST /lessons
   def create
     @lesson = Lesson.new(lesson_params)
-
+    authorize_valuations
     if @lesson.save
       redirect_to @lesson, notice: "Lesson was successfully created."
     else
@@ -48,7 +50,7 @@ class LessonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @lesson = Lesson.friendly.find(params[:id])
     end
@@ -57,4 +59,10 @@ class LessonsController < ApplicationController
     def lesson_params
       params.require(:lesson).permit(:title, :content, :course_id)
     end
+
+    def authorize_valuations
+      # authorize @lesson # policy: test_gems/app/policies/lesson_policy.rb
+      authorize(@lessons || @lesson)
+    end
+
 end

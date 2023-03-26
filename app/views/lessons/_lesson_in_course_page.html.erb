@@ -1,0 +1,9 @@
+<div class="card border-secondary text-center w-50 mx-auto mt-2">
+  <div class="card-body">
+    <div class="card-title">
+      <h5 class="text-primary"><%= link_to lesson.title, lesson_path(lesson) %></h5>
+    </div>
+  </div>
+  <div class="card-footer"><%= lesson.content %></div>
+  <div class="card-footer">Course: <%= lesson.course %></div>
+</div>

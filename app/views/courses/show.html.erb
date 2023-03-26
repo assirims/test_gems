@@ -1,20 +1,12 @@
-<%= render 'courses/course', course: @course %>
-<% @lessons.each do |lesson| %>
-  <%= render 'lessons/lesson', lesson: lesson %>
-<% end %>
-<div class="card border-secondary w-25 mx-auto mt-2">
-  <div class="card-body">
-    <div class="card-text text-center">
-      <%= link_to "Back to courses", courses_path , class: 'btn btn-sm btn-info' %>
-      <hr />
-      <%# if current_user %>
-      <% if policy(@course).edit? %>
-        <%= link_to 'Edit', edit_course_path(@course), class: 'btn btn-sm btn-warning' %>
-      <% end %>
-      <hr />
-      <% if policy(@course).destroy? %>
-        <%= button_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
-      <% end %>
-    </div>
+<h4><%= link_to 'Courses', courses_path, class: 'text-decoration-none' %> \ <%= @course.title %></h4>
+<br />
+<div class="row">
+  <div class="col-lg-6">
+    <%= render 'courses/course', course: @course %>
+  </div>
+  <div class="col-lg-6">
+    <% @lessons.each do |lesson| %>
+      <%= render 'lessons/lesson_in_course_page', lesson: lesson %>
+    <% end %>
   </div>
 </div>
