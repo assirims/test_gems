@@ -9,6 +9,14 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
 
+  # Exception Notification for production environment by a gem called exception_notification
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    email_prefix: '[PREFIX] ',
+    sender_address: %{"notifier" <notification@mydomain.com>},
+    exception_recipients: %w{admin@mydomain.com}
+  }
+
   # SMTP settings for Amazon SES
   # EDITOR='code --wait' rails credentials:edit
   config.action_mailer.smtp_settings = {

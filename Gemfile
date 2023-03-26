@@ -101,3 +101,6 @@ gem "pundit", "~> 2.3"
 
 # https://github.com/heartcombo/simple_form
 gem "simple_form", "~> 5.2"
+
+# https://github.com/smartinez87/exception_notification
+gem "exception_notification", "~> 4.5"
