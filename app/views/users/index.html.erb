@@ -1,3 +1,8 @@
+<% content_for :title do %>
+  Website \ All Users
+<% end %>
+
+
 <div class="container">
   <h1>Users: <%= @users.count %></h1>
   <br />
@@ -12,6 +17,10 @@
     <% end %>
   </div>
   <br />
+
+  <div class="d-flex justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
 
   <table class="table table-bordered">
     <thead>
@@ -28,12 +37,6 @@
         <th><%= sort_link(@ransack_users, :roles, 'Roles') %></th>
         <th>Edit roles</th>
       </tr>
-      <!--<th><%= 'sign_in_count'.humanize %></th>
-      <th><%= 'current_sign_in_at'.humanize %></th>
-      <th><%= 'last_sign_in_at'.humanize %></th>
-      <th><%= 'current_sign_in_ip'.humanize %></th>
-      <th><%= 'last_sign_in_ip'.humanize %></th>
-    </tr>-->
     </thead>
     <tbody>
       <% @users.each do |user| %>
@@ -48,12 +51,6 @@
           <td><%= user.current_sign_in_ip %></td>
           <td><%= user.last_sign_in_ip %></td>
           <td><%= user.roles.map(&:name).join(', ') %></td>
-          <!--<td><%= user.roles.each do |role| %>
-            <%= role.name %>
-            <% end %> </td>
-            role.each(&:name)
-            rold.each { |r| r.name}
-            -->
           <td>
             <% if policy(user).edit? %>
               <%= link_to '>>', edit_user_path(user), class: 'btn btn-warning' %>
@@ -63,10 +60,4 @@
       <% end %>
     </tbody>
   </table>
-
-  <%# <div class="card-columns"> %>
-  <%# @users.each do |user| %>
-    <%#= render "users/user", user: user %>
-    <%# end %>
-    <%# </div> %>
   </div>

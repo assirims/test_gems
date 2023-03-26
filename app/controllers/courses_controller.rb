@@ -11,6 +11,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   def show
     @lessons = @course.lessons
+    @pagy, @lessons = pagy(@lessons, items: 2) #gem pagy
   end
 
   # GET /courses/new

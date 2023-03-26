@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  Website | All Courses
+<% end %>
+
 <h1>Courses: <%= @courses.count %></h1>
 
 <div class="d-flex-table p-2 justify-content-center">
@@ -16,8 +20,7 @@
 <br />
 <%= link_to "New course", new_course_path, class: "btn btn-success" %><br />
 <br />
-<div class="d-flex-table p-2 justify-content-center">
-  <%#== pagy_bootstrap_combo_nav_js(@pagy) %>
+<div class="d-flex justify-content-center">
   <%== pagy_bootstrap_nav(@pagy) %>
 </div>
 <table class="table table-bordered">
@@ -54,4 +57,3 @@
     <% end %>
   </tbody>
 </table>
-

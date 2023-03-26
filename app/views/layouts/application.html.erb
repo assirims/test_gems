@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TestGems</title>
+    <title>
+      <%= content_for?(:title) ? yield(:title) : "Website" %>
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,9 +15,9 @@
   <body>
     <%= render "layouts/navbar" %>
     <%= render "layouts/notifications" %>
-  <div class="container"><br />
-    <%= yield %>
-  </div>
+    <div class="container"><br />
+      <%= yield %>
+    </div>
     <%= render "layouts/footer" %>
   </body>
 </html>
