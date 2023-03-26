@@ -1,5 +1,4 @@
 <h4><%= link_to 'Courses', courses_path, class: 'text-decoration-none' %> \
-<%#= link_to 'Lesson', lessons_path, class: 'text-decoration-none' %>
 <%= link_to @lesson.course.title, course_path(@lesson.course), class: 'text-decoration-none' %> \
 <%= @lesson.title %></h4>
 
