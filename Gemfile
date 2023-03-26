@@ -77,6 +77,8 @@ end
 
 gem "cssbundling-rails", "~> 1.1"
 
+# https://fontawesome.com/docs/web/use-with/ruby-on-rails
+# https://blog.corsego.com/fontawesome-importmaps-rails7
 gem "font-awesome-sass", "~> 6.3"
 
 # https://github.com/faker-ruby/faker
