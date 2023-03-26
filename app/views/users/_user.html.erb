@@ -7,9 +7,9 @@
     <%='sign_in_count'.humanize + ":"%>
     <%= user.sign_in_count %> <br />
     <%='current_sign_in_at'.humanize + ":"%>
-    <%= user.current_sign_in_at.strftime('%d-%b-%Y') %> <br />
+    <%= user.current_sign_in_at.strftime('%d-%b-%Y') if user.current_sign_in_at.present? %> <br />
     <%='last_sign_in_at'.humanize + ":"%>
-    <%= user.last_sign_in_at.strftime('%d-%b-%Y') %> <br />
+    <%= user.last_sign_in_at.strftime('%d-%b-%Y') if user.last_sign_in_at.present? %> <br />
     <%='current_sign_in_ip'.humanize + ":"%>
     <%= user.current_sign_in_ip %> <br />
     <%= 'last_sign_in_ip'.humanize + ":"%>

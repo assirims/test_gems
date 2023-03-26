@@ -1,0 +1,30 @@
+
+<%#= render @enrollment %>
+
+<p>
+  <b>Course:</b>
+  <%= @enrollment.course %>
+</p>
+<p>
+  <b>User:</b>
+  <%= @enrollment.user %>
+</p>
+<p>
+  <b>Rating:</b>
+  <%= @enrollment.rating %>
+</p>
+<p>
+  <b>Review:</b>
+  <%= @enrollment.review %>
+</p>
+<p>
+  <b>Price:</b>
+  <%= @enrollment.price %>
+</p>
+
+<div>
+  <%= link_to "Edit this enrollment", edit_enrollment_path(@enrollment) %> |
+  <%= link_to "Back to enrollments", enrollments_path %>
+
+  <%= button_to "Destroy this enrollment", @enrollment, method: :delete %>
+</div>

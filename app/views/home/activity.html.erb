@@ -21,7 +21,11 @@
       <span  class="text-warning"> with these parameters</span>
       <span  class="text-light bg-dark"><%= activity.parameters  %></span>
       <span  class="text-danger">at </span>
-      <%= link_to activity.trackable, activity.trackable %>.
+      <% if activity.trackable_type == "Lesson" %>
+        <%= activity.trackable_type %> was deleted
+      <% else %>
+        <%= link_to activity.trackable %>
+      <% end %>
     </li>
   <% end %>
 </ul>

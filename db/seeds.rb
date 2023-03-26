@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# User.create!(email: 'qme@msn.com', password: '000000', password_confirmation: '000000')
+# User.create!(email: 'student@example.com', password: 'student@example.com', password_confirmation: 'student@example.com', confirmed_at: Time.now)
 
 # user = User.new(
 #   email: 'admin@example.com',
@@ -15,6 +15,7 @@
 # )
 # user.skip_confirmation!
 # user.save!
+
 # PublicActivity.enabled = false
 
 # 30.times do
@@ -33,21 +34,21 @@
 #   }])
 # end
 
-20.times do
-  User.create!([{
-    email: Faker::Internet.email,
-    password: '000000',
-    created_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
-    updated_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
-    sign_in_count: Faker::Number.between(from: 0, to: 100),
-    current_sign_in_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
-    last_sign_in_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
-    current_sign_in_ip: Faker::Internet.ip_v4_address,
-    last_sign_in_ip: Faker::Internet.ip_v4_address,
-    confirmed_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
-}])
-end
-PublicActivity.enabled = true
+# 20.times do
+#   User.create!([{
+#     email: Faker::Internet.email,
+#     password: '000000',
+#     created_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
+#     updated_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
+#     sign_in_count: Faker::Number.between(from: 0, to: 100),
+#     current_sign_in_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
+#     last_sign_in_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
+#     current_sign_in_ip: Faker::Internet.ip_v4_address,
+#     last_sign_in_ip: Faker::Internet.ip_v4_address,
+#     confirmed_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
+# }])
+# end
+# PublicActivity.enabled = true
 #   // Console
 # bundle
 # rails db:seed
