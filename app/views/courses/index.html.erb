@@ -13,8 +13,13 @@
   <% end %>
 </div>
 
-<br /><%= link_to "New course", new_course_path, class: "btn btn-success" %><br /><br />
-
+<br />
+<%= link_to "New course", new_course_path, class: "btn btn-success" %><br />
+<br />
+<div class="d-flex-table p-2 justify-content-center">
+  <%#== pagy_bootstrap_combo_nav_js(@pagy) %>
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -44,6 +49,9 @@
           <%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %>
         </td>
       </tr>
+      <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
+      <%#== pagy_nav(@pagy) %>
     <% end %>
   </tbody>
 </table>
+

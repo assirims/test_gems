@@ -3,20 +3,9 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    # @courses = Course.all
-    # if params[:title]
-    #   @courses = Course.where("title LIKE ?", "%#{params[:title]}%") #case-insensitive
-    # else
-      # @courses = Course.all
-      # @q = Course.ransack(params[:q])
-      # @courses = @q.result(distinct: true)
-    # end
-    # if current_user.has_role? :admin
-      @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search) #navbar search
-      @courses = @ransack_courses.result.includes(:user) #navbar search
-    # else
-    #   redirect_to root_path, alert: "You are not authorized to access this page."
-    # end
+    @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search) #navbar search
+    @courses = @ransack_courses.result.includes(:user) #navbar search
+    @pagy, @courses = pagy(@courses, items: 5) #gem pagy
   end
 
   # GET /courses/1

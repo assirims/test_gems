@@ -15,6 +15,7 @@
 # )
 # user.skip_confirmation!
 # user.save!
+# PublicActivity.enabled = false
 
 # 30.times do
 #   Course.create!([{
@@ -46,7 +47,7 @@
     confirmed_at: Faker::Date.between(from: '2021-01-01', to: '2021-12-31'),
 }])
 end
-
+PublicActivity.enabled = true
 #   // Console
 # bundle
 # rails db:seed
