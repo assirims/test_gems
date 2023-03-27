@@ -1,47 +1,24 @@
-<%= form_with(model: course) do |form| %>
-  <% if course.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+<%= simple_form_for(@course) do |form| %>
+  <div class="d-grid gap-2 mt-3">
+    <%= form.error_notification %>
+    <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
-      <ul>
-        <% course.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.rich_text_area :description, :cols => 50, :rows => 10 %>
-  </div>
-
-  <div>
-    <%= form.label :short_description, style: "display: block" %>
+    <%= form.input :title %>
+    <%= form.label :description %>
+    <%= form.rich_text_area :description, input_html: { minlength: 5, maxlength: 1000 } %>
+    <small><%= form.error :description, class: 'text-danger' %></small>
+    <%= form.label :short_description %>
     <%= form.rich_text_area :short_description %>
-  </div>
-
-  <div>
-    <%= form.label :language, style: "display: block" %>
-    <%= form.collection_select :language, Course.languages, :to_s, :to_s, include_blank: true %>
-  </div>
-
-  <div>
-    <%= form.label :level, style: "display: block" %>
-    <%= form.collection_select :level, Course.levels, :to_s, :to_s, include_blank: true %>
-  </div>
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <small><%= form.error :short_description, class: 'text-danger' %></small>
+    <%= form.label :language %>
+    <%= form.collection_select :language, Course.languages, :to_s, :to_s, include_blank: true, class: "form-control" %>
+    <small><%= form.error :language, class: 'text-danger' %></small>
+    <%= form.label :level %>
+    <%= form.collection_select :level, Course.levels, :to_s, :to_s, include_blank: true, class: "form-control" %>
+    <small><%= form.error :level, class: 'text-danger' %></small>
+    <%= form.label :price %>
+    <%= form.number_field :price, class: "form-control", min: 0, max: 1000, step: 0.01 %>
+    <small><%= form.error :price, class: 'text-danger' %></small>
+    <%= form.button :submit, class: "btn btn-primary ax-2" %>
   </div>
 <% end %>

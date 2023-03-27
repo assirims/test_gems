@@ -1,10 +1,12 @@
 class EnrollmentsController < ApplicationController
   before_action :set_enrollment, only: %i[ show edit update destroy ]
   before_action :set_course, only: %i[ new create ]
+  before_action :authorize_enrollment, only: %i[ update edit destroy ]
 
   # GET /enrollments
   def index
     @enrollments = Enrollment.all
+    authorize_enrollment
   end
 
   # GET /enrollments/1
@@ -60,5 +62,9 @@ class EnrollmentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def enrollment_params
       params.require(:enrollment).permit(:rating, :review)
+    end
+
+    def authorize_enrollment
+      authorize(@enrollments || @enrollment)
     end
 end

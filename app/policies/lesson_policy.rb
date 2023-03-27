@@ -3,11 +3,6 @@ class LessonPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-    # if @user.has_role? :admin
-    #   scope.all
-    # else
-    #   scope.where.not(content: "")
-    # end
   end
 
   def show?
@@ -23,7 +18,11 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def new?
-    @user.has_role?(:admin) #|| @record.course.user_id == @user.id
+    @user.has_role?(:admin) || @user.has_role?(:teacher)
+    # @record.course.user_id == @user.id
+    # @courses.id == 1
+    # @user.id == 1
+    # user_author
   end
 
   def create?
