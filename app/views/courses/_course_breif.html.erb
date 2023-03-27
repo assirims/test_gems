@@ -1,10 +1,13 @@
-<div class="card border-secondary">
+<div class="card border-secondary text-center">
   <div class="card-body">
-    <h5 class="card-header text-primary text-center">
+    <h5 class="card-header text-primary">
       <%= link_to course.title, course_path(course) %>
     </h5>
-    <div class="card-text text-center">
+    <div class="card-text">
       <%= simple_format(course.short_description) %>
+    </div>
+    <div class="card-footer">
+      <%= enrollments_button(course) %>
     </div>
   </div>
 </div>

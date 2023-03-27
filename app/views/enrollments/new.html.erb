@@ -2,16 +2,16 @@
 
 <div class="card">
   <div class="card-header">
-    <h3>
-      <div class="fa fa-lock-open"></div>
-      New enrollment
-    </h3>
+    <h3>New Enrollment for <%= link_to @course.title, course_path(@course) %></h3>
   </div>
   <div class="card-body">
     <%#= render 'form' %>
-    <%= render "form", enrollment: @enrollment %>
+    <%#= render "form", enrollment: @enrollment %>
+    <%= form_tag course_enrollments_path(@course) do %>
+      <%= submit_tag "Pay #{number_to_currency @course.price}", class: "btn btn-warning" %>
+    <% end %>
   </div>
   <div class="card-footer">
-    <%= link_to 'Back', enrollments_path %>
+    <%= link_to 'Back', course_path(@course), class: "btn btn-primary" %>
   </div>
 </div>

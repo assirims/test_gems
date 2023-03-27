@@ -14,6 +14,9 @@
       Level: <%= course.level %> |
       <%= course.created_at.strftime('%d-%b-%Y') %>
     </div>
+    <div class="card-footer">
+      <%= enrollments_button(course) %>
+    </div>
     <% if policy(@course).edit? %>
       <div class="card-footer">
         <%= link_to 'Edit', edit_course_path(@course), class: 'btn btn-sm btn-warning' %>

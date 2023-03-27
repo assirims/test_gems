@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :courses do
     resources :lessons
+    resources :enrollments, only: [:create, :new]
   end
   resources :users, only: [:index , :edit, :show, :update, :destroy]
 

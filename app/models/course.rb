@@ -35,4 +35,8 @@ class Course < ApplicationRecord
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
+
+  def bought(user)
+    enrollments.where(user_id: [user.id], course_id: [id]).any?
+  end
 end

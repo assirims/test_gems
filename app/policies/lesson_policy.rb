@@ -23,11 +23,11 @@ class LessonPolicy < ApplicationPolicy
   end
 
   def new?
-    @user.has_role?(:admin) || @record.course.user_id == @user.id
+    @user.has_role?(:admin) #|| @record.course.user_id == @user.id
   end
 
   def create?
-    @user.has_role?(:admin) || @record.course.user_id == @user.id
+    @user.has_role?(:admin) #|| @record.course.user_id == @user.id
   end
 
   def destroy?

@@ -45,6 +45,10 @@ class User < ApplicationRecord
     ["courses"]
   end
 
+  def buy_course(course)
+    self.enrollments.create(course: course, price: course.price)
+  end
+
   # works with simple_form_for only
   validate :must_have_a_role, on: :update
   private
