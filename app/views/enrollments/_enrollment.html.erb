@@ -1,27 +1,25 @@
-<div id="<%= dom_id enrollment %>">
-  <p>
-    <strong>Course:</strong>
-    <%= enrollment.course_id %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= enrollment.user_id %>
-  </p>
-
-  <p>
-    <strong>Rating:</strong>
-    <%= enrollment.rating %>
-  </p>
-
-  <p>
-    <strong>Review:</strong>
-    <%= enrollment.review %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= enrollment.price %>
-  </p>
-
+<div class="card">
+  <div class="card-header">
+    <%= link_to enrollment.user.username, user_path(enrollment.user) %>
+    <%= time_ago_in_words(enrollment.updated_at) %>
+    <%= link_to enrollment.course, course_path(enrollment.course) %>
+  </div>
+  <div class="card-body">
+    <b>
+      <%= enrollment.rating %>
+    </b>
+    <small>
+      <%= enrollment.review %>
+    </small>
+  </div>
+  <% if current_user %>
+    <div class="card-footer">
+      <% if policy(enrollment).edit? %>
+        <%= link_to 'Edit Review', edit_enrollment_path(enrollment) %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
+
+
+

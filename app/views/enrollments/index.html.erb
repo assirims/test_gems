@@ -8,11 +8,14 @@
   <table class="table table-bordered table-striped table-sm">
     <thead>
       <tr>
-        <th>Course</th>
+        <th>ID</th>
         <th>User</th>
+        <th>Bought</th>
+        <th>Course</th>
+        <th>Price</th>
+        <th>Reviewed at</th>
         <th>Rating</th>
         <th>Review</th>
-        <th>Price</th>
         <th></th>
         <th></th>
         <th></th>
@@ -21,22 +24,23 @@
     <tbody>
       <% @enrollments.each do |enrollment| %>
         <tr>
-          <td><%= enrollment.course %></td>
-          <td><%= enrollment.user %></td>
+          <td><%= enrollment.id %></td>
+          <td><%= link_to enrollment.user, user_path(enrollment.user) %></td>
+          <td><%= enrollment.created_at.strftime("%d/%b/%Y, %H:%M") %></td>
+          <td><%= link_to enrollment.course, course_path(enrollment.course) %></td>
+          <td><%= number_to_currency(enrollment.price) %></td>
+          <td><% if enrollment.rating.present? %> <%= enrollment.updated_at.strftime("%d/%b/%Y, %H:%M") %> <% end %></td>
           <td><%= enrollment.rating %></td>
           <td><%= enrollment.review %></td>
-          <td><%= number_to_currency(enrollment.price) %></td>
-          <td><%= link_to 'Show', enrollment %></td>
-          <td><%= link_to 'Edit', edit_enrollment_path(enrollment) %></td>
-          <td><%= link_to 'Destroy', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'See Review', enrollment %></td>
+          <td><%= link_to 'Add Review', edit_enrollment_path(enrollment) %></td>
+          <td><%= link_to 'Delete Enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 <br/>
-
-<%= link_to "New enrollment", new_enrollment_path %>
 
 <!--
 <div id="enrollments">

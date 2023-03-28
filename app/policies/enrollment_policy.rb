@@ -10,11 +10,11 @@ class EnrollmentPolicy < ApplicationPolicy
   end
 
   def edit?
-    @record.user_id == @user.id
+    @record.user_id == @user.id || @user.has_role?(:admin)
   end
 
   def update?
-    @record.user_id == @user.id
+    @record.user_id == @user.id || @user.has_role?(:admin)
   end
 
   def destroy?

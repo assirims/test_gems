@@ -12,7 +12,7 @@
         <%= link_to "Users", users_path, class: "nav-item nav-link" %>
         <%= link_to "Enrollments", enrollments_path, class: "nav-item nav-link" %>
         <% if user_signed_in? && current_user.has_role?(:admin) %>
-        <%= link_to "Activity", home_activity_path, class: 'nav-link' %>
+          <%= link_to "Activity", home_activity_path, class: 'nav-link' %>
         <% end %>
       </ul>
 
@@ -23,6 +23,7 @@
             <%= f.submit ">>" , class: "btn btn-primary" %>
           <% end %>
         </ul>
+        <!-- search form
 
         <ul></ul>
 
@@ -32,17 +33,19 @@
             <%= f.submit ">>" , class: "btn btn-primary" %>
           <% end %>
         </ul>
-
+      -->
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <%= link_to current_user.username, edit_user_registration_path, class: "nav-item nav-link" %>
+          <%= link_to "My profile", user_path(current_user), class: "nav-item nav-link" %>
+          <%= link_to "Account settings(#{current_user.username})", edit_user_registration_path, class: "nav-item nav-link" %>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>
+
         <% else %>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
           <%= link_to "Sign up", new_user_registration_path, class: "lm-2 nav-item nav-link" %>
           <%= link_to " Login", new_user_session_path, class: "nav-item nav-link" %>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>

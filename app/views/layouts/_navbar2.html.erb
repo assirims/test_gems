@@ -1,0 +1,113 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">
+    <!--= image_tag 'logo.png', size: '20x20', alt: "logo", class: 'rounded' -->
+    <div class="fa fa-graduation-cap">
+    </div>
+    Corsego
+  </a>
+  <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+    <span class="navbar-toggler-icon">
+    </span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!--- if current_user && current_user.has_role?(:admin) -->
+    <% if current_user  %>
+      <ul class="navbar-nav mr-auto">
+        <li class="<%= 'active font-weight-bold' if current_page?(root_path) %> nav-item">
+          <%= link_to root_path, class: 'nav-link' do  %>
+            <div class="fa fa-home"></div>
+            Home
+          <% end %>
+        </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(courses_path) %> nav-item">
+          <%= link_to courses_path, class: 'nav-link' do  %>
+            <div class="fa fa-graduation-cap"></div>
+            Courses
+          <% end %>
+        </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(new_course_path) %> nav-item">
+          <%= link_to new_course_path, class: 'nav-link' do %>
+            <div class="fa fa-plus"></div>
+            New Course
+          <% end %>
+        </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(users_path) %> nav-item">
+          <%= link_to users_path, class: 'nav-link' do %>
+            <div class="fa fa-users"></div>
+            Users
+          <% end %>
+        </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(enrollments_path) %> nav-item">
+          <%= link_to enrollments_path, class: 'nav-link' do %>
+            <div class="fa fa-lock-open"></div>
+            Enrollments
+          <% end %>
+        </li>
+      </ul>
+      <!-- SEARCH IN NAVBAR -->
+      <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|  %>
+        <div class="input-group">
+          <%= f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off  %>
+          <span class="input-group-append">
+            <button class="btn btn-primary btn-sm" type="submit">
+              <span aria-hidden="true" class="fa fa-search">
+              </span>
+            </button>
+          </span>
+        </div>
+      <% end %>
+      <!--.form-inline.my-2.my-lg-0 -->
+      <!--  = form_tag(courses_path, method: :get) do-->
+      <!--    .input-group-->
+      <!--      = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Find a course", class: 'form-control-sm'-->
+      <!--      %span.input-group-append-->
+      <!--        %button.btn.btn-primary.btn-sm{:type => "submit"}-->
+      <!--          %span.fa.fa-search{"aria-hidden" => "true"}-->
+      <ul class="navbar-nav mr-right">
+        <li class="<%= 'active font-weight-bold' if current_page?(home_activity_path) %> nav-item">
+          <%= link_to home_activity_path, class: 'nav-link' do %>
+            <div class="fa fa-bell">
+            </div>
+            Activity
+          <% end %>
+        </li>
+        <li class="nav-item dropdown">
+          <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+            <b>
+              <%= current_user.username %>
+            </b>
+          </a>
+          <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
+            <%= link_to user_path(current_user), class: "dropdown-item" do %>
+              <div class="fa fa-user">
+              </div>
+              <b>My profile
+              </b>
+            <% end %>
+            <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+              <div class="fa fa-cog">
+              </div>
+              <b>Account settings
+              </b>
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+              <div class="fa fa-sign-out-alt">
+              </div>
+              <b>Sign out
+              </b>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+      <!--<ul class="navbar-nav mr-auto">-->
+      <ul class="navbar-nav mr-right">
+        <li class="<%= 'active font-weight-bold' if current_page?(new_user_registration_path) %> nav-item">
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="<%= 'active font-weight-bold' if current_page?(new_user_session_path) %> nav-item">
+          <%= link_to 'Log In', new_user_session_path, class: 'nav-link' %>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</nav>

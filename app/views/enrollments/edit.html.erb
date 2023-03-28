@@ -1,12 +1,17 @@
 <% content_for :title do %> Website | Editing <%= @enrollment.to_s %><% end %>
 
-<h1>Editing enrollment</h1>
-
-<%= render "form", enrollment: @enrollment %>
-
-<br>
-
-<div>
-  <%= link_to "Show this enrollment", @enrollment %> |
-  <%= link_to "Back to enrollments", enrollments_path %>
+<div class="card">
+  <div class="card-header">
+    <h3>
+      <div class="text-warning fa fa-star"></div>
+      Add a Review
+    </h3>
+  </div>
+  <div class="card-body">
+    <%= render "form", enrollment: @enrollment %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Show Review', @enrollment, class: "btn btn-primary" %> |
+    <%= link_to 'Back to course', course_path(@enrollment.course), class: "btn btn-primary" %>
+  </div>
 </div>
