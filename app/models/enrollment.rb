@@ -13,6 +13,8 @@ class Enrollment < ApplicationRecord
     user.to_s + "  " + course.to_s
   end
 
+  scope :pending_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""]) }
+  
   protected
   def cannot_enroll_to_own_course
     if self.new_record? && self.user_id.present? && self.course_id.present? && user_id == course.user_id
