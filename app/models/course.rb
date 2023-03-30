@@ -3,6 +3,10 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { minimum: 5 }
   validates :title, uniqueness: true
 
+  scope :latest, -> { limit(3).order(created_at: :desc) }
+  scope :top_rated, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
+  scope :popular, -> { limit(3).order(enrollments_count: :desc, created_at: :desc) }
+
   has_rich_text :description
 
   belongs_to :user, counter_cache: true

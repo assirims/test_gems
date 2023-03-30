@@ -58,21 +58,21 @@
   <hr/>
   <h2>Popular courses</h2>
   <div class="card-group">
-    <% @popular_courses.each do |course| %>
+    <% @popular.each do |course| %>
       <%= render 'courses/course_breif', course: course %>
     <% end %>
   </div>
   <hr/>
   <h2>Top rated courses</h2>
   <div class="card-group">
-    <% @top_rated_courses.each do |course| %>
+    <% @top_rated.each do |course| %>
       <%= render 'courses/course_breif', course: course %>
     <% end %>
   </div>
   <hr/>
   <h2>Latest courses</h2>
   <div class="card-group">
-    <% @latest_couses.each do |course| %>
+    <% @latest.each do |course| %>
       <%= render 'courses/course_breif', course: course %>
     <% end %>
   </div>
