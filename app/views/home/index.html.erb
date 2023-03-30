@@ -21,13 +21,14 @@
   <br />
   <hr />
   <div class="card-group">
-    <div class="card card-body">
-      Students Links:
-      <ul>
-        <li><%= link_to "Purchased Courses (#{current_user.enrollments_count})", purchased_courses_path %></li>
-        <li><%= link_to "Pending Review Courses (#{current_user.enrollments.pending_review.count})", pending_review_courses_path %></li>
-      </ul>
-    </div>
+    <% if user_signed_in? %>
+      <div class="card card-body">
+        Students Links:
+        <ul>
+          <li><%= link_to "Purchased Courses (#{current_user.enrollments_count})", purchased_courses_path %></li>
+          <li><%= link_to "Pending Review Courses (#{current_user.enrollments.pending_review.count})", pending_review_courses_path %></li>
+        </ul>
+      </div>
     <div class="card card-body">
       Teachers Links:
       <ul>
@@ -36,6 +37,7 @@
         <li><%= link_to "My Students (#{Enrollment.joins(:course).where(courses: {user: current_user}).count})", my_students_enrollments_path %></li>
       </ul>
     </div>
+    <% end %>
     <div class="card card-body">
       Statistics:
       <ul>
@@ -44,21 +46,44 @@
       </ul>
     </div>
   </div>
+  <% if user_signed_in? %>
     <hr/>
-    <h2>Popular courses</h2>
+    <h2>Continue Learning</h2>
     <div class="card-group">
-      <% @courses.each do |course| %>
+      <% @purchased_courses.each do |course| %>
         <%= render 'courses/course_breif', course: course %>
       <% end %>
     </div>
-    <hr/>
-    <h2>Latest courses</h2>
-    <div class="card-group">
-      <% @latest_couses.each do |course| %>
-        <%= render 'courses/course_breif', course: course %>
-      <% end %>
-    </div>
-    <br />
- <br />
-
+  <% end %>
+  <hr/>
+  <h2>Popular courses</h2>
+  <div class="card-group">
+    <% @popular_courses.each do |course| %>
+      <%= render 'courses/course_breif', course: course %>
+    <% end %>
   </div>
+  <hr/>
+  <h2>Top rated courses</h2>
+  <div class="card-group">
+    <% @top_rated_courses.each do |course| %>
+      <%= render 'courses/course_breif', course: course %>
+    <% end %>
+  </div>
+  <hr/>
+  <h2>Latest courses</h2>
+  <div class="card-group">
+    <% @latest_couses.each do |course| %>
+      <%= render 'courses/course_breif', course: course %>
+    <% end %>
+  </div>
+  <hr/>
+  <h2>Latest Highest Reviews</h2>
+  <div class="card-group">
+    <% @latest_good_reviews.each do |enrollment| %>
+      <%= render 'enrollments/enrollment', enrollment: enrollment %>
+    <% end %>
+  </div>
+  <br />
+  <br />
+
+</div>

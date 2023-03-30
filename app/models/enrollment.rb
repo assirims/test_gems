@@ -4,7 +4,7 @@ class Enrollment < ApplicationRecord
 
   belongs_to :user, counter_cache: true
   #User.find_each { |user| User.reset_counters(user.id, :enrollments) }
-  
+
   validates :user, :course, presence: true
 
   validates_uniqueness_of :user_id, scope: :course_id # one user can enroll only once to the same course
@@ -30,6 +30,7 @@ class Enrollment < ApplicationRecord
   end
 
   scope :pending_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""]) }
+  scope :reviewed, -> { where.not(review: [0, nil, ""]) }
 
   extend FriendlyId
   friendly_id :to_s, use: :slugged
