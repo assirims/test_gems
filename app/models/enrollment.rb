@@ -16,6 +16,16 @@ class Enrollment < ApplicationRecord
     user.to_s + "  " + course.to_s
   end
 
+  after_save do
+    unless rating.nil? || rating.zero?
+      course.update_rating
+    end
+  end
+
+  after_destroy do
+    course.update_rating
+  end
+
   scope :pending_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""]) }
 
   extend FriendlyId

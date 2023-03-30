@@ -11,38 +11,54 @@
   <div class="p-4">
   </div>
   <% if user_signed_in? %>
-  <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
-    <div class="input-group">
-      <%= f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off  %>
-      <%= f.submit 'Search', class: 'btn btn-primary btn-sm' %>
-    </div>
-  <% end %>
+    <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
+      <div class="input-group">
+        <%= f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off  %>
+        <%= f.submit 'Search', class: 'btn btn-primary btn-sm' %>
+      </div>
+    <% end %>
   <% end %>
   <br />
   <hr />
   <div class="card-group">
     <div class="card card-body">
-      <%= Course.count  %> online courses
+      Students Links:
+      <ul>
+        <li><%= link_to "Purchased Courses (#{current_user.enrollments.count})", purchased_courses_path %></li>
+        <li><%= link_to "Pending Review Courses (#{current_user.enrollments.pending_review.count})", pending_review_courses_path %></li>
+      </ul>
     </div>
     <div class="card card-body">
-      <%= User.count %> active learners
+      Teachers Links:
+      <ul>
+        <li><%= link_to 'New Course', new_course_path %></li>
+        <li><%= link_to "My Courses (#{current_user.courses.count})", created_courses_path %></li>
+        <li><%= link_to "My Students (#{Enrollment.joins(:course).where(courses: {user: current_user}).count})", my_students_enrollments_path %></li>
+      </ul>
+    </div>
+    <div class="card card-body">
+      Statistics:
+      <ul>
+        <li><%= link_to "All Courses (#{Course.count})", courses_path %></li>
+        <li><%= link_to "All Students (#{User.count})", users_path %></li>
+      </ul>
     </div>
   </div>
+    <hr/>
+    <h2>Popular courses</h2>
+    <div class="card-group">
+      <% @courses.each do |course| %>
+        <%= render 'courses/course_breif', course: course %>
+      <% end %>
+    </div>
+    <hr/>
+    <h2>Latest courses</h2>
+    <div class="card-group">
+      <% @latest_couses.each do |course| %>
+        <%= render 'courses/course_breif', course: course %>
+      <% end %>
+    </div>
+    <br />
+ <br />
 
-  <hr/>
-  <h2>Popular courses</h2>
-  <div class="card-group">
-  <% @courses.each do |course| %>
-    <%= render 'courses/course_breif', course: course %>
-  <% end %>
   </div>
-  <hr/>
-  <h2>Latest courses</h2>
-  <div class="card-group">
-  <% @latest_couses.each do |course| %>
-    <%= render 'courses/course_breif', course: course %>
-  <% end %>
-  </div>
-<br /> <br />
-
-</div>

@@ -1,18 +1,18 @@
-
 <%= simple_form_for(@enrollment) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%#= f.association :course, required: true %>
-    <%#= f.association :user %>
-    <%= f.input :rating, collection: 0..5, as: :radio_buttons, class: "btn-group" %>
+    <%= f.label :rating %>
+    <div class="form-group mb-3">
+      <span class="text-danger">1</span>
+      <%= f.range_field :rating, in: 1..5, as: :range %>
+      <span class="text-success">5</span>
+    </div>
     <%= f.input :review %>
     <%= f.hidden_field :price, value: 0 %>
   </div>
-
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-warning" %>
   </div>
 <% end %>
-

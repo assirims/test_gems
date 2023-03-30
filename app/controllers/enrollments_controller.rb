@@ -5,15 +5,19 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments
   def index
-    @ransack_users = User.ransack(params[:users_search], search_key: :users_search)
-    @users = @ransack_users.result.includes(:courses)
-
-
+    @ransack_path = enrollments_path #set path
 
     @ranked_enrollments = Enrollment.ransack(params[:q])
     @enrollments = @ranked_enrollments.result.includes(:user, :course)
     @pagy, @enrollments = pagy(@enrollments, items: 2)
     authorize_enrollment
+  end
+
+  def my_students
+    @ransack_path = my_students_enrollments_path #set path
+    @ranked_enrollments = Enrollment.joins(:course).where(courses: {user: current_user}).ransack(params[:q])
+    @pagy, @enrollments = pagy(@ranked_enrollments.result.includes(:user), items: 1)
+    render :index
   end
 
   # GET /enrollments/1

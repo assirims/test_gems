@@ -25,6 +25,14 @@ class Course < ApplicationRecord
     LEVELS.map { |level| level }
   end
 
+  def update_rating
+    if enrollments.any? && enrollments.where.not(rating: nil).any?
+      update_column :average_rating, (enrollments.average(:rating).round(2).to_f)
+    else
+      update_column :average_rating, (0)
+    end
+  end
+
   # ransack search attributes
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at"]

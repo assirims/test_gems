@@ -6,66 +6,25 @@
 <div class="row justify-content-md-center mb-2">
   <div class="col col-lg-2">
       <div class="input-group-prepend"><span class="input-group-text">Filter</span></div>
-      <%= search_form_for @ranked_enrollments, url: enrollments_path do |f| %>
+      <%= search_form_for @ranked_enrollments, url: @ransack_path do |f| %>
         <%= f.select :rating_eq, options_for_select([["All", ""], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]]), {}, class: "form-control" %>
         <div class="text-center">
         <%= f.submit 'Filter', class: 'btn btn-primary' %>
-        <%= link_to 'refresh', enrollments_path, class: 'btn btn-secondary' %>
+        <%= link_to 'refresh', @ransack_path, class: 'btn btn-secondary' %>
         </div>
       <% end %>
     </div>
   <div class="col col-lg-4">
       <div class="input-group-prepend"><span class="input-group-text">Search</span></div>
-      <%= search_form_for @ranked_enrollments, url: enrollments_path, method: :get do |f| %>
+      <%= search_form_for @ranked_enrollments, url: @ransack_path, method: :get do |f| %>
         <%= f.search_field :user_email_or_course_title_or_course_description_cont, class: "form-control", placeholder: "Search by user email, course title or description" %>
         <div class="text-center">
         <%= f.submit 'Search', class: 'btn btn-primary ax-2' %>
-        <%= link_to 'refresh', enrollments_path, class: 'btn btn-secondary' %>
+        <%= link_to 'refresh', @ransack_path, class: 'btn btn-secondary' %>
         </div>
       <% end %>
     </div>
 </div>
-
-<!--
-  <%= search_form_for @ranked_enrollments do |f| %>
-  <%= f.search_field :user_email_cont, placeholder: 'user email' %>
-  <%= f.search_field :course_title_cont, placeholder: 'course title' %>
-  <%= f.search_field :price_eq, placeholder: 'price' %>
-  <%= f.search_field :rating_eq, placeholder: 'rating' %>
-  <%= f.search_field :review_cont, placeholder: 'review' %>
-  <%= f.submit 'Search', class: 'btn btn-primary' %>
-  <%= link_to 'refresh', enrollments_path, class: 'btn btn-secondary' %>
-<% end %>
-  </div>
-<br />
-<div class="row">
-  <div class="col-md-6">
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Sort by
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="<%= enrollments_path(sort: 'user_email') %>">User Email</a>
-        <a class="dropdown-item" href="<%= enrollments_path(sort: 'course_title') %>">Course Title</a>
-        <a class="dropdown-item" href="<%= enrollments_path(sort: 'price') %>">Price</a>
-        <a class="dropdown-item" href="<%= enrollments_path(sort: 'rating') %>">Rating</a>
-        <a class="dropdown-item" href="<%= enrollments_path(sort: 'review') %>">Review</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Order
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="<%= enrollments_path(sort: 'user_email', order: 'asc') %>">Ascending</a>
-        <a class="dropdown-item" href="<%= enrollments_path(sort: 'user_email', order: 'desc') %>">Descending</a>
-      </div>
-    </div>
-  </div>
-</div>
--->
 
 <div class="d-flex justify-content-center">
   <%== pagy_bootstrap_nav(@pagy).html_safe %>
@@ -108,14 +67,3 @@
   </table>
 </div>
 <br/>
-
-<!--
-<div id="enrollments">
-  <% @enrollments.each do |enrollment| %>
-    <%= render enrollment %>
-    <p>
-      <%= link_to "Show this enrollment", enrollment %>
-    </p>
-  <% end %>
-</div>
--->

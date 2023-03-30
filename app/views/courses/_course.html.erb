@@ -18,6 +18,9 @@
       <%= enrollments_button(course) %>
     </div>
     <div class="card-footer">
+      <%= course.average_rating %>
+    </div>
+    <div class="card-footer">
       <%= review_button(course) %>
     </div>
     <% if policy(@course).edit? %>
