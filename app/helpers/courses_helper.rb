@@ -7,7 +7,15 @@ module CoursesHelper
         link_to "You created this course. View analytics", course_path(course), class: "btn btn-primary"
       elsif course.enrollments.where(user: current_user).any?
         # user has already bought the course and can view lessons
-        link_to "You bought this course. View lessons", course_path(course), class: "btn btn-secondary"
+        npp = number_to_percentage(course.progress(current_user), precision: 0)
+        link_to course_path(course) do
+          # "You bought this course. View lessons" +
+          if npp.to_i == 0
+            "You bought this course. Start learning"
+          else
+            npp.to_s + " completed"
+          end
+        end
       elsif course.price > 0
         # user can buy the course
         link_to "buy it " + number_to_currency(course.price), new_course_enrollment_path(course), class: "btn btn-success"

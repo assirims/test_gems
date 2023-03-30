@@ -14,6 +14,7 @@ class Course < ApplicationRecord
 
   has_many :lessons, dependent: :destroy
   has_many :enrollments
+  has_many :user_lessons, through: :lessons
 
   def to_s
     title
@@ -54,5 +55,11 @@ class Course < ApplicationRecord
 
   def bought(user)
     self.enrollments.where(user_id: [user.id], course_id: [self.id]).empty?
+  end
+
+  def progress(user)
+    unless self.lessons_count == 0
+      user_lessons.where(user: user).count/self.lessons_count.to_f*100
+    end
   end
 end
