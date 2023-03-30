@@ -18,7 +18,10 @@
       <%= enrollments_button(course) %>
     </div>
     <div class="card-footer">
-      <%= course.average_rating %>
+      Enrolled: <%= course.enrollments_count %> |
+      <%#= course.enrollments.count %> 
+      Lessons: <%= course.lessons_count %> |
+      Rating: <%= course.average_rating %>
     </div>
     <div class="card-footer">
       <%= review_button(course) %>

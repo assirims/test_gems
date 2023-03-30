@@ -16,6 +16,11 @@
     <%= user.last_sign_in_ip %>
   </div>
   <div class="card-footer">
+    Courses created: <%= user.courses_count %>
+    <br />
+    Enrollments: <%= user.enrollments_count %> 
+  </div>
+  <div class="card-footer">
     <%= user.roles.map(&:name).join(', ') %>
   </div>
   <div class="card-footer text-center">
@@ -36,7 +41,7 @@
   </div>
   <div class="card-footer">
     <%='confirmed_at'.humanize + ":"%>
-    <%= user.confirmed_at.strftime('%d-%b-%Y') %> <br />
+    <%= user.confirmed_at.strftime('%d-%b-%Y') if user.confirmed_at.present? %> <br />
     <%='confirmation_sent_at'.humanize + ":"%>
     <%= user.confirmation_sent_at %> <br />
     <%='unconfirmed_email'.humanize + ":"%>

@@ -32,6 +32,8 @@
         <th><%= sort_link(@ransack_users, :last_sign_in_at, 'Last sign in at') %></th>
         <th><%= sort_link(@ransack_users, :current_sign_in_ip, 'Current sign in ip') %></th>
         <th><%= sort_link(@ransack_users, :last_sign_in_ip, 'Last sign in ip') %></th>
+        <th><%= 'courses_count'.humanize %></th>
+        <th><%= 'enrollments_count'.humanize %></th>
         <th><%= sort_link(@ransack_users, :roles, 'confirmed') %></th>
         <th><%= sort_link(@ransack_users, :roles, 'Roles') %></th>
       </tr>
@@ -48,6 +50,8 @@
           <td><%= user.last_sign_in_at %></td>
           <td><%= user.current_sign_in_ip %></td>
           <td><%= user.last_sign_in_ip %></td>
+          <td><%= user.courses_count %></td>
+          <td><%= user.enrollments_count %></td>
           <td><%= user.confirmed? ? "\u{2705}" : "\u274C" %></td>
           <td><%= user.roles.map(&:name).join(', ') %>
             <br />

@@ -24,15 +24,15 @@
     <div class="card card-body">
       Students Links:
       <ul>
-        <li><%= link_to "Purchased Courses (#{current_user.enrollments.count})", purchased_courses_path %></li>
+        <li><%= link_to "Purchased Courses (#{current_user.enrollments_count})", purchased_courses_path %></li>
         <li><%= link_to "Pending Review Courses (#{current_user.enrollments.pending_review.count})", pending_review_courses_path %></li>
       </ul>
     </div>
     <div class="card card-body">
       Teachers Links:
       <ul>
-        <li><%= link_to 'New Course', new_course_path %></li>
-        <li><%= link_to "My Courses (#{current_user.courses.count})", created_courses_path %></li>
+        <li><%= link_to 'New Course >>', new_course_path %></li>
+        <li><%= link_to "My Courses (#{current_user.courses_count})", created_courses_path %></li>
         <li><%= link_to "My Students (#{Enrollment.joins(:course).where(courses: {user: current_user}).count})", my_students_enrollments_path %></li>
       </ul>
     </div>
