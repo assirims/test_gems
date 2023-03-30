@@ -5,7 +5,14 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments
   def index
-    @enrollments = Enrollment.all
+    @ransack_users = User.ransack(params[:users_search], search_key: :users_search)
+    @users = @ransack_users.result.includes(:courses)
+
+
+
+    @ranked_enrollments = Enrollment.ransack(params[:q])
+    @enrollments = @ranked_enrollments.result.includes(:user, :course)
+    @pagy, @enrollments = pagy(@enrollments, items: 2)
     authorize_enrollment
   end
 
@@ -56,7 +63,8 @@ class EnrollmentsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_enrollment
-      @enrollment = Enrollment.find(params[:id])
+      # Enrollment.find_each(&:save) >> rails c
+      @enrollment = Enrollment.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
