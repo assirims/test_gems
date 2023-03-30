@@ -8,6 +8,7 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1
   def show
+    current_user.view_lesson(@lesson)
   end
 
   # GET /lessons/new

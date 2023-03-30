@@ -1,7 +1,13 @@
 <div class="card border-secondary text-center w-75 mx-auto mt-2">
   <div class="card-body">
     <div class="card-title">
-      <h5 class="text-primary"><%= lesson.title %></h5>
+      <h5 class="text-primary"><%= lesson.title %>
+      <% if lesson.viewed(current_user) %>
+        <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-secondary">Viewed</span>
+      <% else %>
+        <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">Not Viewed</span>
+      <% end %>
+      </h5>
     </div>
   </div>
   <% if policy(lesson).show? %>
