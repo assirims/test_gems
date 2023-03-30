@@ -7,7 +7,7 @@ module CoursesHelper
         link_to "You created this course. View analytics", course_path(course), class: "btn btn-primary"
       elsif course.enrollments.where(user: current_user).any?
         # user has already bought the course and can view lessons
-        link_to "You bought this course. View lessons", course_path(course), class: "btn btn-primary"
+        link_to "You bought this course. View lessons", course_path(course), class: "btn btn-secondary"
       elsif course.price > 0
         # user can buy the course
         link_to "buy it " + number_to_currency(course.price), new_course_enrollment_path(course), class: "btn btn-success"
@@ -27,9 +27,9 @@ module CoursesHelper
     if current_user
       if user_course.any?
         if user_course.pending_review.any?
-          link_to 'Add a review', edit_enrollment_path(user_course.first), class: 'btn btn-secondary'
+          link_to 'Add a review', edit_enrollment_path(user_course.first), class: "btn btn-primary"
         else
-          link_to 'Thanks for reviewing! Your Review', enrollment_path(user_course.first), class: 'btn btn-secondary'
+          link_to 'Thanks for reviewing! Your Review', enrollment_path(user_course.first), class: "btn btn-primary"
         end
       end
     end

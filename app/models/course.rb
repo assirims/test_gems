@@ -1,6 +1,8 @@
 class Course < ApplicationRecord
   validates :title, :short_description, :language, :price, :level, presence: true
   validates :description, presence: true, length: { minimum: 5 }
+  validates :title, uniqueness: true
+
   has_rich_text :description
 
   belongs_to :user, counter_cache: true

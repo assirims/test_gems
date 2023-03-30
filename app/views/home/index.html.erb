@@ -32,7 +32,7 @@
       Teachers Links:
       <ul>
         <li><%= link_to 'New Course >>', new_course_path %></li>
-        <li><%= link_to "My Courses (#{current_user.courses_count})", created_courses_path %></li>
+        <li><%= link_to "Created Courses (#{current_user.courses_count})", created_courses_path %></li>
         <li><%= link_to "My Students (#{Enrollment.joins(:course).where(courses: {user: current_user}).count})", my_students_enrollments_path %></li>
       </ul>
     </div>

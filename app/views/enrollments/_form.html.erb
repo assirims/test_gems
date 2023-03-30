@@ -5,14 +5,32 @@
   <div class="form-inputs">
     <%= f.label :rating %>
     <div class="form-group mb-3">
-      <span class="text-danger">1</span>
-      <%= f.range_field :rating, in: 1..5, as: :range %>
-      <span class="text-success">5</span>
+      <div class="row">
+        <div class="col-5">
+          <%= f.range_field :rating, in: 1..5, as: :range, class: "w-100" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1">
+          <span class="text-danger">1</span>
+        </div>
+        <div class="col-1">
+          <span class="text-danger">2</span>
+        </div>
+        <div class="col-1 text-center">
+          <span class="text-danger">3</span>
+        </div>
+        <div class="col-1 text-center">
+          <span class="text-warning">4</span>
+        </div>
+        <div class="col-1 text-end">
+          <span class="text-success">5</span>
+        </div>
+      </div>
+      <%= f.input :review %>
+      <%= f.hidden_field :price, value: 0 %>
     </div>
-    <%= f.input :review %>
-    <%= f.hidden_field :price, value: 0 %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, class: "btn btn-warning" %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn btn-warning" %>
+    </div>
+  <% end %>

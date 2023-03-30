@@ -1,19 +1,36 @@
 <% content_for :title do %>
-  Website | All Courses
+  Website | <%= action_name.humanize %> Courses
 <% end %>
 
-<h1>Courses: <%= @courses.count %></h1>
+<h1><%= action_name.humanize %> Courses: <%= @courses.count %></h1>
 
 <div class="d-flex-table p-2 justify-content-center">
   <%= search_form_for @ransack_courses, as: :courses_search, url: @ransack_path do |form| %>
-    <%= form.search_field :title_cont, placeholder: "Title" %>
-    <%= form.search_field :description_cont, placeholder: "Description" %>
-    <%= form.search_field :price_eq, placeholder: "Price" %>
-    <%= form.search_field :short_description_cont, placeholder: "Short description" %>
-    <%= form.select :language_cont, Course.languages, include_blank: true %>
-    <%= form.select :level_cont, Course.levels, include_blank: true %>
-    <%= form.submit "Search", class: "btn btn-primary" %>
-    <%= link_to "Reset", @ransack_path, class: "btn btn-secondary" %>
+    <div class="row">
+      <div class="col"><%= form.search_field :title_cont, placeholder: "Title", class: 'form-control form-control-sm' %></div>
+      <div class="col"><%= form.search_field :description_cont, placeholder: "Description", class: 'form-control form-control-sm' %></div>
+      <div class="col"><%= form.search_field :price_eq, placeholder: "Price", class: 'form-control form-control-sm' %></div>
+      <div class="col"><%= form.search_field :short_description_cont, placeholder: "Short description", class: 'form-control form-control-sm' %></div>
+      <div class="col"><%= form.select :language_cont, Course.languages, include_blank: true, class: 'form-control' %></div>
+      <div class="col"><%= form.select :level_cont, Course.levels, include_blank: true, class: 'form-control' %></div>
+      <div class="col"><%= form.search_field :user_email_cont, placeholder: "Teacher email", class: 'form-control form-control-sm' %></div>
+      <div class="col"><%= form.submit "Search", class: "btn btn-primary" %></div>
+      <div class="col"><%= link_to "Reset", @ransack_path, class: "btn btn-secondary" %></div>
+    </div>
+    <div class="row mt-lg-5">
+      <div class="col">
+        <%= sort_link(@ransack_courses, :price, 'Price', class: 'btn btn-warning') %>
+      </div>
+      <div class="col">
+        <%= sort_link(@ransack_courses, :average_rating, 'Top rated', class: 'btn btn-warning') %>
+      </div>
+      <div class="col">
+        <%= sort_link(@ransack_courses, :enrollments_count, 'Most popular', class: 'btn btn-warning') %>
+      </div>
+      <div class="col">
+        <%= sort_link(@ransack_courses, :created_at, 'Newest', class: 'btn btn-warning') %>
+      </div>
+    </div>
   <% end %>
 </div>
 
@@ -34,6 +51,8 @@
       <th><%= sort_link(@ransack_courses, :level, 'Level') %></th>
       <th><%= sort_link(@ransack_courses, :user_id, 'User') %></th>
       <th><%= sort_link(@ransack_courses, :created_at, 'Created at') %></th>
+      <th><%= sort_link(@ransack_courses, :average_rating, 'Average rating') %></th>
+      <th><%= sort_link(@ransack_courses, :enrollments_count, 'Enrollments count') %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -48,6 +67,8 @@
         <td><%= course.level %></td>
         <td><%= course.user.username %></td>
         <td><%= course.created_at.strftime('%d-%b-%Y') %></td>
+        <td><%= course.average_rating %></td>
+        <td><%= course.enrollments_count %></td>
         <td>
           <%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %>
         </td>
