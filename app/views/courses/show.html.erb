@@ -9,14 +9,19 @@
     <%= render 'courses/course', course: @course %>
   </div>
   <div class="col-lg-6 d-grid gap-2 mt-2">
-    <% if policy(@course).owner? %>
-      <%= link_to 'Add Lesson', new_course_lesson_path(@course, @lesson), class: 'btn btn-primary btn-sm' %>
-    <% end %>
     <div class="d-flex justify-content-center mt-4">
       <%== pagy_bootstrap_nav(@pagy) %>
     </div>
     <% @lessons.each do |lesson| %>
-      <%= render 'lessons/lesson_in_course_page', lesson: lesson %>
+      <%= render 'lessons/lesson_preview', lesson: lesson %>
     <% end %>
   </div>
 </div>
+<div class="row mt-4">
+  <h4>Review: <%= @enrollments_with_review.count %></h4>
+  <% @enrollments_with_review.each do |enrollment| %>
+    <%= render 'enrollments/enrollment', enrollment: enrollment %>
+  <% end %>
+</div>
+<br />
+<br />

@@ -19,7 +19,7 @@
     </div>
     <div class="card-footer">
       Enrolled: <%= course.enrollments_count %> |
-      <%#= course.enrollments.count %> 
+      <%#= course.enrollments.count %>
       Lessons: <%= course.lessons_count %> |
       Rating: <%= course.average_rating %>
     </div>
@@ -30,6 +30,11 @@
       <div class="card-footer">
         <%= link_to 'Edit', edit_course_path(@course), class: 'btn btn-sm btn-warning' %>
       </div>
+      <% if policy(@course).owner? %>
+        <div class="card-footer">
+          <%= link_to 'Add Lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm' %>
+        </div>
+        <% end %>
     <% end %>
     <% if policy(@course).destroy? %>
       <div class="card-footer">
