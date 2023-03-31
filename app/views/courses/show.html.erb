@@ -18,7 +18,7 @@
   </div>
 </div>
 <div class="row mt-4">
-  <h4>Review: <%= @enrollments_with_review.count %></h4>
+  <h4><%= pluralize(@enrollments_with_review.count, 'Review') %></h4>
   <% @enrollments_with_review.each do |enrollment| %>
     <%= render 'enrollments/enrollment', enrollment: enrollment %>
   <% end %>
