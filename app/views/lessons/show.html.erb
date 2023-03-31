@@ -22,6 +22,7 @@
         <div class="fa fa-spinner"></div>
         <%= number_to_percentage(@course.progress(current_user), precision: 0) %>
       </li>
+      <%#= @lesson.user_lessons.where(user: current_user).first.impressions %>
       <% @lessons.each do |lesson| %>
         <% if @lesson.present? && lesson == @lesson %>
           <li class="list-group-item list-group-item-success">
