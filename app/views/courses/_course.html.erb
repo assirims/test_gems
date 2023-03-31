@@ -26,19 +26,42 @@
     <div class="card-footer">
       <%= review_button(course) %>
     </div>
-    <% if policy(@course).edit? %>
+    <% if policy(@course).owner? %>
+      <div class="card-footer">
+        <%= link_to 'Add Lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm' %>
+      </div>
+      <%# end %>
+      <%# if policy(@course).edit? %>
       <div class="card-footer">
         <%= link_to 'Edit', edit_course_path(@course), class: 'btn btn-sm btn-warning' %>
       </div>
-      <% if policy(@course).owner? %>
-        <div class="card-footer">
-          <%= link_to 'Add Lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm' %>
-        </div>
-        <% end %>
+      <%# end %>
+      <%# if policy(@course).destroy? %>
+      <div class="card-footer">
+        <%= button_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+      </div>
     <% end %>
     <% if policy(@course).destroy? %>
       <div class="card-footer">
-        <%= button_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+        <% if course.published? %>
+          <div class="badge bg-success">published</div>
+        <% else %>
+          <div class="badge bg-danger">unpublished</div>
+        <% end %>
+        <% if course.approved? %>
+          <div class="badge bg-success">approved</div>
+        <% else %>
+          <div class="badge bg-danger">unapproved</div>
+        <% end %>
+      </div>
+    <% end %>
+    <% if policy(@course).approve? %>
+      <div class="card-footer">
+        <% if course.approved? %>
+          <%= link_to 'unapprove', unapprove_course_path(@course), method: :patch, class: 'btn btn-sm btn-danger' %>
+        <% else %>
+          <%= link_to 'approve', approve_course_path(@course), method: :patch, class: 'btn btn-sm btn-success' %>
+        <% end %>
       </div>
     <% end %>
   </div>

@@ -1,12 +1,18 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[ show edit update destroy ]
+  before_action :set_course, only: %i[ show edit update destroy approve unapprove publish unpublish ]
 
   # GET /courses
   def index
     @ransack_path = courses_path #set path for navbar search
-
-    @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search) #navbar search
+    @ransack_courses = Course.published.approved.ransack(params[:courses_search], search_key: :courses_search) #navbar search
     @courses = @ransack_courses.result.includes(:user) #navbar search
+    @pagy, @courses = pagy(@courses, items: 5) #gem pagy
+  end
+
+  def index_admin
+    @ransack_path = courses_path #set path for navbar search
+    @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
+    @courses = @ransack_courses.result.includes(:user) 
     @pagy, @courses = pagy(@courses, items: 5) #gem pagy
   end
 
@@ -29,6 +35,61 @@ class CoursesController < ApplicationController
     @ransack_courses = Course.where(user: current_user).ransack(params[:courses_search], search_key: :courses_search) #sql query for created courses
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user), items: 2) #gem pagy
     render :index
+  end
+
+  def unapproved
+    @ransack_path = unapproved_courses_path
+    @ransack_courses = Course.unapproved.ransack(params[:courses_search], search_key: :courses_search)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    render :index
+  end
+
+  def approve
+    authorize @course, :approve?
+    @course.update_attribute(:approved, true)
+    # if action was index admin then redirect to index admin
+    if request.referrer.include? "index_admin"
+      redirect_to request.referer, notice: "Course approved and visible!"
+    else
+      redirect_to @course, notice: "Course approved and visible!"
+    end
+  end
+
+  def unapprove
+    authorize @course, :approve?
+    @course.update_attribute(:approved, false)
+    if request.referrer.include? "index_admin"
+      redirect_to request.referer, notice: "Course upapproved and hidden!"
+    else
+      redirect_to @course, notice: "Course upapproved and hidden!"
+    end
+  end
+
+  def unpublished #homepage link to unpublished courses
+    @ransack_path = unpublished_courses_path
+    @ransack_courses = Course.unpublished.ransack(params[:courses_search], search_key: :courses_search)
+    @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
+    render 'index'
+  end
+
+  def publish #the action used with buttons to publish a course
+    authorize @course, :publish?
+    @course.update_attribute(:published, true)
+    if request.referrer.include? "index_admin"
+      redirect_to request.referer, notice: "Course published!"
+    else
+      redirect_to unpublished_courses_path, notice: "Course published!"
+    end
+  end
+
+  def unpublish #the action used with buttons to unpublish a course
+    authorize @course, :publish?
+    @course.update_attribute(:published, false)
+    if request.referrer.include? "index_admin"
+      redirect_to request.referer, notice: "Course unpublished!"
+    else
+      redirect_to unpublished_courses_path, notice: "Course unpublished!"
+    end
   end
 
   # GET /courses/1
@@ -89,6 +150,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price)
+      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published)
     end
 end

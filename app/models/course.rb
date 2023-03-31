@@ -6,6 +6,10 @@ class Course < ApplicationRecord
   scope :latest, -> { limit(3).order(created_at: :desc) }
   scope :top_rated, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
   scope :popular, -> { limit(3).order(enrollments_count: :desc, created_at: :desc) }
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
+  scope :approved, -> { where(approved: true) }
+  scope :unapproved, -> { where(approved: false) }
 
   has_rich_text :description
 
@@ -44,7 +48,7 @@ class Course < ApplicationRecord
 
   # ransack search attributes
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at"]
+    ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at", "published", "approved", "average_rating", "enrollments_count", "lessons_count"]
   end
   def self.ransackable_associations(auth_object = nil)
     ["rich_text_description", "user"]

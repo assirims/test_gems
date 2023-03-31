@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   end
 
   resources :courses do
-    get :purchased, :pending_review, :created, on: :collection
+    get :purchased, :pending_review, :created, :unapproved, :unpublished, :index_admin, on: :collection
+    member do
+      get :approve, :unapprove, :publish, :unpublish
+    end
     resources :lessons
     resources :enrollments, only: [:create, :new]
   end

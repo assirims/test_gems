@@ -2,7 +2,7 @@
   Website | <%= action_name.humanize %> Courses
 <% end %>
 
-<h1><%= action_name.humanize %> Courses: <%= @courses.count %></h1>
+<h1><%= action_name.humanize %> Courses: <%#= @courses.count %></h1>
 
 <div class="d-flex-table p-2 justify-content-center">
   <%= search_form_for @ransack_courses, as: :courses_search, url: @ransack_path do |form| %>
@@ -62,16 +62,17 @@
         <td><%= course.id %></td>
         <td><%= course.title %></td>
         <td><%= number_to_currency(course.price) %></td>
-        <td><%= simple_format(course.short_description) %></td>
+        <td>
+          <%= truncate(simple_format(course.short_description), escape: false, length: 50) %>
+          <%= link_to 'read more', course %>
+        </td>
         <td><%= course.language %></td>
         <td><%= course.level %></td>
         <td><%= course.user.username %></td>
         <td><%= course.created_at.strftime('%d-%b-%Y') %></td>
         <td><%= course.average_rating %></td>
         <td><%= course.enrollments_count %></td>
-        <td>
-          <%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %>
-        </td>
+        <td><%= link_to 'Show', course, class: 'btn btn-sm btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_31_160123) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_31_162929) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -82,6 +82,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_160123) do
     t.float "average_rating", default: 0.0, null: false
     t.integer "enrollments_count", default: 0, null: false
     t.integer "lessons_count", default: 0, null: false
+    t.boolean "published", default: false
+    t.boolean "approved", default: false
     t.index ["slug"], name: "index_courses_on_slug", unique: true
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
