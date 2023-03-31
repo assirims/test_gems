@@ -74,8 +74,11 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   def destroy
     authorize @course #gem pundit
-    @course.destroy
-    redirect_to courses_url, notice: "Course was successfully destroyed."
+    if @course.destroy
+      redirect_to courses_url, notice: "Course was successfully destroyed."
+    else
+      redirect_to @course, alert: "Course can't be destroyed because it has enrollments"
+    end
   end
 
   private

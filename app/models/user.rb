@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_many :courses
-  has_many :enrollments
-  has_many :user_lessons
+  has_many :courses, dependent: :nullify
+  has_many :enrollments, dependent: :nullify
+  has_many :user_lessons, dependent: :nullify
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -55,7 +55,7 @@ class User < ApplicationRecord
       self.user_lessons.create(lesson: lesson)
     end
   end
-  
+
   # works with simple_form_for only
   validate :must_have_a_role, on: :update
   private
