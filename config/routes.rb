@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index , :edit, :show, :update, :destroy]
 
   get 'activity', to: 'home#activity'
+  get 'analytics', to: 'home#analytics'
   match '/privacy', to: 'home#privacy_policy', via: 'get'
 
   root "home#index"

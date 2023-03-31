@@ -109,3 +109,9 @@ gem "exception_notification", "~> 4.5"
 
 # https://github.com/ddnexus/pagy
 gem "pagy", "~> 6.0"
+
+# https://chartkick.com/
+gem "chartkick", "~> 5.0"
+
+# https://github.com/ankane/groupdate
+gem "groupdate", "~> 6.2"

@@ -1,0 +1,24 @@
+<!-- https://chartkick.com/ -->
+<h4 class="text-center">
+Users created per day
+</h4>
+<%= line_chart @users.group_by_day(:created_at).count %>
+
+<h4 class="text-center">
+  Enrollments created per day
+</h4>
+<%= column_chart @enrollments.group_by_day(:created_at).count %>
+
+
+<h4 class="text-center">
+  Course popularity
+</h4>
+
+<%#= pie_chart @courses.group(:enrollments_count).count %>
+<%= pie_chart @enrollments.joins(:course).group(:'courses.title').count %>
+<%#= bar_chart @enrollments.joins(:course).group(:'courses.title').count %>
+
+<br />
+<br />
+
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>

@@ -11,7 +11,21 @@ class HomeController < ApplicationController
   end
 
   def activity
-    @activities = PublicActivity::Activity.all.order(created_at: :desc)
+    if current_user.has_role?(:admin)
+      @activities = PublicActivity::Activity.all.order(created_at: :desc)
+    else
+      redirect_to root_path, alert: "You are not authorized to view this page."
+    end
+  end
+
+  def analytics
+    if current_user.has_role?(:admin)
+      @courses = Course.all
+      @enrollments = Enrollment.all
+      @users = User.all
+    else
+      redirect_to root_path, alert: "You are not authorized to view this page."
+    end
   end
 
   def privacy_policy
