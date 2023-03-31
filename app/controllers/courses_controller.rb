@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   def show
     @lessons = @course.lessons
-    @pagy, @lessons = pagy(@lessons, items: 2) #gem pagy
+    @pagy, @lessons = pagy(@lessons, items: 5) #gem pagy
     @enrollments_with_review = @course.enrollments.reviewed
   end
 

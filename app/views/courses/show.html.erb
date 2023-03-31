@@ -12,9 +12,13 @@
     <div class="d-flex justify-content-center mt-4">
       <%== pagy_bootstrap_nav(@pagy) %>
     </div>
-    <% @lessons.each do |lesson| %>
-      <%= render 'lessons/lesson_preview', lesson: lesson %>
-    <% end %>
+    <ul class="list-group">
+      <% @lessons.each do |lesson| %>
+        <li class="list-group-item border border-secondary">
+          <%= render 'lessons/lesson_preview', lesson: lesson %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 <div class="row mt-4">

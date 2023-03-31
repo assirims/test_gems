@@ -9,7 +9,7 @@ class EnrollmentsController < ApplicationController
 
     @ranked_enrollments = Enrollment.ransack(params[:q])
     @enrollments = @ranked_enrollments.result.includes(:user, :course)
-    @pagy, @enrollments = pagy(@enrollments, items: 2)
+    @pagy, @enrollments = pagy(@enrollments, items: 5)
     authorize_enrollment
   end
 

@@ -6,4 +6,34 @@
 <%= link_to @lesson.course.title, course_path(@lesson.course), class: 'text-decoration-none' %> \
 <%= @lesson.title %></h4>
 
-<%= render @lesson %>
+<div class="row">
+  <div class="col-lg-8">
+    <%= render 'lessons/lesson', lesson: @lesson %>
+    <p></p>
+  </div>
+  <div class="col-lg-4">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <%= link_to course_path(@lesson.course) do %>
+          <div class="fa fa-graduation-cap"></div>
+          <%= @lesson.course.title %>
+        <% end %>
+        <div class="row"></div>
+        <div class="fa fa-spinner"></div>
+        <%= number_to_percentage(@course.progress(current_user), precision: 0) %>
+      </li>
+      <% @lessons.each do |lesson| %>
+        <% if @lesson.present? && lesson == @lesson %>
+          <li class="list-group-item list-group-item-success">
+            <%= render 'lessons/lesson_preview', lesson: lesson %>
+          </li>
+        <% else %>
+          <li class="list-group-item">
+            <%= render 'lessons/lesson_preview', lesson: lesson %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
