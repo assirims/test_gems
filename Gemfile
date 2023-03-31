@@ -90,6 +90,7 @@ gem "friendly_id", "~> 5.5"
 # https://github.com/activerecord-hackery/ransack
 gem "ransack", "~> 4.0"
 
+# https://github.com/heartcombo/devise
 gem "devise", "~> 4.9"
 
 # https://github.com/public-activity/public_activity
@@ -110,6 +111,7 @@ gem "exception_notification", "~> 4.5"
 # https://github.com/ddnexus/pagy
 gem "pagy", "~> 6.0"
 
+# https://github.com/ankane/chartkick
 # https://chartkick.com/
 gem "chartkick", "~> 5.0"
 
