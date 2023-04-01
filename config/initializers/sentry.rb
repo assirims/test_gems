@@ -1,5 +1,5 @@
 Sentry.init do |config|
-  config.dsn = 'https://5c41f03350fb46b8a7bbb2cbc9828980@o4504383024332800.ingest.sentry.io/4504936985657344'
+  config.dsn = 'https://42b22798b54b4c19b726f8875a9f08ac@o4504383024332800.ingest.sentry.io/4504937038610432'
   config.breadcrumbs_logger = [:active_support_logger, :http_logger]
 
   # Set traces_sample_rate to 1.0 to capture 100%

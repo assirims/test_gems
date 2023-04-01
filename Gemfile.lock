@@ -291,8 +291,8 @@ DEPENDENCIES
   redis (~> 4.0)
   rolify (~> 6.0)
   selenium-webdriver
-  sentry-rails
-  sentry-ruby
+  sentry-rails (~> 5.8)
+  sentry-ruby (~> 5.8)
   simple_form (~> 5.2)
   sprockets-rails
   sqlite3 (~> 1.4)
