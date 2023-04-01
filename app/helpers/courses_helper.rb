@@ -32,14 +32,19 @@ module CoursesHelper
 
   def review_button(course)
     user_course = course.enrollments.where(user: current_user)
-    if current_user
-      if user_course.any?
-        if user_course.pending_review.any?
-          link_to 'Add a review', edit_enrollment_path(user_course.first), class: "btn btn-primary"
-        else
-          link_to 'Thanks for reviewing! Your Review', enrollment_path(user_course.first), class: "btn btn-primary"
-        end
-      end
+    if current_user && user_course.any?
+      review_button_message(course, user_course)
+    else
+      return nil
     end
   end
+
+  def review_button_message(course, user_course)
+    if user_course.pending_review.any?
+      link_to 'Add a review', edit_enrollment_path(user_course.first), class: "btn btn-primary"
+    else
+      link_to 'Thanks for reviewing! Your Review', enrollment_path(user_course.first), class: "btn btn-primary"
+    end
+  end
+
 end

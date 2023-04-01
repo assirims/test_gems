@@ -11,6 +11,7 @@
     <%= render "form", enrollment: @enrollment %>
   </div>
   <div class="card-footer">
+    <%= link_to 'Delete Review', @enrollment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %> |
     <%= link_to 'Show Review', @enrollment, class: "btn btn-primary" %> |
     <%= link_to 'Back to course', course_path(@enrollment.course), class: "btn btn-primary" %>
   </div>

@@ -23,24 +23,27 @@
       Lessons: <%= course.lessons_count %> |
       Rating: <%= course.average_rating %>
     </div>
-    <div class="card-footer">
-      <%= review_button(course) %>
-    </div>
-    <% if policy(@course).owner? %>
+    <% unless review_button(course) == nil %>
       <div class="card-footer">
-        <%= link_to 'Add Lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm' %>
-      </div>
-      <%# end %>
-      <%# if policy(@course).edit? %>
-      <div class="card-footer">
-        <%= link_to 'Edit', edit_course_path(@course), class: 'btn btn-sm btn-warning' %>
-      </div>
-      <%# end %>
-      <%# if policy(@course).destroy? %>
-      <div class="card-footer">
-        <%= button_to 'Destroy', @course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+        <%= review_button(course) %>
       </div>
     <% end %>
+    <% if current_user %>
+      <% if policy(course).destroy? %>
+        <div class="card-footer">
+          <% if policy(course).owner? %>
+            <%= link_to 'Add lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm' %>
+          <% end %>
+          <% if policy(course).edit? %>
+            <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' %>
+          <% end %>
+          <% if policy(course).destroy? %>
+            <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
     <% if policy(@course).destroy? %>
       <div class="card-footer">
         <% if course.published? %>

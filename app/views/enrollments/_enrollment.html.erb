@@ -16,6 +16,7 @@
     <div class="card-footer">
       <% if policy(enrollment).edit? %>
         <%= link_to 'Edit Review', edit_enrollment_path(enrollment), class: "btn btn-primary" %>
+        <%= link_to 'Delete Review', enrollment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       <% end %>
     </div>
   <% end %>

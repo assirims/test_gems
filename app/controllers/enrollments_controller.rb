@@ -54,8 +54,11 @@ class EnrollmentsController < ApplicationController
 
   # DELETE /enrollments/1
   def destroy
-    @enrollment.destroy
-    redirect_to enrollments_url, notice: "Enrollment was successfully destroyed."
+    if @enrollment.destroy
+      redirect_to enrollments_url, notice: "Enrollment was successfully destroyed."
+    else
+      redirect_to @enrollment, alert: "Enrollment can't be destroyed because it has enrollments"
+    end
   end
 
   private

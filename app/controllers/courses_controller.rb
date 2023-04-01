@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
   def index_admin
     @ransack_path = courses_path #set path for navbar search
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
-    @courses = @ransack_courses.result.includes(:user) 
+    @courses = @ransack_courses.result.includes(:user)
     @pagy, @courses = pagy(@courses, items: 5) #gem pagy
   end
 
@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
     @ransack_path = unapproved_courses_path
     @ransack_courses = Course.unapproved.ransack(params[:courses_search], search_key: :courses_search)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
-    render :index
+    render :index_admin
   end
 
   def approve
@@ -69,7 +69,7 @@ class CoursesController < ApplicationController
     @ransack_path = unpublished_courses_path
     @ransack_courses = Course.unpublished.ransack(params[:courses_search], search_key: :courses_search)
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
-    render 'index'
+    render :index_admin
   end
 
   def publish #the action used with buttons to publish a course
@@ -94,6 +94,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
+    authorize @course #gem pundit
     @lessons = @course.lessons
     @pagy, @lessons = pagy(@lessons, items: 5) #gem pagy
     @enrollments_with_review = @course.enrollments.reviewed

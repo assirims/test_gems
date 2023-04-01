@@ -1,12 +1,15 @@
 class CoursePolicy < ApplicationPolicy
   class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
       def resolve
         scope.all
       end
+    end
+
+    def show?
+      @record.published && @record.approved ||
+      @user.present? && @user.has_role?(:admin) ||
+      @user.present? && @record.user_id == @user.id ||
+      @record.bought(@user)
     end
 
     def edit?
