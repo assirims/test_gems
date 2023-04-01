@@ -4,7 +4,7 @@ module CoursesHelper
       #logic to buy course
       if course.user == current_user
         # this is the owner of the course and cannot buy it but can view analytics
-        link_to "You created this course. View analytics", course_path(course), class: "btn btn-primary"
+        link_to "You created this course (" + number_to_currency(course.price)+")", course_path(course), class: "btn btn-primary"
       elsif course.enrollments.where(user: current_user).any?
         # user has already bought the course and can view lessons
         npp = number_to_percentage(course.progress(current_user), precision: 0)
@@ -43,7 +43,7 @@ module CoursesHelper
     if user_course.pending_review.any?
       link_to 'Add a review', edit_enrollment_path(user_course.first), class: "btn btn-primary"
     else
-      link_to 'Thanks for reviewing! Your Review', enrollment_path(user_course.first), class: "btn btn-primary"
+      link_to 'Thanks for reviewing!', enrollment_path(user_course.first), class: "btn btn-primary"
     end
   end
 

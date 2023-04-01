@@ -66,6 +66,9 @@
         <%= render 'courses/course_breif', course: course %>
       <% end %>
     </div>
+    <div class="text-end">
+      <%= link_to "See all", purchased_courses_path %>
+    </div>
   <% end %>
   <hr/>
   <h2>Popular courses</h2>
@@ -74,12 +77,18 @@
       <%= render 'courses/course_breif', course: course %>
     <% end %>
   </div>
+  <div class="text-end">
+    <%= link_to "See all", courses_path(courses_search: {s: 'enrollments_count desc'}) %>
+  </div>
   <hr/>
   <h2>Top rated courses</h2>
   <div class="card-group">
     <% @top_rated.each do |course| %>
       <%= render 'courses/course_breif', course: course %>
     <% end %>
+  </div>
+  <div class="text-end">
+    <%= link_to "See all", courses_path(courses_search: {s: 'average_rating desc'}) %>
   </div>
   <hr/>
   <h2>Latest courses</h2>
@@ -88,6 +97,9 @@
       <%= render 'courses/course_breif', course: course %>
     <% end %>
   </div>
+    <div class="text-end">
+      <%= link_to "See all", courses_path(courses_search: {s: 'created_at desc'}) %>
+    </div>
   <hr/>
   <h2>Latest Highest Reviews</h2>
   <div class="card-group">
