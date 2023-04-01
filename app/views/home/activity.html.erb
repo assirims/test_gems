@@ -19,9 +19,8 @@
       </span>
       <span  class="text-info"> on this object</span>
       <span  class="text-light bg-dark">
-        <%= model_label(activity.trackable_type) %>
-        <%= activity.trackable_type %>
-        <%= activity.trackable_id %>
+      <%= activity.trackable_type %>
+      <%= activity.trackable_id %>
       </span>
       <% if activity.parameters.any? %>
         <span  class="text-warning"> with these parameters</span>
