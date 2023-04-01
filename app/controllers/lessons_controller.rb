@@ -3,8 +3,7 @@ class LessonsController < ApplicationController
   before_action :authorize_valuations, except: %i[ index new create]
 
   # GET /lessons
-  def index
-  end
+  def index; end
 
   # GET /lessons/1
   def show
@@ -20,8 +19,7 @@ class LessonsController < ApplicationController
   end
 
   # GET /lessons/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /lessons
   def create

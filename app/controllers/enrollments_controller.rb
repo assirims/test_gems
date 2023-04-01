@@ -21,8 +21,7 @@ class EnrollmentsController < ApplicationController
   end
 
   # GET /enrollments/1
-  def show
-  end
+  def show; end
 
   # GET /enrollments/new
   def new
@@ -30,8 +29,7 @@ class EnrollmentsController < ApplicationController
   end
 
   # GET /enrollments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /enrollments
   def create
