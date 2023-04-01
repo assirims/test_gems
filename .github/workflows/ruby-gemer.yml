@@ -1,0 +1,19 @@
+name: Ruby Gemer
+uses: Ruby-Gemer@V0.1-alpha
+
+description: Rub Gemer runs updates on gems in Ruby on Rails projects then tests them to increase efficiency and security.
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+    - name: Ruby Gemer
+      uses: Ruby-Gemer@V0.1-alpha
