@@ -148,7 +148,7 @@ GEM
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pagy (6.0.2)
+    pagy (6.0.3)
     public_activity (2.0.2)
       actionpack (>= 5.0.0)
       activerecord (>= 5.0)
