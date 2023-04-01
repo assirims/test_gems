@@ -53,11 +53,11 @@
           <td><%= user.courses_count %></td>
           <td><%= user.enrollments_count %></td>
           <td><%= user.confirmed? ? "\u{2705}" : "\u274C" %></td>
-          <td><%= user.roles.map(&:name).join(', ') %>
-            <br />
-              <% if policy(user).edit? %>
-                <%= link_to 'Edit Role', edit_user_path(user), class: 'btn btn-warning' %>
-              <% end %>
+          <td><% user.roles.each do |role| %>
+              <span class="badge bg-<%= style_role(role.name).to_s %>">
+                <%= role.name %>
+              </span>
+            <% end %>
           </td>
         </tr>
       <% end %>

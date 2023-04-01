@@ -122,5 +122,5 @@ gem "groupdate", "~> 6.2"
 
 # Configure Rails SDK for Sentry
 # https://docs.sentry.io/platforms/ruby/guides/rails/configuration/
-gem "sentry-ruby", "~> 5.8"
-gem "sentry-rails", "~> 5.8"
+# gem "sentry-ruby", "~> 5.8"
+# gem "sentry-rails", "~> 5.8"

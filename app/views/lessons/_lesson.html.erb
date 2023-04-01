@@ -14,14 +14,4 @@
   <div class="card-footer"><%= lesson.content %></div>
   <div class="card-footer">Course: <%= link_to lesson.course.title, course_path(lesson.course) %></div>
   <% end %>
-  <% if policy(lesson).edit? %>
-  <div class="card-footer">
-    <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: 'btn btn-sm btn-warning' %>
-  </div>
-  <% end %>
-  <% if policy(lesson).destroy? %>
-  <div class="card-footer">
-    <%= button_to 'Destroy this lesson', [@course, lesson], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
-  </div>
-  <% end %>
 </div>

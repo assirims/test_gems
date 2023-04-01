@@ -18,8 +18,8 @@ Edit Lesson
   <div class="card-body">
     <%= render "form", lesson: @lesson %>
   </div>
-  <div class="card-footer">
-    <%= link_to "Show this lesson", course_lesson_path(@lesson.course_id, @lesson) %> |
-    <%= link_to "Back to the course", course_path(@course) %>
+  <div class="card-footer text-center">
+    <%= link_to "Show this lesson", course_lesson_path(@lesson.course_id, @lesson), class: "btn btn-primary" %> |
+    <%= link_to "Back to the course", course_path(@course), class: "btn btn-secondary" %>
   </div>
 </div>

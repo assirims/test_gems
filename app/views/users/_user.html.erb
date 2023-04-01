@@ -1,51 +1,49 @@
-<div class="card w-25 mx-auto mt-2">
-  <div class="card-header"><%= user.email %> (ID: <%= user.id %>)</div>
-  <div class="card-footer">
-    Signed up: <%= time_ago_in_words(user.created_at) %> ago
-  </div>
-  <div class="card-footer">
-    <%='sign_in_count'.humanize + ":"%>
-    <%= user.sign_in_count %> <br />
-    <%='current_sign_in_at'.humanize + ":"%>
-    <%= user.current_sign_in_at.strftime('%d-%b-%Y') if user.current_sign_in_at.present? %> <br />
-    <%='last_sign_in_at'.humanize + ":"%>
-    <%= user.last_sign_in_at.strftime('%d-%b-%Y') if user.last_sign_in_at.present? %> <br />
-    <%='current_sign_in_ip'.humanize + ":"%>
-    <%= user.current_sign_in_ip %> <br />
-    <%= 'last_sign_in_ip'.humanize + ":"%>
-    <%= user.last_sign_in_ip %>
-  </div>
-  <div class="card-footer">
-    Courses created: <%= user.courses_count %>
-    <br />
-    Enrollments: <%= user.enrollments_count %> 
-  </div>
-  <div class="card-footer">
-    <%= user.roles.map(&:name).join(', ') %>
-  </div>
-  <div class="card-footer text-center">
-    <% if policy(user).edit? %>
-      <%= link_to 'Edit Role', edit_user_path(user), class: 'btn btn-warning' %>
-    <% end %>
-    <% if policy(user).destroy? %>
-      <%= link_to 'Remove User', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-    <% end %>
-  </div>
-  <div class="card-footer">
-    Confirmed email?
-    <% if user.confirmed_at.present? %>
-      <div class="badge badge-success" style="color:green">Yes</div>
-    <% else %>
-      <div class="badge badge-danger" style="color:red">No</div>
-    <% end %>
-  </div>
-  <div class="card-footer">
-    <%='confirmed_at'.humanize + ":"%>
-    <%= user.confirmed_at.strftime('%d-%b-%Y') if user.confirmed_at.present? %> <br />
-    <%='confirmation_sent_at'.humanize + ":"%>
-    <%= user.confirmation_sent_at %> <br />
-    <%='unconfirmed_email'.humanize + ":"%>
-    <%= user.unconfirmed_email %> <br />
+<div class="card border-secondary text-center w-25 mx-auto mt-2">
+  <div class="card-body">
+    <div class="card-title">
+      <h5 class="text-primary"><%= user.email %> (ID: <%= user.id %>)</h5>
+    </div>
+    <div class="card-header">
+      Signed up: <%= time_ago_in_words(user.created_at) %> ago
+    </div>
+    <div class="card-text">
+      <%='sign_in_count'.humanize + ":"%>
+      <%= user.sign_in_count %> <br />
+      <%='current_sign_in_at'.humanize + ":"%>
+      <%= user.current_sign_in_at.strftime('%d-%b-%Y') if user.current_sign_in_at.present? %> <br />
+      <%='last_sign_in_at'.humanize + ":"%>
+      <%= user.last_sign_in_at.strftime('%d-%b-%Y') if user.last_sign_in_at.present? %> <br />
+      <%='current_sign_in_ip'.humanize + ":"%>
+      <%= user.current_sign_in_ip %> <br />
+      <%= 'last_sign_in_ip'.humanize + ":"%>
+      <%= user.last_sign_in_ip %>
+    </div>
+    <div class="card-footer">
+      Courses created: <%= user.courses_count %>
+      <br />
+      Enrollments: <%= user.enrollments_count %>
+    </div>
+    <div class="card-text mt-3 mb-3">
+      <% user.roles.each do |role| %>
+        <span class="badge bg-<%= style_role(role.name).to_s %>">
+          <%= role.name %>
+        </span>
+      <% end %>
+      <% if policy(user).edit? %>
+        <%= link_to 'Edit Role', edit_user_path(user), class: 'btn btn-sm btn-warning float-end' %>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      Confirmed email?
+      <% if user.confirmed_at.present? %>
+        <div class="badge bg-success">Yes</div>
+      <% else %>
+        <div class="badge bg-danger">No</div>
+      <% end %>
+      <br />
+      <%='confirmed_at'.humanize + ":"%>
+      <%= user.confirmed_at.strftime('%d-%b-%Y') if user.confirmed_at.present? %> <br />
+    </div>
   </div>
 </div>
 <br />

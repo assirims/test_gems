@@ -25,13 +25,13 @@
     <% end %>
   </div>
 </div>
-
+<br />
 <div class="d-flex justify-content-center">
   <%== pagy_bootstrap_nav(@pagy).html_safe %>
 </div>
 
 <div class="table-responsive">
-  <table class="table table-bordered table-striped table-sm">
+  <table class="table table-bordered table-striped table-sm align-baseline text-center">
     <thead>
       <tr>
         <th><%= sort_link(@ranked_enrollments, :id, 'ID') %></th>
@@ -43,9 +43,8 @@
         <th><%= sort_link(@ranked_enrollments, :rating, 'Rating') %></th>
         <th><%= sort_link(@ranked_enrollments, :review, 'Review') %></th>
         <th>Progress</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>See Review</th>
+        <th>Edit Review</th>
       </tr>
     </thead>
     <tbody>
@@ -60,15 +59,10 @@
           <td><%= enrollment.rating %></td>
           <td><%= enrollment.review %></td>
           <td><%= number_to_percentage(enrollment.course.progress(enrollment.user), precision: 0) %></td>
-          <td><%= link_to 'See Review', enrollment %></td>
+          <td><%= link_to '>', enrollment, class: "btn btn-sm btn-primary" %></td>
           <td>
             <% if policy(enrollment).edit? %>
-              <%= link_to 'Add Review', edit_enrollment_path(enrollment) %>
-            <% end %>
-          </td>
-          <td>
-            <% if policy(enrollment).destroy? %>
-              <%= link_to 'Delete Enrollment', enrollment, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to '>>', edit_enrollment_path(enrollment), class: "btn btn-sm btn-warning" %>
             <% end %>
           </td>
         </tr>
