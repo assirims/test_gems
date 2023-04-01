@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[ show ]
   before_action :set_course, only: %i[ show edit update destroy approve unapprove publish unpublish ]
 
   # GET /courses

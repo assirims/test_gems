@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   # https://www.veracode.com/blog/managing-appsec/when-rails-protectfromforgery-fails
   protect_from_forgery with: :exception
 
-  after_action :user_activity #gem public_activity
+  #gem public_activity
+  after_action :user_activity, if: :user_signed_in?
 
   include Pundit::Authorization #gem pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized #gem pundit
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController #save current_user using gem public_activity
 
   include Pagy::Backend #gem pagy
-  
+
   private
   def set_global_search_variable #navbar search
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search) #navbar search
