@@ -22,6 +22,9 @@ class Lesson < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, _model| controller.current_user }
 
+  # include RankedModel # this is for the row_order
+  # ranks :row_order, with_same: :course_id
+
   def to_s
     title
   end

@@ -29,24 +29,18 @@
       </div>
     <% end %>
     <% if current_user %>
-      <% if policy(course).destroy? %>
+      <% if policy(course).owner? %>
         <div class="card-footer">
-          <% if policy(course).owner? %>
-            <%= link_to 'Add lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm' %>
-          <% end %>
-          <% if policy(course).edit? %>
-            <%= link_to 'Analtyics', analytics_course_path(course), class: 'btn btn-info btn-sm' %>
-          <% end %>
-          <% if policy(course).edit? %>
-            <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' %>
-          <% end %>
-          <% if policy(course).destroy? %>
-            <%= button_to 'Delete', course, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", form: {style: 'display:inline-block;'} %>
-          <% end %>
+          <%= link_to 'Add lesson', new_course_lesson_path(course, @lesson), class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Analtyics', analytics_course_path(course), class: 'btn btn-info btn-sm' %>
+          <%= link_to 'Edit', edit_course_path(course), class: 'btn btn-sm btn-warning' %>
+        <% end %>
+        <% if policy(course).destroy? %>
+          <%= button_to 'Delete', course, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", form: {style: 'display:inline-block;'} %>
         </div>
       <% end %>
 
-      <% if policy(@course).destroy? %>
+      <% if policy(@course).admin_or_owner? %>
         <div class="card-footer">
           <% if course.published? %>
             <div class="badge bg-success">published</div>
@@ -60,6 +54,7 @@
           <% end %>
         </div>
       <% end %>
+      
       <% if policy(@course).approve? %>
         <div class="card-footer">
           <% if course.approved? %>

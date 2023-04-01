@@ -53,7 +53,7 @@
     <div class="card card-body">
       Statistics:
       <ul>
-        <li><%= link_to "All Courses <div class=\"badge bg-info\">#{Course.count}</div>".html_safe, courses_path %></li>
+        <li><%= link_to "All Courses <div class=\"badge bg-info\">#{Course.approved.published.count}</div>".html_safe, courses_path %></li>
         <li><%= link_to "All Students <div class=\"badge bg-info\">#{User.count}</div>".html_safe, users_path %></li>
       </ul>
     </div>
