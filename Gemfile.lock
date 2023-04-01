@@ -110,6 +110,7 @@ GEM
       activesupport (>= 5.0)
     groupdate (6.2.0)
       activesupport (>= 5.2)
+    honeybadger (5.2.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -216,6 +217,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sentry-rails (5.8.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.8.0)
+    sentry-ruby (5.8.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -273,6 +279,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.3)
   friendly_id (~> 5.5)
   groupdate (~> 6.2)
+  honeybadger (~> 5.0)
   image_processing (~> 1.2)
   importmap-rails
   pagy (~> 6.0)
@@ -284,6 +291,8 @@ DEPENDENCIES
   redis (~> 4.0)
   rolify (~> 6.0)
   selenium-webdriver
+  sentry-rails
+  sentry-ruby
   simple_form (~> 5.2)
   sprockets-rails
   sqlite3 (~> 1.4)
