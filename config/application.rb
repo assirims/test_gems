@@ -11,7 +11,16 @@ module TestGems
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # to run rails console from remote machine
     config.web_console.permissions = '10.0.0.1/8'
+
+    # gem 'rails-erd' configuration to generate a relation diagram
+    if Rails.env.development? #for rails-erd gem to generate a diagram
+      def eager_load!
+        Zeitwerk::Loader.eager_load_all
+      end
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
