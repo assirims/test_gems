@@ -4,11 +4,6 @@
 [![Dependency Review](https://github.com/assirims/test_gems/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/assirims/test_gems/actions/workflows/dependency-review.yml)
 [![DevSkim](https://github.com/assirims/test_gems/actions/workflows/devskim.yml/badge.svg)](https://github.com/assirims/test_gems/actions/workflows/devskim.yml)
 [![Rubocop](https://github.com/assirims/test_gems/actions/workflows/rubocop.yml/badge.svg)](https://github.com/assirims/test_gems/actions/workflows/rubocop.yml)
-[![SonarCloud analysis](https://github.com/assirims/test_gems/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/assirims/test_gems/actions/workflows/sonarcloud.yml)
-[![SonarQube analysis](https://github.com/assirims/test_gems/actions/workflows/sonarqube.yml/badge.svg)](https://github.com/assirims/test_gems/actions/workflows/sonarqube.yml)
-[![SonarCloud analysis](https://github.com/assirims/test_gems/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/assirims/test_gems/actions/workflows/sonarcloud.yml)
-[![Synopsys Intelligent Security Scan](https://github.com/assirims/test_gems/actions/workflows/synopsys-io.yml/badge.svg)](https://github.com/assirims/test_gems/actions/workflows/synopsys-io.yml)
-
 
 # README
 
