@@ -14,9 +14,12 @@
       <span  class="text-danger"> the user: </span>
       <%= link_to activity.owner, user_path(activity.owner) %>
       <span  class="text-warning">took this action =></span>
-      <span  class="text-light bg-dark"><%= activity.key %></span>
+      <span  class="text-light bg-dark">
+        <%= activity.key %> <%= crud_label(activity.key.match(/\.(.*)/)[1]) %>
+      </span>
       <span  class="text-info"> on this object</span>
       <span  class="text-light bg-dark">
+        <%= model_label(activity.trackable_type) %>
         <%= activity.trackable_type %>
         <%= activity.trackable_id %>
       </span>
