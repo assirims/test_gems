@@ -1,0 +1,147 @@
+name: Talent Protocol - CI
+
+on:
+  push:
+    branches:
+      - dev
+      - master
+  pull_request:
+    branches:
+      - dev
+      - master
+    types: [ready_for_review, opened, reopened, synchronize]
+
+concurrency:
+  group: talent-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request.draft }} && ${{ github.head_ref == 'master' || github.head_ref == 'dev' }}
+    strategy:
+      matrix:
+        ruby-version: ["3.2.0"]
+        node-version: ["19.7.0"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: yarn install
+
+      - name: Set up Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+  talent-lint:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby-version: ["3.2.0"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Run linters
+        run: |
+          bundle exec standardrb --extra-details --fail-level A
+
+  talent-rspec:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+#      AWS_REGION: eu-west-2
+#      AWS_ACCESS_KEY: aws_access_key
+      AWS_SECRET_ACCESS_KEY: aws_secret_access_key
+      CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+      CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+      DISABLE_SPRING: 1
+      GITHUB_ARTIFACTS: coverage
+      LOCKBOX_MASTER_KEY: 2f804f551983622029d51802a79553ed137ebd6d8e92d84656d3154066bf09c5
+      RAILS_ENV: test
+      REDIS_URL: redis://10.0.0.8:8080/0
+#      DATABASE_USERNAME: postgres
+#      DATABASE_PASSWORD: postgres
+#      THE_GRAPH_URL: https://api.thegraph.com/subgraphs/name/talent-protocol/dev
+      WITH_COVERAGE: true
+    services:
+#       postgres:
+#         image: postgres:13.6
+#         ports: ["5432:5432"]
+#         env:
+#           POSTGRES_PASSWORD: postgres
+#         options: >-
+#           --health-cmd pg_isready
+#           --health-interval 10s
+#           --health-timeout 5s
+#           --health-retries 5
+#       redis:
+#         image: redis:alpine
+#         ports: ["6379:6379"]
+#         options: --entrypoint redis-server
+#       elasticsearch:
+#         image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+#         env:
+#           discovery.type: single-node
+#         options: >-
+#           --health-cmd "curl http://localhost:9200/_cluster/health"
+#           --health-interval 10s
+#           --health-timeout 5s
+#           --health-retries 10
+#         ports:
+#           - 9200:9200
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version: ["3.2.0"]
+        node-version: ["19.7.0"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: yarn install
+
+      - name: running elasticsearch
+        run: |
+          sleep 10
+          curl -X GET http://localhost:9200/
+
+      - name: Set up Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Run tests
+        run: |
+          bin/rails db:create db:migrate > /dev/null
+          bundle exec rspec
+
+      - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
