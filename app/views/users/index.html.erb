@@ -20,47 +20,49 @@
     <%== pagy_bootstrap_nav(@pagy) %>
   </div>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th> Online </th>
-        <th><%= sort_link(@ransack_users, :id, 'ID') %></th>
-        <th><%= sort_link(@ransack_users, :email, 'Email') %></th>
-        <th><%= sort_link(@ransack_users, :created_at, 'Created at') %></th>
-        <th><%= sort_link(@ransack_users, :sign_in_count, 'Sign in count') %></th>
-        <th><%= sort_link(@ransack_users, :current_sign_in_at, 'Current sign in at') %></th>
-        <th><%= sort_link(@ransack_users, :last_sign_in_at, 'Last sign in at') %></th>
-        <th><%= sort_link(@ransack_users, :current_sign_in_ip, 'Current sign in ip') %></th>
-        <th><%= sort_link(@ransack_users, :last_sign_in_ip, 'Last sign in ip') %></th>
-        <th><%= 'courses_count'.humanize %></th>
-        <th><%= 'enrollments_count'.humanize %></th>
-        <th><%= sort_link(@ransack_users, :roles, 'confirmed') %></th>
-        <th><%= sort_link(@ransack_users, :roles, 'Roles') %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-sm align-baseline text-center">
+      <thead>
         <tr>
-          <td><%= user.online? ? "\u{2705}" : "\u274C" %></td>
-          <td><%= user.id %></td>
-          <td><%= link_to user.email, user_path(user) %></td>
-          <td><%= user.created_at %></td>
-          <td><%= user.sign_in_count %></td>
-          <td><%= user.current_sign_in_at %></td>
-          <td><%= user.last_sign_in_at %></td>
-          <td><%= user.current_sign_in_ip %></td>
-          <td><%= user.last_sign_in_ip %></td>
-          <td><%= user.courses_count %></td>
-          <td><%= user.enrollments_count %></td>
-          <td><%= user.confirmed? ? "\u{2705}" : "\u274C" %></td>
-          <td><% user.roles.each do |role| %>
-              <span class="badge bg-<%= style_role(role.name).to_s %>">
-                <%= role.name %>
-              </span>
-            <% end %>
-          </td>
+          <th> Online </th>
+          <th><%= sort_link(@ransack_users, :id, 'ID') %></th>
+          <th><%= sort_link(@ransack_users, :email, 'Email') %></th>
+          <th><%= sort_link(@ransack_users, :created_at, 'Created at') %></th>
+          <th><%= sort_link(@ransack_users, :sign_in_count, 'Sign in count') %></th>
+          <th><%= sort_link(@ransack_users, :current_sign_in_at, 'Current sign in at') %></th>
+          <th><%= sort_link(@ransack_users, :last_sign_in_at, 'Last sign in at') %></th>
+          <th><%= sort_link(@ransack_users, :current_sign_in_ip, 'Current sign in ip') %></th>
+          <th><%= sort_link(@ransack_users, :last_sign_in_ip, 'Last sign in ip') %></th>
+          <th><%= sort_link(@ransack_users, :courses_count, 'Courses created') %></th>
+          <th><%= sort_link(@ransack_users, :enrollments_count, 'Enrollments count') %></th>
+          <th><%= sort_link(@ransack_users, :roles, 'confirmed') %></th>
+          <th><%= sort_link(@ransack_users, :roles, 'Roles') %></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.online? ? "\u{2705}" : "\u274C" %></td>
+            <td><%= user.id %></td>
+            <td><%= link_to user.email, user_path(user) %></td>
+            <td><%= user.created_at.strftime("%d/%m/%Y %H:%M") unless user.created_at.nil? %></td>
+            <td><%= user.sign_in_count %></td>
+            <td><%= user.current_sign_in_at.strftime("%d/%m/%Y %H:%M") unless user.current_sign_in_at.nil? %></td>
+            <td><%= user.last_sign_in_at.strftime("%d/%m/%Y %H:%M") unless user.last_sign_in_at.nil? %></td>
+            <td><%= user.current_sign_in_ip %></td>
+            <td><%= user.last_sign_in_ip %></td>
+            <td><%= user.courses_count %></td>
+            <td><%= user.enrollments_count %></td>
+            <td><%= user.confirmed? ? "\u{2705}" : "\u274C" %></td>
+            <td><% user.roles.each do |role| %>
+                <span class="badge bg-<%= style_role(role.name).to_s %>">
+                  <%= role.name %>
+                </span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

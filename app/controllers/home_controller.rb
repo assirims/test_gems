@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
   def activity
     if current_user.has_role?(:admin)
-      @activities = PublicActivity::Activity.all.order(created_at: :desc)
+      @pagy, @activities = pagy(PublicActivity::Activity.all.order(created_at: :desc), items: 10)
     else
       redirect_to root_path, alert: "You are not authorized to view this page."
     end
@@ -20,9 +20,6 @@ class HomeController < ApplicationController
 
   def analytics
     if current_user.has_role?(:admin)
-      # @courses = Course.all
-      # @enrollments = Enrollment.all
-      # @users = User.all
     else
       redirect_to root_path, alert: "You are not authorized to view this page."
     end
