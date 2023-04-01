@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, :unpublished, :index_admin, on: :collection
     member do
-      get :approve, :unapprove, :publish, :unpublish
+      get :approve, :unapprove, :publish, :unpublish, :analytics
     end
     resources :lessons
     resources :enrollments, only: [:create, :new]

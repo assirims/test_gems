@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ show ]
-  before_action :set_course, only: %i[ show edit update destroy approve unapprove publish unpublish ]
+  before_action :set_course, only: %i[ show edit update destroy approve unapprove publish unpublish analytics ]
 
   # GET /courses
   def index
@@ -15,6 +15,10 @@ class CoursesController < ApplicationController
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)
     @courses = @ransack_courses.result.includes(:user)
     @pagy, @courses = pagy(@courses, items: 5) #gem pagy
+  end
+
+  def analytics
+    authorize @course, :owner?
   end
 
   def purchased
