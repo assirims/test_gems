@@ -6,9 +6,9 @@ class Lesson < ApplicationRecord
 
   validates :title, :content, :course, presence: true
 
-  has_rich_text :content
+  has_rich_text :content # gem 'trix'
 
-  extend FriendlyId
+  extend FriendlyId # gem 'friendly_id'
   friendly_id :title, use: :slugged
 
   def self.ransackable_attributes(auth_object = nil)
@@ -19,11 +19,11 @@ class Lesson < ApplicationRecord
     ["course"]
   end
 
-  include PublicActivity::Model
+  include PublicActivity::Model # gem 'public_activity'
   tracked owner: Proc.new{ |controller, _model| controller.current_user }
 
-  # include RankedModel # this is for the row_order
-  # ranks :row_order, with_same: :course_id
+  include RankedModel # gem 'ranked-model'
+  ranks :row_order, with_same: :course_id
 
   def to_s
     title

@@ -11,13 +11,21 @@
   <% else %>
     <div class="fa fa-check-square"></div>
   <% end %>
-  <%= link_to lesson.title, course_lesson_path(@course, lesson) %>
+  <%= link_to course_lesson_path(@course, lesson) do  %>
+    <%= '(' + (lesson.row_order_rank + 1).to_s + ') ' unless lesson.row_order.nil? %>
+    <%= lesson.title %>
+  <% end %>
+
 <% else %>
   <div class="fa fa-check-square"></div>
-  <%= link_to lesson.title, course_lesson_path(@course, lesson) %>
+  <%= link_to course_lesson_path(@course, lesson) do %>
+    <%#= lesson.row_order %>
+    <%= '(' + (lesson.row_order_rank + 1).to_s + ') ' %>
+    <%= lesson.title %>
+  <% end %>
 <% end %>
 
-<!--
+
 <% if current_user %>
 <% if policy(lesson).edit? %>
   <div class="float-end">
@@ -26,4 +34,3 @@
   </div>
 <% end %>
 <% end %>
--->

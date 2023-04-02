@@ -29,6 +29,7 @@
       <th><%= sort_link(@ransack_courses, :user_id, 'User') %></th>
       <th><%= sort_link(@ransack_courses, :created_at, 'Created at') %></th>
       <th><%= sort_link(@ransack_courses, :enrollments_count, 'Enrollments count') %></th>
+      <th><%= sort_link(@ransack_courses, :lessons_count, 'Lessons count') %></th>
       <th>Status</th>
       <th>Actions</th>
     </tr>
@@ -42,6 +43,7 @@
         <td><%= course.user.username %></td>
         <td><%= course.created_at.strftime('%d-%b-%Y') %></td>
         <td><%= course.enrollments_count %></td>
+        <td><%= course.lessons_count %></td>
         <td>
           <%= course.published? ? "<div class=\"badge bg-success\">published</div>".html_safe : "<div class=\"badge bg-danger\">unpublished</div>".html_safe %>
           <%= course.approved? ? "<div class=\"badge bg-success\">approved</div>".html_safe : "<div class=\"badge bg-danger\">unapproved</div>".html_safe %>

@@ -69,7 +69,7 @@ group :development do
   # gem "spring"
 
   # https://github.com/voormedia/rails-erd
-  
+
   gem "rails-erd", "~> 1.7"
 end
 
@@ -123,9 +123,10 @@ gem "chartkick", "~> 5.0"
 # https://github.com/ankane/groupdate
 gem "groupdate", "~> 6.2"
 
-
 # Configure Rails SDK for Sentry
 # https://docs.sentry.io/platforms/ruby/guides/rails/configuration/
 # gem "sentry-ruby", "~> 5.8"
 # gem "sentry-rails", "~> 5.8"
 
+# https://github.com/brendon/ranked-model
+gem "ranked-model", "~> 0.4.8"
