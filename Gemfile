@@ -130,3 +130,10 @@ gem "groupdate", "~> 6.2"
 
 # https://github.com/brendon/ranked-model
 gem "ranked-model", "~> 0.4.8"
+
+# https://dev.to/judelawrence/multiple-images-with-rails-7-making-images-orderable-sortable-4cn2
+# https://github.com/brendon/acts_as_list
+gem "acts_as_list", "~> 1.1"
+# https://github.com/rails/requestjs-rails
+# https://github.com/rails/requestjs-rails
+gem "requestjs-rails", "~> 0.0.10"

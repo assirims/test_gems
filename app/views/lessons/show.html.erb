@@ -3,8 +3,8 @@
 <% end %>
 
 <h4><%= link_to 'Courses', courses_path, class: 'text-decoration-none' %> \
-<%= link_to @lesson.course.title, course_path(@lesson.course), class: 'text-decoration-none' %> \
-<%= @lesson.title %></h4>
+  <%= link_to @lesson.course.title, course_path(@lesson.course), class: 'text-decoration-none' %> \
+  <%= @lesson.title %></h4>
 
 <div class="row">
   <div class="col-lg-8">
@@ -23,18 +23,19 @@
         <%= number_to_percentage(@course.progress(current_user), precision: 0) %>
       </li>
       <%#= @lesson.user_lessons.where(user: current_user).first.impressions %>
-      <% @lessons.each do |lesson| %>
-        <% if @lesson.present? && lesson == @lesson %>
-          <li class="list-group-item list-group-item-success">
-            <%= render 'lessons/lesson_preview', lesson: lesson %>
-          </li>
-        <% else %>
-          <li class="list-group-item">
-            <%= render 'lessons/lesson_preview', lesson: lesson %>
-          </li>
+      <div data-controller="sortable" >
+        <% @lessons.each do |lesson| %>
+          <% if @lesson.present? && lesson == @lesson %>
+            <li class="list-group-item list-group-item-success">
+              <%= render 'lessons/lesson_preview', lesson: lesson %>
+            </li>
+          <% else %>
+            <li class="list-group-item">
+              <%= render 'lessons/lesson_preview', lesson: lesson %>
+            </li>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </ul>
   </div>
 </div>
-

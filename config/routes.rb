@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     member do
       get :approve, :unapprove, :publish, :unpublish, :analytics
     end
-    resources :lessons
+    resources :lessons do
+      member do
+        patch :sort
+      end
+    end
     resources :enrollments, only: [:create, :new]
   end
 

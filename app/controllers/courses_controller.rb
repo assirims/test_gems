@@ -100,7 +100,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   def show
     authorize @course #gem pundit
-    @lessons = @course.lessons.rank(:row_order) #gem ranked-model
+    @lessons = @course.lessons.rank(:position) #gem ranked-model
     @pagy, @lessons = pagy(@lessons, items: 5) #gem pagy
     @enrollments_with_review = @course.enrollments.reviewed
   end

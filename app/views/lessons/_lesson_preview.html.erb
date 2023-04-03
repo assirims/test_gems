@@ -11,16 +11,20 @@
   <% else %>
     <div class="fa fa-check-square"></div>
   <% end %>
+  <div data-controller="sortable" >
   <%= link_to course_lesson_path(@course, lesson) do  %>
-    <%= '(' + (lesson.row_order_rank + 1).to_s + ') ' unless lesson.row_order.nil? %>
+    <%= '('+(lesson.position_rank+1).to_s + ') ' unless lesson.position.nil? %>
     <%= lesson.title %>
   <% end %>
+  </div>
 
 <% else %>
-  <div class="fa fa-check-square"></div>
-  <%= link_to course_lesson_path(@course, lesson) do %>
-    <%#= lesson.row_order %>
-    <%= '(' + (lesson.row_order_rank + 1).to_s + ') ' %>
-    <%= lesson.title %>
-  <% end %>
+  <div data-controller="sortable" >
+    <div class="fa fa-check-square"></div>
+    <%= link_to course_lesson_path(@course, lesson) do %>
+      <%#= lesson.position %>
+      <%= '('+(lesson.position_rank+1).to_s + ') ' unless lesson.position.nil? %>
+      <%= lesson.title %>
+    <% end %>
+  </div>
 <% end %>

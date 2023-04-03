@@ -66,6 +66,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts_as_list (1.1.0)
+      activerecord (>= 4.2)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     bcrypt (3.1.18)
@@ -211,6 +213,8 @@ GEM
     regexp_parser (2.7.0)
     reline (0.3.3)
       io-console (~> 0.5)
+    requestjs-rails (0.0.10)
+      rails (>= 6.0.0)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -274,6 +278,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  acts_as_list (~> 1.1)
   capybara
   chartkick (~> 5.0)
   cssbundling-rails (~> 1.1)
@@ -296,6 +301,7 @@ DEPENDENCIES
   ranked-model (~> 0.4.8)
   ransack (~> 4.0)
   redis (~> 4.0)
+  requestjs-rails (~> 0.0.10)
   rolify (~> 6.0)
   selenium-webdriver
   simple_form (~> 5.2)

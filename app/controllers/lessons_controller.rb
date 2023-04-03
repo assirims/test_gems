@@ -8,7 +8,15 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   def show
     current_user.view_lesson(@lesson)
-    @lessons = @course.lessons.rank(:row_order)
+    @lessons = @course.lessons.rank(:position)
+  end
+
+  def sort
+    @course = Course.friendly.find(params[:course_id])
+    @lesson = Lesson.friendly.find(params[:id])
+    # authorize lesson, :edit?
+    @lesson.insert_at(params[:position].to_i)
+    head :ok
   end
 
   # GET /lessons/new
@@ -58,7 +66,7 @@ class LessonsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lesson_params
-      params.require(:lesson).permit(:title, :content)
+      params.require(:lesson).permit(:title, :content, :position, :course_id)
     end
 
     def authorize_valuations

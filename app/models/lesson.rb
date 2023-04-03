@@ -23,7 +23,7 @@ class Lesson < ApplicationRecord
   tracked owner: Proc.new{ |controller, _model| controller.current_user }
 
   include RankedModel # gem 'ranked-model'
-  ranks :row_order, with_same: :course_id
+  ranks :position, with_same: :course_id
 
   def to_s
     title
@@ -35,10 +35,10 @@ class Lesson < ApplicationRecord
   end
 
   def prev
-    course.lessons.where("row_order < ?", row_order).order(:row_order).last
+    course.lessons.where("position < ?", position).order(:position).last
   end
 
   def next
-    course.lessons.where("row_order > ?", row_order).order(:row_order).first
+    course.lessons.where("position > ?", position).order(:position).first
   end
 end

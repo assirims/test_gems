@@ -8,3 +8,4 @@ import "@fortawesome/fontawesome-free"
 // gem 'chartkick'
 import "chartkick"
 import "Chart.bundle"
+import "@rails/request.js"
