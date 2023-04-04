@@ -6,7 +6,7 @@
     "@popperjs/core": "^2.11.6",
     "@rails/actiontext": "^7.0.4",
     "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.10.3",
+    "bootstrap-icons": "^1.10.4",
     "sass": "^1.59.3",
     "trix": "^2.0.4"
   },
