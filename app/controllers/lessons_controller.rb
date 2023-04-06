@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   def show
     current_user.view_lesson(@lesson)
-    @lessons = @course.lessons.rank(:row_order)
+    @lessons = @course.lessons.rank(:position)
   end
 
   # GET /lessons/new

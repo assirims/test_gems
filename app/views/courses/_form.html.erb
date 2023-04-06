@@ -4,6 +4,11 @@
     <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
     <%= form.input :title %>
+    <%= form.label :avatar %>
+    <% if @course.avatar.attached? %>
+      <%= image_tag @course.avatar, class: "img-fluid", width: "200px" %>
+    <% end %>
+    <%= form.file_field :avatar, class: "form-control" %>
     <%= form.label :description %>
     <%= form.rich_text_area :description, input_html: { minlength: 5, maxlength: 1000 } %>
     <small><%= form.error :description, class: 'text-danger' %></small>
