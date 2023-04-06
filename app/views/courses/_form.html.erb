@@ -4,12 +4,13 @@
     <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
     <%= form.input :title %>
-    <%= form.label :avatar %>
+    <%#= form.label :avatar %>
     <% if course.avatar.attached? && course.avatar.attachment.blob.present? && course.avatar.attachment.blob.persisted? %>
       <%= image_tag @course.avatar, class: "img-fluid", width: "200px" %>
     <% end %>
-    <%= form.file_field :avatar, class: "form-control" %>
-    <small><%= form.error :avatar, class: 'text-danger' %></small>
+    <%= form.input :avatar %>
+    <%#= form.file_field :avatar, class: "form-control" %>
+    <small><%#= form.error :avatar, class: 'text-danger' %></small>
     <%= form.label :description %>
     <%= form.rich_text_area :description, input_html: { minlength: 5, maxlength: 1000 } %>
     <small><%= form.error :description, class: 'text-danger' %></small>
