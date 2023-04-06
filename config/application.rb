@@ -9,8 +9,9 @@ Bundler.require(*Rails.groups)
 module TestGems
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    # for local storage
-    # brew install vips
+    # for local storage on Ubuntu OS
+    # run this command in terminal: 
+    # sudo apt install libvips
     config.load_defaults 7.0
 
     # to run rails console from remote machine
