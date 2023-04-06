@@ -1,31 +1,45 @@
 <div class="card border-secondary text-center w-100 mx-auto mt-2">
   <div class="card-body">
     <div class="card-title">
-      <h5 class="text-primary"><%= course.title %></h5>
+      <h5 class="text-primary"><span class="fa fa-graduation-cap"></span><%= " " + course.title %></h5>
       <h6 class="card-header text-secondary"><%= pluralize(@course.lessons_count, 'Lesson') %></h6>
     </div>
     <div class="card-text">
-      <% if course.avatar.attached? %>
-        <%= image_tag course.avatar, class: "img-fluid", width: "200px" %>
+      <% if course.avatar.attached? && course.avatar.attachment.blob.present? && course.avatar.attachment.blob.persisted? %>
+        <%= image_tag course.avatar, class: "img-fluid", width: "200px", height: "100%" %>
       <% end %>
     </div>
     <div class="card-text">
       <%= simple_format(course.short_description) %>
     </div>
     <div class="card-footer">
+      <div class="fa fa-user"></div>
       By: <%= link_to course.user.username, user_path(course.user) %> |
+      <div class="fa fa-money"></div>
       Price: <%= number_to_currency(course.price) %> |
+    </div>
+    <div class="card-footer">
+      <div class="fa fa-globe-africa"></div>
       Language: <%= course.language %> |
+      <div class="fa fa-signal"></div>
       Level: <%= course.level %> |
-      <%= course.created_at.strftime('%d-%b-%Y') %>
+    </div>
+    <div class="card-footer">
+      <div class="fa fa-calendar-o"></div>
+      Created: <%= course.created_at.strftime('%d-%b-%Y') %> |
+      <div class="fa fa-clock"></div>
+      Last updated: <%= course.updated_at.strftime('%d-%b-%Y') %>
     </div>
     <div class="card-footer">
       <%= enrollments_button(course) %>
     </div>
     <div class="card-footer">
+      <div class="fa fa-users"></div>
       Enrolled: <%= course.enrollments_count %> |
       <%#= course.enrollments.count %>
+      <div class="fa fa-list"></div>
       Lessons: <%= course.lessons_count %> |
+      <div class="fa fa-star"></div>
       Rating: <%= course.average_rating %>
     </div>
     <% unless review_button(course) == nil %>

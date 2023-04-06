@@ -14,6 +14,9 @@ class Course < ApplicationRecord
   has_rich_text :description
 
   has_one_attached :avatar
+  validates :avatar, attached: true,
+              content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+              size: { less_than: 500.kilobytes, message: 'size must be less than 500kb' }
 
   belongs_to :user, counter_cache: true
   #User.find_each { |user| User.reset_counters(user.id, :courses) }

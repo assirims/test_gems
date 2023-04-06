@@ -133,4 +133,8 @@ gem "groupdate", "~> 6.2"
 # https://github.com/brendon/ranked-model
 gem "ranked-model", "~> 0.4.8"
 
+# https://github.com/aws/aws-sdk-ruby
 gem "aws-sdk-s3", "~> 1.120", require: false
+
+# https://github.com/igorkasyanchuk/active_storage_validations
+gem "active_storage_validations", "~> 1.0"
