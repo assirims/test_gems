@@ -12,6 +12,8 @@ pin "@fortawesome/fontawesome-free", to: "https://ga.jspm.io/npm:@fortawesome/fo
 # gem "chartkick"
 pin "chartkick", to: "https://ga.jspm.io/npm:chartkick@5.0.1/dist/chartkick.esm.js"
 pin "Chart.bundle", to: "Chart.bundle.js"
+
+# https://dev.to/timnans/implementing-videojs-in-ruby-on-rails-72h
 pin "video.js", to: "https://ga.jspm.io/npm:video.js@7.18.1/dist/video.es.js"
 pin "@babel/runtime/helpers/assertThisInitialized", to: "https://ga.jspm.io/npm:@babel/runtime@7.21.0/helpers/esm/assertThisInitialized.js"
 pin "@babel/runtime/helpers/construct", to: "https://ga.jspm.io/npm:@babel/runtime@7.21.0/helpers/esm/construct.js"
