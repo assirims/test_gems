@@ -46,6 +46,7 @@
             <li><%= link_to "Unpublished Courses <div class=\"badge bg-warning\">#{Course.unpublished.count}</div>".html_safe, unpublished_courses_path %> </li>
             <li><%= link_to "Unapproved Courses <div class=\"badge bg-danger\">#{Course.unapproved.count}</div>".html_safe, unapproved_courses_path %> </li>
             <li><%= link_to "Index Admin", index_admin_courses_path %> </li>
+            <li><%= Rails.application.credentials.dig(:development, :key_test) %></li>
           </ul>
         </div>
       <% end %>

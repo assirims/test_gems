@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
+# EDITOR="code --wait" rails credentials:edit
+
 # drop table from rails console
 # ActiveRecord::Migration.drop_table(:users)
 
@@ -130,3 +132,5 @@ gem "groupdate", "~> 6.2"
 
 # https://github.com/brendon/ranked-model
 gem "ranked-model", "~> 0.4.8"
+
+gem "aws-sdk-s3", "~> 1.120", require: false
