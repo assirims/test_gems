@@ -5,43 +5,52 @@
     <% else %>
       <div class="text-danger fa fa-check-square"></div>
     <% end %>
-      <%#= link_to course_lesson_path(@course, lesson) do %>
+    <%#= link_to course_lesson_path(@course, lesson) do %>
       <%= '(' + (lesson.position_rank + 1).to_s + ') ' %>
       <%= lesson.title %>
       <%# end %>
-  </div>
-
-    <% if policy(lesson).show? %>
-      <div class="card-footer"><%= lesson.content %></div>
-      <div class="card-footer">Course: <%= link_to lesson.course.title, course_path(lesson.course) %></div>
-    <% end %>
-
-    <div class="card-footer">
-      <% unless lesson.prev.nil? %>
-        <div class="float-start">
-          <%= link_to course_lesson_path(@course, lesson.prev), class: 'btn btn-sm btn-secondary' do %>
-            <div class="fa fa-arrow-left"></div>
-            Previous
-          <% end %>
-        </div>
-      <% end %>
-      <% unless lesson.next.nil? %>
-        <div class="float-end">
-          <%= link_to course_lesson_path(@course, lesson.next), class: 'btn btn-sm btn-secondary' do %>
-            <div class="fa fa-arrow-right"></div>
-            Next
-          <% end %>
-        </div>
-      <% end %>
     </div>
 
-    <% if current_user %>
-      <% if policy(lesson).edit? %>
-        <div class="card-footer">
-          <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: 'btn btn-sm btn-warning' %>
-          <%= button_to 'Destroy', [@course, lesson], method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger", form: {style: 'display:inline-block;'} %>
-        </div>
-      <% end %>
+    <% if @lesson.video.attached? %>
+      <% if @lesson.video_thumbnail.attached? %>
+        <% image_tag @lesson.video_thumbnail %>
+        <video controls="true" poster="<%= rails_blob_url(@lesson.video_thumbnail) %>" width="100%" preload="metadata">
+          <source src="<%= rails_blob_url(@lesson.video) %>" type="<%= @lesson.video.content_type %>"></source>
+      </video>
     <% end %>
+  <% end %>
+
+  <% if policy(lesson).show? %>
+    <div class="card-footer"><%= lesson.content %></div>
+    <div class="card-footer">Course: <%= link_to lesson.course.title, course_path(lesson.course) %></div>
+  <% end %>
+
+  <div class="card-footer">
+    <% unless lesson.prev.nil? %>
+      <div class="float-start">
+        <%= link_to course_lesson_path(@course, lesson.prev), class: 'btn btn-sm btn-secondary' do %>
+          <div class="fa fa-arrow-left"></div>
+          Previous
+        <% end %>
+      </div>
+    <% end %>
+    <% unless lesson.next.nil? %>
+      <div class="float-end">
+        <%= link_to course_lesson_path(@course, lesson.next), class: 'btn btn-sm btn-secondary' do %>
+          <div class="fa fa-arrow-right"></div>
+          Next
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if current_user %>
+    <% if policy(lesson).edit? %>
+      <div class="card-footer">
+        <%= link_to 'Edit', edit_course_lesson_path(@course, lesson), class: 'btn btn-sm btn-warning' %>
+        <%= button_to 'Destroy', [@course, lesson], method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger", form: {style: 'display:inline-block;'} %>
+      </div>
+    <% end %>
+  <% end %>
 
 </div>

@@ -5,8 +5,19 @@ class Lesson < ApplicationRecord
   has_many :user_lessons, dependent: :destroy
 
   validates :title, :content, :course, presence: true
+  validates :title, length: { minimum: 1, maximum: 70 }
+  validates_uniqueness_of :title, scope: :course_id
 
   has_rich_text :content # gem 'trix'
+
+  has_one_attached :video
+  has_one_attached :video_thumbnail
+  validates :video,
+    content_type: [:mp4],
+    size: { less_than: 50.megabytes, message: "should be less than 50MB" }
+  validates :video_thumbnail,
+    content_type: [:png, :jpg, :jpeg],
+    size: { less_than: 500.kilobytes, message: "should be less than 500KB" }
 
   extend FriendlyId # gem 'friendly_id'
   friendly_id :title, use: :slugged
