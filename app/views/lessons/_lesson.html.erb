@@ -14,9 +14,18 @@
     <% if @lesson.video.attached? %>
       <% if @lesson.video_thumbnail.attached? %>
         <% image_tag @lesson.video_thumbnail %>
-        <video controls="true" poster="<%= rails_blob_url(@lesson.video_thumbnail) %>" width="100%" preload="metadata">
+        <div data-controller="video">
+        <video
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        poster="<%= rails_blob_url(@lesson.video_thumbnail) %>"
+        width="100%"
+        data-setup='{}'>
           <source src="<%= rails_blob_url(@lesson.video) %>" type="<%= @lesson.video.content_type %>"></source>
       </video>
+      </div>
     <% end %>
   <% end %>
 
