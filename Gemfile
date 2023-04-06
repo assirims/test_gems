@@ -52,6 +52,8 @@ gem "redis", "~> 4.0"
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+#sudo apt install imagemagick
+# fix action_text displaying images, S3 bucket, work with action_text
 gem "image_processing", "~> 1.2"
 
 group :development, :test do

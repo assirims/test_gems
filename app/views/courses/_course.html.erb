@@ -7,6 +7,7 @@
     <div class="card-text">
       <% if course.avatar.attached? && course.avatar.attachment.blob.present? && course.avatar.attachment.blob.persisted? %>
         <%= image_tag course.avatar, class: "img-fluid", width: "200px", height: "100%" %>
+        <%#= image_tag course.avatar.variant(resize_to_limit: [100, 100]) %>
       <% end %>
     </div>
     <div class="card-text">
