@@ -9,6 +9,11 @@
     <% else %>
       <span class="attachment__name"><%= blob.filename %></span>
       <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
+      <%= link_to rails_blob_path(blob, disposition: "preview"), target: :_blank do %>
+        <div class="fa fa-download"></div>
+      <% end %>
+      <!--= link_to blob.filename, rails_blob_path(blob, disposition: "preview"), target: :_blank -->
+      <!--= link_to blob.filename, rails_blob_path(blob, disposition: 'attachment'), target: :_blank -->
     <% end %>
   </figcaption>
 </figure>

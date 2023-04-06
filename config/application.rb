@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 module TestGems
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    # for local storage
+    # brew install vips
     config.load_defaults 7.0
 
     # to run rails console from remote machine
