@@ -4,10 +4,10 @@
 
   <div class="form-inputs">
     <%= f.input :title, input_html: { autofocus: true, autocomplete: "off" } %>
-    <%#= f.input :content %>
-    <%= f.label :content %>
-    <%= f.rich_text_area :content %>
-    <small><%= f.error :content, class: 'text-danger' %></small>
+    <%= f.input :content, as: :rich_text_area %>
+    <%#= f.label :content %>
+    <%#= f.rich_text_area :content %>
+    <small><%#= f.error :content, class: 'text-danger' %></small>
     <%#= f.association :course %>
     <%= f.input :course_id, as: :hidden, input_html: { value: @lesson.course_id || params[:course_id] } %>
     <% if @lesson.video.attached? %>
