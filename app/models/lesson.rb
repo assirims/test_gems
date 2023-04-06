@@ -19,6 +19,11 @@ class Lesson < ApplicationRecord
     content_type: [:png, :jpg, :jpeg],
     size: { less_than: 500.kilobytes, message: "should be less than 500KB" }
 
+  validates :video_thumbnail, presence: true, if: :video_present?
+  def video_present?
+    self.video.present?
+  end
+
   extend FriendlyId # gem 'friendly_id'
   friendly_id :title, use: :slugged
 

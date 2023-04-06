@@ -1,9 +1,16 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: %i[ show edit update destroy ]
-  before_action :authorize_valuations, except: %i[ index new create]
+  before_action :set_lesson, only: %i[ show edit update destroy delete_video ]
+  before_action :authorize_valuations, except: %i[ index new create delete_video ]
 
   # GET /lessons
   def index; end
+
+  def delete_video
+    authorize @lesson, :edit?
+    @lesson.video.purge if @lesson.video.attached?
+    @lesson.video_thumbnail.purge if @lesson.video_thumbnail.attached?
+    redirect_to edit_course_lesson_path(@course, @lesson), alert: "Video was successfully deleted."
+  end
 
   # GET /lessons/1
   def show

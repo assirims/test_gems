@@ -10,11 +10,24 @@
     <small><%= f.error :content, class: 'text-danger' %></small>
     <%#= f.association :course %>
     <%= f.input :course_id, as: :hidden, input_html: { value: @lesson.course_id || params[:course_id] } %>
+    <% if @lesson.video.attached? %>
+      <%= @lesson.video.filename %>
+      <%= link_to "Download", rails_blob_path(@lesson.video, disposition: "attachment"), class: "btn btn-sm btn-info" %>
+    <% end %>
     <%= f.input :video %>
+    <% if @lesson.video_thumbnail.attached? %>
+      <%= @lesson.video_thumbnail.filename %>
+      <%= link_to "View", rails_blob_path(@lesson.video_thumbnail, disposition: "inline"), class: "btn btn-sm btn-info", target: "_blank" %>
+      <%= link_to "Download", rails_blob_path(@lesson.video_thumbnail, disposition: "attachment"), class: "btn btn-sm btn-primary" %>
+    <% end %>
     <%= f.input :video_thumbnail %>
   </div>
 
   <div class="form-actions text-center">
     <%= f.button :submit, class: 'btn btn-warning' %>
-  </div>
-<% end %>
+  <% end %>
+  <% if @lesson.video.attached? || @lesson.video_thumbnail.attached? %>
+    |
+    <%= button_to 'Remove video and thumbnail', delete_video_course_lesson_path(@course, @lesson), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger", form: {style: 'display:inline-block;'} %>
+  <% end %>
+</div>
