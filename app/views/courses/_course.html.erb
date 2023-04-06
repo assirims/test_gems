@@ -5,6 +5,12 @@
       <h6 class="card-header text-secondary"><%= pluralize(@course.lessons_count, 'Lesson') %></h6>
     </div>
     <div class="card-text">
+      <% if course.avatar.attached? %>
+        <%= image_tag course.avatar, class: "img-fluid", width: "200px" %>
+      <% end %>
+      <%= image_tag course.avatar, class: "img-fluid", width: "200px" %>
+    </div>
+    <div class="card-text">
       <%= simple_format(course.short_description) %>
     </div>
     <div class="card-footer">

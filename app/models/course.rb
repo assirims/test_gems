@@ -13,6 +13,8 @@ class Course < ApplicationRecord
 
   has_rich_text :description
 
+  has_one_attached :avatar
+
   belongs_to :user, counter_cache: true
   #User.find_each { |user| User.reset_counters(user.id, :courses) }
 

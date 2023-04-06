@@ -100,7 +100,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   def show
     authorize @course #gem pundit
-    @lessons = @course.lessons.rank(:row_order) #gem ranked-model
+    @lessons = @course.lessons.rank(:position) #gem ranked-model
     @pagy, @lessons = pagy(@lessons, items: 5) #gem pagy
     @enrollments_with_review = @course.enrollments.reviewed
   end
@@ -156,6 +156,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published)
+      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published, :avatar)
     end
 end
