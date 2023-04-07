@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/create'
   devise_for :users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
@@ -11,9 +12,11 @@ Rails.application.routes.draw do
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, :unpublished, :index_admin, on: :collection
     member do
-      get :approve, :unapprove, :publish, :unpublish, :analytics
+      patch :approve, :unapprove, :publish, :unpublish
+      get :analytics
     end
-    resources :lessons do
+    resources :lessons, except: [:index] do
+      resources :comments, except: [:index]
       member do
         delete :delete_video
       end

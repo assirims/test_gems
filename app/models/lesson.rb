@@ -3,6 +3,7 @@ class Lesson < ApplicationRecord
   #Course.find_each { |course| Course.reset_counters(course.id, :lessons) }
 
   has_many :user_lessons, dependent: :destroy
+  has_many :comments, dependent: :nullify
 
   validates :title, :content, :course, presence: true
   validates :title, length: { minimum: 1, maximum: 70 }

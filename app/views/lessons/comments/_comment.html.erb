@@ -1,0 +1,12 @@
+<div class="card border-secondary">
+  <div class="card-footer">
+    <%= comment.user.username %>:
+  </div>
+  <div class="card-body">
+    <%= comment.content %>
+  </div>
+  <div class="card-footer">
+    <%= comment.created_at.strftime("%d/%m/%Y %H:%M") %>
+  </div>
+</div>
+<br />

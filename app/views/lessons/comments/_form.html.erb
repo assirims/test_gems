@@ -1,0 +1,15 @@
+<div class="card border-secondary">
+  <div class="card-body">
+
+    <%= simple_form_for([@course, @lesson, @comment]) do |f|  %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.input :content %>
+      <!--= f.input :user  -->
+      <!--= f.input :lesson  -->
+      <%= f.button :submit, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
+<br/>
+<br/>

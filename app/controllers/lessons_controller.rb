@@ -16,6 +16,8 @@ class LessonsController < ApplicationController
   def show
     current_user.view_lesson(@lesson)
     @lessons = @course.lessons.rank(:position)
+    @comment = Comment.new
+    @comments = @lesson.comments.order(created_at: :desc)
   end
 
   # GET /lessons/new

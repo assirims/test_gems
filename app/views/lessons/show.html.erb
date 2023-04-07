@@ -3,8 +3,8 @@
 <% end %>
 
 <h4><%= link_to 'Courses', courses_path, class: 'text-decoration-none' %> \
-<%= link_to @lesson.course.title, course_path(@lesson.course), class: 'text-decoration-none' %> \
-<%= @lesson.title %></h4>
+  <%= link_to @lesson.course.title, course_path(@lesson.course), class: 'text-decoration-none' %> \
+  <%= @lesson.title %></h4>
 
 <div class="row">
   <div class="col-lg-8">
@@ -38,3 +38,22 @@
   </div>
 </div>
 
+<hr/>
+
+<div class="card border-secondary text-center w-75 mx-auto mt-2">
+  <div class="card-body">
+    <div class="card-title">
+      <h5 class="text-primary"><span class="fa fa-comment"></span> All comments</h5>
+      <h6 class="card-header text-secondary"><%= pluralize(@comments.count, 'Comment') %></h6>
+    </div>
+    <div class="card-text">
+      <% @comments.each do |comment| %>
+        <%= render 'lessons/comments/comment', comment: comment %>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      New comment:
+      <%= render 'lessons/comments/form' %>
+    </div>
+  </div>
+</div>
