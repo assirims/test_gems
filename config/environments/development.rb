@@ -3,6 +3,9 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # gem spring https://github.com/rails/spring
+  config.enable_reloading = true
+
   config.action_mailer.default_url_options = { host: 'http://10.0.0.8', port: 8080 }
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
