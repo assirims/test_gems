@@ -1,7 +1,9 @@
 <div class="card border-secondary text-center w-25 mx-auto mt-2">
   <div class="card-body">
     <div class="card-title">
-      <h5 class="text-primary"><%= user.email %> (ID: <%= user.id %>)</h5>
+      <h5 class="text-primary">
+      <span class="fa fa-user"></span>
+      <%= user.email %> (ID: <%= user.id %>)</h5>
     </div>
     <div class="card-header">
       Signed up: <%= time_ago_in_words(user.created_at) %> ago
@@ -19,11 +21,18 @@
       <%= user.last_sign_in_ip %>
     </div>
     <div class="card-footer">
+      <div class="fa fa-plus"></div>
+      <div class="fa fa-graduation-cap"></div>
       Courses created: <%= user.courses_count %>
       <br />
+      <div class="fa fa-lock-open"></div>
       Enrollments: <%= user.enrollments_count %>
       <br />
+      <div class="fa fa-comment"></div>
       Comments: <%= user.comments_count %>
+      <br />
+      <div class="fa fa-eye"></div>
+      Lessons viewed: <%= user.user_lessons_count %>
     </div>
     <div class="card-text mt-3 mb-3">
       <% user.roles.each do |role| %>

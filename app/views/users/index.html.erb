@@ -35,6 +35,8 @@
           <th><%= sort_link(@ransack_users, :last_sign_in_ip, 'Last sign in ip') %></th>
           <th><%= sort_link(@ransack_users, :courses_count, 'Courses created') %></th>
           <th><%= sort_link(@ransack_users, :enrollments_count, 'Enrollments count') %></th>
+          <th><%= sort_link(@ransack_users, :comments_count, 'Comments count') %></th>
+          <th><%= sort_link(@ransack_users, :user_lessons_count, 'User lesson count') %></th>
           <th><%= sort_link(@ransack_users, :roles, 'confirmed') %></th>
           <th><%= sort_link(@ransack_users, :roles, 'Roles') %></th>
         </tr>
@@ -53,6 +55,8 @@
             <td><%= user.last_sign_in_ip %></td>
             <td><%= user.courses_count %></td>
             <td><%= user.enrollments_count %></td>
+            <td><%= user.comments_count %></td>
+            <td><%= user.user_lessons_count %></td>
             <td><%= user.confirmed? ? "\u{2705}" : "\u274C" %></td>
             <td><% user.roles.each do |role| %>
                 <span class="badge bg-<%= style_role(role.name).to_s %>">
