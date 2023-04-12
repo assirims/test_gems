@@ -38,6 +38,12 @@
           <% else %>
             Lesson was deleted
           <% end %>
+        <% elsif activity.trackable_type == "Comment" %>
+          <% if Comment.where(id: activity.trackable_id).any? %>
+            <%= link_to activity.trackable.content, course_lesson_path(activity.trackable.lesson.course, activity.trackable.lesson) %>
+          <% else %>
+            Comment was deleted
+          <% end %>
         <% else %>
           <%= link_to activity.trackable, activity.trackable %>
         <% end %>
