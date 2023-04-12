@@ -43,17 +43,16 @@
 <div class="card border-secondary text-center w-75 mx-auto mt-2">
   <div class="card-body">
     <div class="card-title">
-      <h5 class="text-primary"><span class="fa fa-comment"></span> All comments</h5>
-      <h6 class="card-header text-secondary"><%= pluralize(@comments.count, 'Comment') %></h6>
+      <h5 class="text-primary"><span class="fa fa-comment"></span> Comments: <%= @lesson.comments_count %></h5>
+    </div>
+    <div class="card-footer">
+      New comment:
+      <%= render 'lessons/comments/form' %>
     </div>
     <div class="card-text">
       <% @comments.each do |comment| %>
         <%= render 'lessons/comments/comment', comment: comment %>
       <% end %>
-    </div>
-    <div class="card-footer">
-      New comment:
-      <%= render 'lessons/comments/form' %>
     </div>
   </div>
 </div>

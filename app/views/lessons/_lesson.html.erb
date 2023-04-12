@@ -44,6 +44,19 @@
     <% end %>
   </div>
 
+  <div class="card-footer">
+    <div class="fa fa-comment"></div>
+    <%= lesson.comments_count %>
+    <% if policy(lesson).edit? %>
+      <div class="fa fa-eye"></div>
+      Impressions:
+      <%= lesson.user_lessons.map(&:impressions).sum %>
+      <div class="fa fa-eye"></div>
+      Unique viewers:
+      <%= lesson.user_lessons.count %>
+    <% end %>
+  </div>
+
   <% if current_user %>
     <% if policy(lesson).edit? %>
       <div class="card-footer">
