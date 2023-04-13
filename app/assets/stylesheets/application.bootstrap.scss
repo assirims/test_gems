@@ -1,3 +1,13 @@
 @import 'actiontext.css';
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
+// @import 'bootstrap/scss/bootstrap';
+// @import 'bootstrap-icons/font/bootstrap-icons';
+
+body { background: #d4e1ee; color: #05224d; }
+.card, .jumbotron, .list-group-item { color: #2a4054; }
+.purple-background { background-color: #563d7c; }
+.table { background: white; }
+
+.element {color: green;}
+
+//hide simple_form checkmarks
+.form-control.is-invalid{ background-image: none; }
