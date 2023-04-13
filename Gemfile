@@ -120,3 +120,9 @@ gem "groupdate", "~> 6.2"
 
 # https://github.com/brendon/ranked-model
 gem "ranked-model", "~> 0.4.8"
+
+# https://github.com/heartcombo/devise/wiki/How-To:-Use-Recaptcha-with-Devise
+# https://github.com/ambethia/recaptcha
+# rails g devise:controllers users -c=registrations
+# rails g devise:views
+gem "recaptcha", "~> 5.13"
