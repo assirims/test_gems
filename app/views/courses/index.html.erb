@@ -21,7 +21,7 @@
     <div class="row">
       <% @tags.each do |tag| %>
         <div class="col">
-          <%= link_to courses_path(courses_search: {course_tags_tag_id_eq: tag.id}) do %>
+          <%= link_to controller: controller_name, action: action_name, courses_search: {course_tags_tag_id_eq: tag.id} do %>
             <div class="badge bg-info">
               <%= tag.name %>
               (<%= tag.course_tags_count %>)
