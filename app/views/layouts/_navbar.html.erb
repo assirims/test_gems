@@ -41,6 +41,7 @@
         <% else %>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
+          <%= link_to "Sign up with Google", user_google_oauth2_omniauth_authorize_path, class: "nav-item nav-link", method: :post %>
           <%= link_to "Sign up", new_user_registration_path, class: "lm-2 nav-item nav-link" %>
           <%= link_to " Login", new_user_session_path, class: "nav-item nav-link" %>
         </ul>

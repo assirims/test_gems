@@ -86,7 +86,10 @@ gem "friendly_id", "~> 5.5"
 gem "ransack", "~> 4.0"
 
 # https://github.com/heartcombo/devise
-gem "devise", "~> 4.9"
+# gem "devise", "~> 4.9"
+# https://stackoverflow.com/a/66155946/5695646
+gem "devise", github: "heartcombo/devise", branch: "main"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 # https://github.com/public-activity/public_activity
 gem "public_activity", "~> 2.0"
@@ -120,3 +123,7 @@ gem "groupdate", "~> 6.2"
 
 # https://github.com/brendon/ranked-model
 gem "ranked-model", "~> 0.4.8"
+
+# https://github.com/zquestz/omniauth-google-oauth2
+gem "omniauth-google-oauth2", "~> 1.1"
+
