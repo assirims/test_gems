@@ -55,10 +55,10 @@ class Course < ApplicationRecord
 
   # ransack search attributes
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at", "published", "approved", "average_rating", "enrollments_count", "lessons_count"]
+    ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at", "published", "approved", "average_rating", "enrollments_count", "lessons_count" , "course_tags_tag_name_cont" , "course_tags_tag_id_eq", "tags_count" ]
   end
   def self.ransackable_associations(auth_object = nil)
-    ["rich_text_description", "user"]
+    ["rich_text_description", "user", "course_tags"]
   end
 
   include PublicActivity::Model

@@ -8,7 +8,7 @@
     <% if course.avatar.attached? && course.avatar.attachment.blob.present? && course.avatar.attachment.blob.persisted? %>
       <%= image_tag @course.avatar, class: "img-fluid", width: "200px" %>
     <% end %>
-    <%= form.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, class: "form-control" } %>
+    <%= form.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "form-control" } %>
     <%= form.input :avatar %>
     <%#= form.file_field :avatar, class: "form-control" %>
     <small><%#= form.error :avatar, class: 'text-danger' %></small>
