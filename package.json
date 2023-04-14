@@ -8,6 +8,7 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "sass": "^1.62.0",
+    "selectize": "^0.12.6",
     "trix": "^2.0.4"
   },
   "scripts": {
