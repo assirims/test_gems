@@ -14,7 +14,7 @@ class Course < ApplicationRecord
   has_rich_text :description
 
   has_one_attached :avatar
-  validates :avatar, attached: true,
+  validates :avatar, attached: false,
               content_type: ['image/png', 'image/jpg', 'image/jpeg'],
               size: { less_than: 500.kilobytes, message: 'size must be less than 500kb' }
 
