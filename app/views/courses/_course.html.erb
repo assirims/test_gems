@@ -75,5 +75,16 @@
         </div>
       <% end %>
     <% end %>
+    <% if course.tags.any? %>
+      <div class="card-footer">
+        <div class="badge bg-secondary">Tags:</div>
+        <% course.tags.each do |tag| %>
+          <div class="badge bg-info text-black">
+          <%#= link_to tag.name, tag_path(tag), class: 'badge bg-secondary' %>
+          <%= tag.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

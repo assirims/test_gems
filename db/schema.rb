@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_234136) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_14_150658) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -76,6 +76,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_234136) do
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_comments_on_lesson_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "course_tags", force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "tag_id", null: false
+    t.index ["course_id"], name: "index_course_tags_on_course_id"
+    t.index ["tag_id"], name: "index_course_tags_on_tag_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -148,6 +155,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_234136) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "course_tags_count", default: 0, null: false
+  end
+
   create_table "user_lessons", force: :cascade do |t|
     t.integer "lesson_id", null: false
     t.integer "user_id", null: false
@@ -198,6 +210,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_234136) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "lessons"
   add_foreign_key "comments", "users"
+  add_foreign_key "course_tags", "courses"
+  add_foreign_key "course_tags", "tags"
   add_foreign_key "courses", "users"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
