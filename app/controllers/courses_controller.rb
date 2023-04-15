@@ -105,20 +105,6 @@ class CoursesController < ApplicationController
     @lessons = @course.lessons.rank(:position) #gem ranked-model
     @pagy, @lessons = pagy(@lessons, items: 5) #gem pagy
     @enrollments_with_review = @course.enrollments.reviewed
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "#{@course.title}, #{current_user.email}",
-        # render pdf: "file_name",   # Excluding ".pdf" extension.
-        page_size: 'A4',
-        template: "courses/show",
-        layout: "pdf",
-        orientation: "Portrait",
-        lowquality: true,
-        zoom: 1,
-        dpi: 75
-      end
-    end
   end
 
   # GET /courses/new

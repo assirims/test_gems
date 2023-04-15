@@ -21,7 +21,20 @@ class EnrollmentsController < ApplicationController
   end
 
   # GET /enrollments/1
-  def show; end
+  def show
+  end
+
+  def certificate
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
+        page_size: 'A4', layout: "pdf", orientation: "Landscape",
+        lowquality: true, template: "enrollments/show",
+        zoom: 1, dpi: 75
+      end
+    end
+  end
 
   # GET /enrollments/new
   def new

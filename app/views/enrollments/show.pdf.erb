@@ -1,0 +1,22 @@
+<div style="width:1750px; height:1180px; padding:20px; text-align:center; border: 10px solid #787878">
+  <div style="width:1700px; height:1130px; padding:20px; text-align:center; border: 5px solid #787878">
+    <br/><br/><br/><br/><br/><br/>
+    <span style="font-size:100px; font-weight:bold;">Certificate of Completion</span>
+    <br/><br/><br/><br/>
+    <span style="font-size:50px"><i>This is to certify that</i></span>
+    <br/><br/><br/><br/>
+    <span style="font-size:55px"><b><%= @enrollment.user.email %></b></span>
+    <br/><br/><br/><br/>
+    <span style="font-size:50px"><i>has completed the course</i></span>
+    <br/><br/><br/><br/>
+    <span style="font-size:55px"><%= @enrollment.course.title %></span>
+    <br/><br/><br/><br/>
+    <span style="font-size:45px"><b>Certificate id:</b><%= "#{@enrollment.slug}" %></span>
+    <br/><br/><br/><br/>
+    <span style="font-size:50px"><%= image_tag wicked_pdf_asset_base64('logo.png'), height: "50px", width: "auto" %></span>
+    <br/>
+    <span style="font-size:55px"><%= Time.now.strftime("%B %d, %Y") %></span>
+    <br/>
+    <span style="font-size:25px"><b>Certificate url: </b><%= "#{request.base_url}#{request.original_fullpath}" %></span>
+  </div>
+</div>
