@@ -25,11 +25,12 @@ class EnrollmentsController < ApplicationController
   end
 
   def certificate
+    authorize @enrollment, :certificate?
     respond_to do |format|
       format.html
       format.pdf do
         render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
-        template: "enrollments/show"
+        template: "enrollments/certificate"
       end
     end
   end

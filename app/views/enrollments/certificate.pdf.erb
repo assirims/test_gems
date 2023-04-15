@@ -1,4 +1,4 @@
-<div style="width:1750px; height:1180px; padding:20px; text-align:center; border: 10px solid #787878">
+<div style="width:1750px; height:1180px; padding:20px; text-align:center; border: 10px solid #563d7c">
   <div style="width:1700px; height:1130px; padding:20px; text-align:center; border: 5px solid #787878">
     <br/><br/><br/><br/><br/><br/>
     <span style="font-size:100px; font-weight:bold;">Certificate of Completion</span>
@@ -12,11 +12,11 @@
     <span style="font-size:55px"><%= @enrollment.course.title %></span>
     <br/><br/><br/><br/>
     <span style="font-size:35px"><b>Certificate id:</b><%= "#{@enrollment.slug}" %></span>
+    <br/>
+    <span style="font-size:35px"><b>Registration date:</b><%= "#{@enrollment.created_at.strftime('%d-%b-%Y')}" %></span>
     <br/><br/><br/><br/>
     <span><%= image_tag wicked_pdf_asset_base64('logo.png'), height: "90px", width: "auto" %></span>
-    <br/>
-    <span style="font-size:55px"><%= Time.now.strftime("%B %d, %Y") %></span>
-    <br/>
+    <br/><br/>
     <span style="font-size:25px"><b>Certificate url: </b><%= "#{request.base_url}#{request.original_fullpath}" %></span>
   </div>
 </div>
