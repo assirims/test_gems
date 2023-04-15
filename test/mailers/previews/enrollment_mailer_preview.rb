@@ -2,8 +2,12 @@
 # http://10.0.0.8:8080/rails/mailers/enrollment_mailer
 class EnrollmentMailerPreview < ActionMailer::Preview
 
-  def new_enrollment
-    EnrollmentMailer.new_enrollment(Enrollment.first).deliver_now
+  def student_enrollment
+    EnrollmentMailer.student_enrollment(Enrollment.first).deliver_now
+  end
+
+  def teacher_enrollment
+    EnrollmentMailer.teacher_enrollment(Enrollment.first).deliver_now
   end
 
 end

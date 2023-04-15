@@ -1,0 +1,25 @@
+You have a new student in the course
+<%= link_to @enrollment.course, @enrollment.course  %>
+<div class="row">
+  Enrollment date: <%= @enrollment.created_at %>
+</div>
+<div class="row">
+  Enrollment ID: <%= @enrollment.slug %>
+</div>
+<div class="row">
+  Course price: <%= number_to_currency(@enrollment.course.price) %>
+</div>
+<div class="row">
+  Price paid: <%= number_to_currency(@enrollment.price) %>
+</div>
+<div class="row">
+  Course instructor:
+  <%= @enrollment.course.user.username %>
+  <%= mail_to @enrollment.course.user.email, @enrollment.course.user.email %>
+</div>
+<div class="row">
+  Regards,
+</div>
+<div class="row">
+  <%= link_to 'The Hostname team', root_url %>
+</div>
