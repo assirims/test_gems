@@ -11,9 +11,9 @@
     <br/><br/><br/><br/>
     <span style="font-size:55px"><%= @enrollment.course.title %></span>
     <br/><br/><br/><br/>
-    <span style="font-size:45px"><b>Certificate id:</b><%= "#{@enrollment.slug}" %></span>
+    <span style="font-size:35px"><b>Certificate id:</b><%= "#{@enrollment.slug}" %></span>
     <br/><br/><br/><br/>
-    <span style="font-size:50px"><%= image_tag wicked_pdf_asset_base64('logo.png'), height: "50px", width: "auto" %></span>
+    <span><%= image_tag wicked_pdf_asset_base64('logo.png'), height: "90px", width: "auto" %></span>
     <br/>
     <span style="font-size:55px"><%= Time.now.strftime("%B %d, %Y") %></span>
     <br/>

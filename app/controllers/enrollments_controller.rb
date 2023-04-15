@@ -1,5 +1,5 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: %i[ show edit update destroy ]
+  before_action :set_enrollment, only: %i[ show edit update destroy certificate ]
   before_action :set_course, only: %i[ new create ]
   before_action :authorize_enrollment, only: %i[ update edit destroy ]
 
@@ -29,9 +29,7 @@ class EnrollmentsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
-        page_size: 'A4', layout: "pdf", orientation: "Landscape",
-        lowquality: true, template: "enrollments/show",
-        zoom: 1, dpi: 75
+        template: "enrollments/show"
       end
     end
   end

@@ -43,6 +43,7 @@
         <th><%= sort_link(@ranked_enrollments, :rating, 'Rating') %></th>
         <th><%= sort_link(@ranked_enrollments, :review, 'Review') %></th>
         <th>Progress</th>
+        <th>Certificate</th>
         <th>See Review</th>
         <th>Edit Review</th>
       </tr>
@@ -59,6 +60,13 @@
           <td><%= enrollment.rating %></td>
           <td><%= enrollment.review %></td>
           <td><%= number_to_percentage(enrollment.course.progress(enrollment.user), precision: 0) %></td>
+          <td>
+          <% if enrollment.course.progress(enrollment.user) == 100 %>
+          <%= link_to 'Certificate', certificate_enrollment_path(enrollment, format: :pdf), class: "btn btn-success" %>
+          <% else %>
+          <span class="badge bg-secondary">In Progress</span>
+          <% end %>
+          </td>
           <td><%= link_to '>', enrollment, class: "btn btn-sm btn-primary" %></td>
           <td>
             <% if policy(enrollment).edit? %>
