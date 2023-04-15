@@ -128,3 +128,7 @@ gem "wkhtmltopdf-binary", "~> 0.12.6", group: :development
 
 # https://github.com/rposborne/wkhtmltopdf-heroku
 gem "wkhtmltopdf-heroku", "~> 2.12", group: :production
+
+# https://github.com/zombocom/wicked
+#  rails g controller course_creater
+gem "wicked", "~> 2.0"

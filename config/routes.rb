@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :course_creator
   resources :tags
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, :unpublished, :index_admin, on: :collection
