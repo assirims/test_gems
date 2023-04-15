@@ -51,7 +51,7 @@ class EnrollmentsController < ApplicationController
     else
       @enrollment = current_user.buy_course(@course)
       redirect_to course_path(@course), notice: "You have successfully enrolled in the course"
-      # @enrollment.price = @enrollment.course.price unless @enrollment.course_id.nil?
+      EnrollmentMailer.new_enrollment(@enrollment).deliver_later
     end
   end
 
