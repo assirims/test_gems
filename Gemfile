@@ -120,3 +120,8 @@ gem "groupdate", "~> 6.2"
 
 # https://github.com/brendon/ranked-model
 gem "ranked-model", "~> 0.4.8"
+
+# https://github.com/mileszs/wicked_pdf
+gem "wicked_pdf", "~> 2.6"
+# https://github.com/zakird/wkhtmltopdf_binary_gem
+gem "wkhtmltopdf-binary", "~> 0.12.6"
