@@ -132,3 +132,8 @@ gem "wkhtmltopdf-heroku", "~> 2.12", group: :production
 # https://github.com/zombocom/wicked
 #  rails g controller course_creater
 gem "wicked", "~> 2.0"
+
+# https://github.com/ryanb/letter_opener
+# every sent email can be found here as html =>
+# test_gems/tmp/letter_opener/
+gem "letter_opener", "~> 1.8", group: :development
