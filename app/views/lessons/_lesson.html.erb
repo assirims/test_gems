@@ -6,7 +6,7 @@
       <div class="text-danger fa fa-check-square"></div>
     <% end %>
     <%#= link_to course_lesson_path(@course, lesson) do %>
-      <%= '(' + (lesson.position_rank + 1).to_s + ') ' %>
+      <%= '(' + (lesson.position + 1).to_s + ') ' unless lesson.position.nil? %>
       <%= lesson.title %>
       <%# end %>
     </div>

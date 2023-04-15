@@ -36,14 +36,9 @@
 Similar Courses
 </h4>
 
-<!--Current course tags -->
-<!--= @course.tags.pluck(:id) -->
-<!--.row -->
-<!--All course tags -->
 <% Course.all.where.not(id: @course.id).each do |course|  %>
   <div class="row">
 </div>
-  <!--= course.tags.pluck(:id) -->
   <% unless @course.tags.pluck(:id).intersection(course.tags.pluck(:id)).count.zero? %>
     <div class="card-columns">
       <%= render 'courses/course_breif', course: course  %>
