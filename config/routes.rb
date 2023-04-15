@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :course_creator
   resources :tags
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, :unpublished, :index_admin, on: :collection
@@ -27,6 +26,7 @@ Rails.application.routes.draw do
       end
     end
     resources :enrollments, only: [:create, :new]
+    resources :course_wizard, controller: 'courses/course_wizard'
   end
 
   resources :users, only: [:index , :edit, :show, :update, :destroy]
