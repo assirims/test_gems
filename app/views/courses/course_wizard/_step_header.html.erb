@@ -1,0 +1,28 @@
+<% content_for :title do %>
+  Website | Editing <%= @course.title %>
+<% end %>
+
+<h4>
+  <%= link_to 'Courses', courses_path %> \
+  <div class="fa fa-graduation-cap"></div>
+  <%= link_to @course.title, course_path(@course) %> \
+  Edit <%= step.to_s.humanize %>
+</h4>
+<br />
+<br />
+
+<div class="card">
+  <div class="progress">
+    <div class="progress-bar" style="width: <%= @progress %>%">
+    </div>
+  </div>
+  <div class="card-header">
+    <h5>
+      <%= wizard_steps.index(step) + 1 %> \
+      <%= wizard_steps.count %>
+      <%= step.to_s.humanize %>
+    </h5>
+  </div>
+  <div class="card-body">
+
+<!-- https://blog.widefix.com/rails-nested-layouts/ -->

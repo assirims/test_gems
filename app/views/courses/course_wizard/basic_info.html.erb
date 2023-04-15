@@ -1,63 +1,17 @@
-<% content_for :title do %>
-  Website | Editing <%= @course.title %>
+<%= render 'courses/course_wizard/step_header' %>
+
+<%= simple_form_for @course, url: course_course_wizard_path, method: :put do |form| %>
+  <div class="d-grid gap-2 mt-3">
+    <%= form.error_notification %>
+    <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+    <%= form.input :title %>
+    <%= form.input :avatar %>
+    <%= form.input :description, as: :rich_text_area %>
+    <%= form.input :short_description, as: :rich_text_area %>
+    <%= form.button :submit, class: "btn btn-primary ax-2" %>
+    <%= link_to 'Cancel', course_path(@course), class: 'btn btn-danger ax-2' %>
+  </div>
 <% end %>
 
-<h4>
-  <%= link_to 'Courses', courses_path %> \
-  <div class="fa fa-graduation-cap"></div>
-  <%= link_to @course.title, course_path(@course) %> \
-  Edit <%= step.to_s.humanize %>
-</h4>
-<br />
-<br />
-
-<div class="card">
-  <div class="progress">
-    <div class="progress-bar" style="width: <%= @progress %>%">
-    </div>
-  </div>
-  <div class="card-header">
-    <h5>
-      <%= wizard_steps.index(step) + 1 %> \
-      <%= wizard_steps.count %>
-      <%= step.to_s.humanize %>
-    </h5>
-  </div>
-  <div class="card-body">
-
-    <%= simple_form_for @course, url: course_course_wizard_path, method: :put do |form| %>
-      <div class="d-grid gap-2 mt-3">
-        <%= form.error_notification %>
-        <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
-
-        <%= form.input :title %>
-        <%= form.input :avatar %>
-        <%= form.input :description, as: :rich_text_area %>
-        <%= form.input :short_description, as: :rich_text_area %>
-        <%= form.label :language %>
-        <%= form.collection_select :language, Course.languages, :to_s, :to_s, include_blank: true, class: "form-control" %>
-        <small><%= form.error :language, class: 'text-danger' %></small>
-        <%= form.button :submit, class: "btn btn-primary ax-2" %>
-        <%= link_to 'Cancel', course_path(@course), class: 'btn btn-danger ax-2' %>
-      </div>
-    <% end %>
-
-  </div>
-  <div class="card-footer">
-    <div class="float-start">
-      <%= link_to previous_wizard_path, class: 'btn btn-sm btn-info' do %>
-        <div class="fa fa-arrow-left"></div>
-        Previous
-      <% end %>
-    </div>
-    <div class="float-end inline">
-      <%= link_to next_wizard_path, class: 'btn btn-sm btn-info' do %>
-        <div class="fa fa-arrow-right"></div>
-        Skip
-      <% end %>
-
-    </div>
-  </div>
-</div>
-<br />
-<br />
+<%= render 'courses/course_wizard/step_footer' %>
