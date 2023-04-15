@@ -137,3 +137,7 @@ gem "wicked", "~> 2.0"
 # every sent email can be found here as html =>
 # test_gems/tmp/letter_opener/
 gem "letter_opener", "~> 1.8", group: :development
+
+# https://github.com/nathanvda/cocoon
+# https://www.youtube.com/watch?v=gHbGg1rLTzY
+# gem "cocoon"
