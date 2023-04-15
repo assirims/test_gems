@@ -8,6 +8,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable, :confirmable
 
+  after_create do
+    UserMailer.new_user(self).deliver_later
+  end
+  
   # rolify must be before after_create assign_default_role
   # to avoid assigning roles twice
   rolify
