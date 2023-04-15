@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ show ]
   before_action :set_course, only: %i[ show edit update destroy approve unapprove publish unpublish analytics ]
-  before_action :tag_all, only: %i[ index new edit create update pgy_tag ]
+  before_action :tag_all, only: %i[ index new edit create update ]
 
   # GET /courses
   def index
@@ -176,6 +176,7 @@ class CoursesController < ApplicationController
     end
 
     def pgy_tag
+      tag_all
       @pagy, @courses = pagy(@ransack_courses.result.includes(:user, :course_tags, :course_tags => :tag), items: 2) #gem pagy
     end
 
