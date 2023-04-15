@@ -8,7 +8,8 @@
 #
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
 
-WickedPdf.config = {
+WickedPdf.config ||= {}
+WickedPdf.config.merge!({
   page_size: 'A4',
   layout: "pdf",
   orientation: "Landscape",
@@ -33,4 +34,4 @@ WickedPdf.config = {
   # 'xvfb-run' command, in order to simulate an X server.
   #
   # use_xvfb: true,
-}
+})

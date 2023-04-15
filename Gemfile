@@ -124,4 +124,7 @@ gem "ranked-model", "~> 0.4.8"
 # https://github.com/mileszs/wicked_pdf
 gem "wicked_pdf", "~> 2.6"
 # https://github.com/zakird/wkhtmltopdf_binary_gem
-gem "wkhtmltopdf-binary", "~> 0.12.6"
+gem "wkhtmltopdf-binary", "~> 0.12.6", group: :development
+
+# https://github.com/rposborne/wkhtmltopdf-heroku
+gem "wkhtmltopdf-heroku", "~> 2.12", group: :production
