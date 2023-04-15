@@ -2,11 +2,11 @@ class Courses::CourseWizardController < ApplicationController
   include Wicked::Wizard
   before_action :set_progress, only: [:show, :update]
   before_action :set_course, only: [:show, :update, :finish_wizard_path]
+  before_action :authorize!, only: [:show, :update, :finish_wizard_path]
 
   steps :basic_info, :details
 
   def show
-    #@user = current_user
     case step
     when :basic_info
     when :details
@@ -47,5 +47,9 @@ class Courses::CourseWizardController < ApplicationController
     def course_params
       params.require(:course).permit(:title, :description, :short_description, :price,
         :published, :language, :level, :avatar, tag_ids: [])
+    end
+
+    def authorize!
+      authorize @course, :edit?
     end
 end

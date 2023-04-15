@@ -1,3 +1,16 @@
+<% content_for :title do %>
+  Website | Editing <%= @course.title %>
+<% end %>
+
+<h4>
+<%= link_to 'Courses', courses_path %> \
+<div class="fa fa-graduation-cap"></div>
+<%= link_to @course.title, course_path(@course) %> \
+Edit <%= step.to_s.humanize %>
+</h4>
+<br />
+<br />
+
 <div class="card">
   <div class="progress">
     <div class="progress-bar" style="width: <%= @progress %>%"></div>
@@ -24,6 +37,7 @@
         <small><%= form.error :price, class: 'text-danger' %></small>
         <%= form.input :published, as: :boolean, label: "Publish" %>
         <%= form.button :submit, class: "btn btn-primary ax-2" %>
+        <%= link_to 'Cancel', course_path(@course), class: 'btn btn-danger ax-2' %>
       </div>
     <% end %>
 
