@@ -109,9 +109,10 @@ class CoursesController < ApplicationController
       format.html
       format.pdf do
         render pdf: "#{@course.title}, #{current_user.email}",
+        # render pdf: "file_name",   # Excluding ".pdf" extension.
         page_size: 'A4',
-        template: "courses/show.pdf.erb",
-        layout: "pdf.html.erb",
+        template: "courses/show",
+        layout: "pdf",
         orientation: "Portrait",
         lowquality: true,
         zoom: 1,
