@@ -10,14 +10,23 @@
     </h5>
   </div>
   <div class="card-body">
-    <%= simple_form_for @course, url: course_course_wizard_path, method: :put do |f| %>
-      <%= f.input :level, collection: Course.levels, include_blank: true, as: :radio_buttons %>
-      <%= f.input :price, collection: [0, 9, 19, 49, 99, 149, 199], as: :radio_buttons %>
-      <%= f.input :published %>
-      <%= f.label :tags %>
-      <%= f.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" } %>
-      <%= f.button :submit %>
+    <%= simple_form_for @course, url: course_course_wizard_path, method: :put do |form| %>
+      <div class="d-grid gap-2 mt-3">
+        <%= form.error_notification %>
+        <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+        <%= form.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "form-control" } %>
+        <%= form.label :level %>
+        <%= form.collection_select :level, Course.levels, :to_s, :to_s, include_blank: true, class: "form-control" %>
+        <small><%= form.error :level, class: 'text-danger' %></small>
+        <%= form.label :price %>
+        <%= form.number_field :price, class: "form-control", min: 0, max: 1000, step: 0.01 %>
+        <small><%= form.error :price, class: 'text-danger' %></small>
+        <%= form.input :published, as: :boolean, label: "Publish" %>
+        <%= form.button :submit, class: "btn btn-primary ax-2" %>
+      </div>
     <% end %>
+
   </div>
   <div class="card-footer">
     <div class="float-start">
@@ -34,4 +43,3 @@
     </div>
   </div>
 </div>
-
