@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header">
+    <h3>
+      <div class="text-warning fa fa-star"></div>
+      Edit a tag
+    </h3>
+  </div>
+  <div class="card-body text-center">
+    <%= render "form", tag: @tag %>
+  </div>
+  <br />
+  <div class="card-footer">
+    <%= link_to 'Show', @tag, class: "btn btn-primary" %> |
+    <%= link_to 'Back to tag', tag_path, class: "btn btn-primary" %>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<h3 class="text-center">
+  Tags
+  <div class="badge bg-info"><%= @tags.count %></div>
+</h3>
+<%= link_to 'New Tag', new_tag_path, class: "btn btn-primary" %>
+<br />
+<br />
+<div class="card">
+  <div class="card-body">
+      <div class="card-footer">
+    <% @tags.each do |tag| %>
+        <%= tag.name + ":" %>
+        <div class="badge bg-info">
+        <%= tag.course_tags_count %>
+        </div>
+        <%= link_to 'Edit', edit_tag_path(tag), class: "btn btn-sm btn-primary" %>
+        <%= button_to 'Destory', tag, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", form: {style: 'display:inline-block;'} %>
+        <hr/>
+    <% end %>
+      </div>
+  </div>
+</div>

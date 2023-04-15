@@ -41,12 +41,13 @@
         <div class="card card-body">
           Admin Links:
           <ul>
-            <li><%= link_to "Activity", activity_path %> </li>
-            <li><%= link_to "Analytics", analytics_path %> </li>
-            <li><%= link_to "Unpublished Courses <div class=\"badge bg-warning\">#{Course.unpublished.count}</div>".html_safe, unpublished_courses_path %> </li>
-            <li><%= link_to "Unapproved Courses <div class=\"badge bg-danger\">#{Course.unapproved.count}</div>".html_safe, unapproved_courses_path %> </li>
-            <li><%= link_to "Index Admin", index_admin_courses_path %> </li>
-            <li><%= Rails.application.credentials.dig(:development, :key_test) %></li>
+            <li><div class="fa fa-bell"></div><%= link_to " Activity", activity_path %> </li>
+            <li><div class="fa fa-chart-line"></div><%= link_to " Analytics", analytics_path %> </li>
+            <li><div class="fa fa-lock-open"></div> <%= link_to "Unpublished Courses <div class=\"badge bg-warning\">#{Course.unpublished.count}</div>".html_safe, unpublished_courses_path %> </li>
+            <li><div class="fa fa-lock-open"></div> <%= link_to "Unapproved Courses <div class=\"badge bg-danger\">#{Course.unapproved.count}</div>".html_safe, unapproved_courses_path %> </li>
+            <li><div class="fa fa-graduation-cap"></div> <%= link_to "Index Admin", index_admin_courses_path %> </li>
+            <li><div class="fa fa-user-secret"></div> <%= Rails.application.credentials.dig(:development, :key_test) %></li>
+            <li><div class="fa fa-tags"></div><%= link_to " Tags", tags_path %></li>
           </ul>
         </div>
       <% end %>
@@ -71,6 +72,17 @@
       <%= link_to "See all", purchased_courses_path %>
     </div>
   <% end %>
+  <hr/>
+  <h2>Most popular tags</h2>
+  <div class="card-group">
+    <% @popular_tags.each do |tag| %>
+      <%= link_to courses_path(courses_search: {course_tags_tag_id_eq: tag.id}) do %>
+        <span class="badge bg-info mx-2"><%= tag.name %>
+        <span class="badge bg-dark"><%= tag.course_tags_count %></span>
+        </span>
+      <% end %>
+    <% end %>
+  </div>
   <hr/>
   <h2>Popular courses</h2>
   <div class="card-group">
