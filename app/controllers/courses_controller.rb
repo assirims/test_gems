@@ -122,9 +122,11 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     authorize @course #gem pundit it must be after @course = Course.new
+    @course.description = 'Curriculum Description'
+    @course.short_description = 'Marketing Description'
     @course.user = current_user
     if @course.save
-      redirect_to @course, notice: "Course was successfully created."
+      redirect_to course_course_wizard_index_path(@course), notice: "Course was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -134,7 +136,7 @@ class CoursesController < ApplicationController
   def update
     authorize @course #gem pundit
     if @course.update(course_params)
-      redirect_to @course, notice: "Course was successfully updated."
+      redirect_to course_course_wizard_index_path(@course), notice: "Course was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -158,7 +160,7 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :language, :level, :price, :published, :avatar, tag_ids: [])
+      params.require(:course).permit(:title)
     end
 
     def pgy_tag

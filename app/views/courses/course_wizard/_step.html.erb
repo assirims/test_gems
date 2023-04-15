@@ -1,0 +1,60 @@
+<% content_for :title do %>
+  Website | Editing <%= @course.title %>
+<% end %>
+
+<h4>
+  <%= link_to 'Courses', courses_path %> \
+  <div class="fa fa-graduation-cap"></div>
+  <%= link_to @course.title, course_path(@course) %> \
+  Edit <%= step.to_s.humanize %>
+</h4>
+<br />
+<br />
+
+<div class="card">
+  <div class="progress" style="height: 32px;">
+    <div class="progress-bar" style="width: <%= @progress %>%">
+      <%= number_to_percentage(@progress, precision: 0) %>
+    </div>
+  </div>
+
+  <div class="progress" style="height: 40px;">
+    <% wizard_steps.each do |s|  %>
+      <% @color = current_page?(course_course_wizard_path(@course, s)) ? "bg-success" : "bg-secondary"  %>
+      <%= link_to course_course_wizard_path(@course, s), class: "progress-bar #{@color}", style: "width: #{@progress}%" do %>
+        <%= wizard_steps.index(s) + 1 %>
+        <%= s.to_s.humanize %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="card-header">
+    <h5>
+      <%= wizard_steps.index(step) + 1 %> \
+      <%= wizard_steps.count %>
+      <%= step.to_s.humanize %>
+    </h5>
+  </div>
+  <!-- https://blog.widefix.com/rails-nested-layouts/ -->
+
+  <div class="card-body">
+    <%= yield %>
+  </div>
+
+  <div class="card-footer">
+    <div class="float-start">
+      <%= link_to previous_wizard_path, class: 'btn btn-sm btn-info' do %>
+        <div class="fa fa-arrow-left"></div>
+        Previous
+      <% end %>
+    </div>
+    <div class="float-end inline">
+      <%= link_to next_wizard_path, class: 'btn btn-sm btn-info' do %>
+        <div class="fa fa-arrow-right"></div>
+        Skip
+      <% end %>
+
+    </div>
+  </div>
+</div>
+<br />
+<br />

@@ -1,17 +1,9 @@
 <%= render layout: 'courses/course_wizard/step' do %>
-
   <%= simple_form_for @course, url: course_course_wizard_path, method: :put do |form| %>
     <div class="d-grid gap-2 mt-3">
-      <%= form.error_notification %>
-      <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
-
-      <%= form.input :title %>
-      <%= form.input :avatar %>
-      <%= form.input :description, as: :rich_text_area %>
-      <%= form.input :short_description, as: :rich_text_area %>
+      <%= form.input :published, as: :boolean, label: "Publish" %>
       <%= form.button :submit, class: "btn btn-primary ax-2" %>
       <%= link_to 'Cancel', course_path(@course), class: 'btn btn-danger ax-2' %>
     </div>
   <% end %>
-
 <% end %>
