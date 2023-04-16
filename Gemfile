@@ -145,3 +145,6 @@ gem "letter_opener", "~> 1.8", group: :development
 # https://github.com/kjvarga/sitemap_generator
 # rake sitemap:refresh
 gem "sitemap_generator", "~> 6.3"
+
+# https://github.com/amatsuda/traceroute
+gem "traceroute", "~> 0.8.1"

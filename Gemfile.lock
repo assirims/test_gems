@@ -274,6 +274,8 @@ GEM
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.2)
+    traceroute (0.8.1)
+      rails (>= 3.0.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -343,6 +345,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  traceroute (~> 0.8.1)
   turbo-rails
   web-console
   webdrivers
