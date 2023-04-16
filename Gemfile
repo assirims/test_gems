@@ -141,3 +141,7 @@ gem "letter_opener", "~> 1.8", group: :development
 # https://github.com/nathanvda/cocoon
 # https://www.youtube.com/watch?v=gHbGg1rLTzY
 # gem "cocoon"
+
+# https://github.com/kjvarga/sitemap_generator
+# rake sitemap:refresh
+gem "sitemap_generator", "~> 6.3"
