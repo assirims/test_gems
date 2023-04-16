@@ -27,6 +27,10 @@ class User < ApplicationRecord
     end
   end
 
+  include PublicActivity::Model
+  tracked only: [:create, :destroy], owner: :itself
+  #tracked owner: Proc.new{ |controller, model| controller.current_user } #current_user is set after create, so it gives an error
+
   # friendly_id
   extend FriendlyId
   friendly_id :email, use: :slugged
@@ -76,7 +80,7 @@ class User < ApplicationRecord
     update_column :enrollment_expences, (enrollments.map(&:price).sum)
     update_column :balance, (course_income - enrollment_expences)
   end
-  
+
   private
   def must_have_a_role
     errors.add(:roles, 'must have at least one role') unless roles.any?
