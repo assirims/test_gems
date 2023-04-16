@@ -45,14 +45,15 @@ class EnrollmentsController < ApplicationController
 
   # POST /enrollments
   def create
-    if @course.price > 0
-      flash[:alert] = "You can't enroll in a paid course"
-      redirect_to new_course_enrollment_path(@course)
-    else
-      @enrollment = current_user.buy_course(@course)
-      redirect_to course_path(@course), notice: "You have successfully enrolled in the course"
-      EnrollmentMailer.student_enrollment(@enrollment).deliver_later
-      EnrollmentMailer.teacher_enrollment(@enrollment).deliver_later
+    @enrollment = current_user.buy_course(@course)
+    redirect_to course_path(@course), notice: "You are enrolled!"    # if @course.price > 0
+    #   flash[:alert] = "You can't enroll in a paid course"
+    #   redirect_to new_course_enrollment_path(@course)
+    # else
+    #   @enrollment = current_user.buy_course(@course)
+    #   redirect_to course_path(@course), notice: "You have successfully enrolled in the course"
+    #   EnrollmentMailer.student_enrollment(@enrollment).deliver_later
+    #   EnrollmentMailer.teacher_enrollment(@enrollment).deliver_later
     end
   end
 
@@ -68,7 +69,8 @@ class EnrollmentsController < ApplicationController
   # DELETE /enrollments/1
   def destroy
     if @enrollment.destroy
-      redirect_to enrollments_url, notice: "Enrollment was successfully destroyed."
+          redirect_to course_path(@course), notice: "You are enrolled!"
+      # redirect_to request.referer, notice: "Enrollment was successfully destroyed."
     else
       redirect_to @enrollment, alert: "Enrollment can't be destroyed because it has enrollments"
     end

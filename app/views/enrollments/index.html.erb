@@ -46,6 +46,7 @@
         <th>Certificate</th>
         <th>See Review</th>
         <th>Edit Review</th>
+        <th>Cancel Enrollment</th>
       </tr>
     </thead>
     <tbody>
@@ -73,6 +74,10 @@
               <%= link_to '>>', edit_enrollment_path(enrollment), class: "btn btn-sm btn-warning" %>
             <% end %>
           </td>
+          <td>
+            <% if policy(enrollment).destroy? %>
+              <%= button_to 'X', enrollment, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+            <% end %>
         </tr>
       <% end %>
     </tbody>

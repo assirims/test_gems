@@ -4,9 +4,9 @@ class UsersController < ApplicationController
 
   def index
     @ransack_users = User.ransack(params[:users_search], search_key: :users_search)
-    @ransack_users.sorts = ['id asc'] if @ransack_users.sorts.empty?
+    @ransack_users.sorts = ['created_at desc'] if @ransack_users.sorts.empty?
     @users = @ransack_users.result.includes(:courses)
-    @pagy, @users = pagy(@users, items: 5).order(created_at: :desc)
+    @pagy, @users = pagy(@users, items: 5)
     authorize @users
   end
 

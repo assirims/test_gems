@@ -11,7 +11,7 @@ class User < ApplicationRecord
   after_create do
     UserMailer.new_user(self).deliver_later
   end
-  
+
   # rolify must be before after_create assign_default_role
   # to avoid assigning roles twice
   rolify
@@ -66,6 +66,17 @@ class User < ApplicationRecord
 
   # works with simple_form_for only
   validate :must_have_a_role, on: :update
+
+  def calculate_course_income
+    update_column :course_income, (courses.map(&:income).sum)
+    update_column :balance, (course_income - enrollment_expences)
+  end
+
+  def calculate_enrollment_expences
+    update_column :enrollment_expences, (enrollments.map(&:price).sum)
+    update_column :balance, (course_income - enrollment_expences)
+  end
+  
   private
   def must_have_a_role
     errors.add(:roles, 'must have at least one role') unless roles.any?
