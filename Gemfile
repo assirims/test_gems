@@ -148,3 +148,6 @@ gem "sitemap_generator", "~> 6.3"
 
 # https://github.com/amatsuda/traceroute
 gem "traceroute", "~> 0.8.1"
+
+# rails g devise_invitable:install
+gem "devise_invitable", "~> 2.0"

@@ -27,6 +27,7 @@
         <ul>
           <li><%= link_to "Purchased Courses <div class=\"badge bg-primary\">#{current_user.enrollments_count}</div>".html_safe, purchased_courses_path %></li>
           <li><%= link_to "Pending Review Courses <div class=\"badge bg-warning\">#{current_user.enrollments.pending_review.count}</div>".html_safe, pending_review_courses_path %></li>
+          <li><%= link_to "Invite Friends", new_user_invitation_path %></li>
         </ul>
       </div>
       <div class="card card-body">
