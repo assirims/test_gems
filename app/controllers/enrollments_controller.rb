@@ -45,16 +45,31 @@ class EnrollmentsController < ApplicationController
 
   # POST /enrollments
   def create
-    @enrollment = current_user.buy_course(@course)
-    redirect_to course_path(@course), notice: "You are enrolled!"    # if @course.price > 0
-    #   flash[:alert] = "You can't enroll in a paid course"
-    #   redirect_to new_course_enrollment_path(@course)
-    # else
-    #   @enrollment = current_user.buy_course(@course)
-    #   redirect_to course_path(@course), notice: "You have successfully enrolled in the course"
-    #   EnrollmentMailer.student_enrollment(@enrollment).deliver_later
-    #   EnrollmentMailer.teacher_enrollment(@enrollment).deliver_later
+    if @course.price > 0
+      @amount = (@course.price * 100).to_i
+      # gem 'stripe' to use Stripe API
+      # customer = Stripe::Customer.create(
+      #   email: params[:stripeEmail],
+      #   source: params[:stripeToken]
+      # )
+      # charge = Stripe::Charge.create(
+      #   customer:    customer.id,
+      #   amount:      (@course.price * 100).to_i,
+      #   description: @course.title,
+      #   currency:    'usd'
+      # )
+      @enrollment = current_user.buy_course(@course)
+      redirect_to course_path(@course), notice: "You are enrolled!"
+    else
+      @enrollment = current_user.buy_course(@course)
+      redirect_to course_path(@course), notice: "You are enrolled!"
     end
+    # EnrollmentMailer.student_enrollment(@enrollment).deliver_later
+    # EnrollmentMailer.teacher_enrollment(@enrollment).deliver_later
+    # rescue Stripe::CardError => e {
+      # flash[:error] = e.message
+      # redirect_to new_course_enrollment_path(@course)
+    # }
   end
 
   # PATCH/PUT /enrollments/1
@@ -69,8 +84,8 @@ class EnrollmentsController < ApplicationController
   # DELETE /enrollments/1
   def destroy
     if @enrollment.destroy
-          redirect_to course_path(@course), notice: "You are enrolled!"
-      # redirect_to request.referer, notice: "Enrollment was successfully destroyed."
+      # redirect_to course_path(@course), notice: "You are enrolled!"
+      redirect_to request.referer, notice: "Enrollment was successfully destroyed."
     else
       redirect_to @enrollment, alert: "Enrollment can't be destroyed because it has enrollments"
     end
