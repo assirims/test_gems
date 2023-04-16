@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
+  # get '/sitemap.xml', to: redirect("https://remotehost.com/sitemap.xml")
+
   resources :enrollments do
     get :my_students, on: :collection
     member do
