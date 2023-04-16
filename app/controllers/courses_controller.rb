@@ -123,7 +123,7 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
     authorize @course #gem pundit it must be after @course = Course.new
     @course.description = 'Curriculum Description'
-    @course.short_description = 'Marketing Description'
+    @course.marketing_description = 'Marketing Description'
     @course.user = current_user
     if @course.save
       redirect_to course_course_wizard_index_path(@course), notice: "Course was successfully created."

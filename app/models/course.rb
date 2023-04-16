@@ -1,7 +1,8 @@
 class Course < ApplicationRecord
-  validates :title, :short_description, :language, :price, :level, presence: true
+  validates :title, :marketing_description, :language, :price, :level, presence: true
   validates :description, presence: true, length: { minimum: 5 }
   validates :title, uniqueness: true
+  validates :marketing_description, length: { maximum: 140 }
 
   scope :latest, -> { limit(3).order(created_at: :desc) }
   scope :top_rated, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
@@ -50,7 +51,7 @@ class Course < ApplicationRecord
     update_column :income, (enrollments.map(&:price).sum)
     user.calculate_course_income
   end
-  
+
   def update_rating
     if enrollments.any? && enrollments.where.not(rating: nil).any?
       update_column :average_rating, (enrollments.average(:rating).round(2).to_f)
@@ -61,7 +62,7 @@ class Course < ApplicationRecord
 
   # ransack search attributes
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "description", "id", "language", "level", "price", "short_description", "slug", "title", "updated_at", "published", "approved", "average_rating", "enrollments_count", "lessons_count" , "course_tags_tag_name_cont" , "course_tags_tag_id_eq", "tags_count" ]
+    ["created_at", "description", "id", "language", "level", "price", "marketing_description", "slug", "title", "updated_at", "published", "approved", "average_rating", "enrollments_count", "lessons_count" , "course_tags_tag_name_cont" , "course_tags_tag_id_eq", "tags_count" ]
   end
   def self.ransackable_associations(auth_object = nil)
     ["rich_text_description", "user", "course_tags"]

@@ -18,7 +18,7 @@ class CoursesTest < ApplicationSystemTestCase
     fill_in "Language", with: @course.language
     fill_in "Level", with: @course.level
     fill_in "Price", with: @course.price
-    fill_in "Short description", with: @course.short_description
+    fill_in "Short description", with: @course.marketing_description
     fill_in "Title", with: @course.title
     click_on "Create Course"
 
@@ -34,7 +34,7 @@ class CoursesTest < ApplicationSystemTestCase
     fill_in "Language", with: @course.language
     fill_in "Level", with: @course.level
     fill_in "Price", with: @course.price
-    fill_in "Short description", with: @course.short_description
+    fill_in "Short description", with: @course.marketing_description
     fill_in "Title", with: @course.title
     click_on "Update Course"
 

@@ -3,7 +3,7 @@
 one:
   title: MyString
   description: MyText
-  short_description: MyText
+  marketing_description: MyText
   language: MyString
   level: MyString
   price: 1
@@ -11,7 +11,7 @@ one:
 two:
   title: MyString
   description: MyText
-  short_description: MyText
+  marketing_description: MyText
   language: MyString
   level: MyString
   price: 1

@@ -18,7 +18,7 @@
       <% if user_signed_in? %>
         <ul class="navbar-nav mb-2 mb-lg-0">
           <%= search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f| %>
-            <%= f.search_field :title_or_short_description_cont, placeholder: "Search Courses" %>
+            <%= f.search_field :title_or_marketing_description_cont, placeholder: "Search Courses" %>
             <%= f.submit ">>" , class: "btn btn-primary" %>
           <% end %>
         </ul>
