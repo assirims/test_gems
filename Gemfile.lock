@@ -275,7 +275,7 @@ GEM
     sqlite3 (1.6.3-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
-    thor (1.2.1)
+    thor (1.2.2)
     timeout (0.3.2)
     traceroute (0.8.1)
       rails (>= 3.0.0)
