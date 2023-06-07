@@ -135,7 +135,7 @@ GEM
       activesupport (>= 5.0)
     groupdate (6.2.1)
       activesupport (>= 5.2)
-    i18n (1.13.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
