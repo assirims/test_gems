@@ -12,10 +12,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
-"@rails/actiontext@^7.0.5":
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.0.5.tgz#b2dca679c18c359ca69ce5661ecde2948253aaa6"
-  integrity sha512-D/tzDNyO/dPVi2kyokL5QCOB/CyEQ3iI8m5ORB1YlA0aGbP3rjFxUWLywp4nGed16PZY/zXiVD2tSjjs5XkLaQ==
+"@rails/actiontext@^7.0.7":
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.0.7.tgz#d80ba902aa48c0fe55728d7f3e8f7f0cab926cc6"
+  integrity sha512-2huBCSCdROtu3ouu/anTBEs+hvXKQYZ+gGpE3/DCx9Dg/xWRAI3doEHfF7A8uJhokQZrc0ZDOS8zhwwuh1dNzg==
   dependencies:
     "@rails/activestorage" ">= 7.0.0-alpha1"
 
