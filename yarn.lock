@@ -162,7 +162,7 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-trix@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.5.tgz#f54880ab38e24d47829a04e04afaf03a8607f772"
-  integrity sha512-OiCbDf17F7JahEwhyL1MvK9DxAAT1vkaW5sn+zpwfemZAcc4RfQB4ku18/1mKP58LRwBhjcy+6TBho7ciXz52Q==
+trix@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.9.tgz#26fd49fe17a5556d8f2fea632d194e7ee8f943d3"
+  integrity sha512-ukYIuICcO1mxz0c1BNKauV5gSVpXwLgAXXM69OkIEWzb4NU6WdGGePQ5DoP/Z19yUN7I27i1EVl4Z94IAmQZZA==
