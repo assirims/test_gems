@@ -1,4 +1,4 @@
-name: Continous Integration
+name: Continuous Integration
 
 on:
   push:
@@ -10,31 +10,15 @@ permissions:
   contents: write
 
 jobs:
-  build:
-    name: 'Build 📦'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: 'yarn'
-      - run: yarn install
-        name: Install dependencies
-      - run: yarn build
-        name: Build Gatsby output
-      - uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: ./public
-
   dependabot:
     name: 'Dependabot'
-    needs: [build]
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
     steps:
+      - name: Install GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install -y gh
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v1.3.1
@@ -43,5 +27,5 @@ jobs:
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --merge "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
