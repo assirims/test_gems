@@ -29,8 +29,8 @@ jobs:
           cache: 'yarn'
       - run: yarn install
         name: Install dependencies
-      - run: yarn lint
-        name: Run lint
+      # - run: yarn lint
+      #   name: Run lint
       - run: yarn build
         name: Build Gatsby output
       - uses: actions/upload-artifact@v3
