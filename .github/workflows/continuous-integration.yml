@@ -10,23 +10,8 @@ permissions:
   contents: write
 
 jobs:
-  build:
-    name: 'Build'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: 'yarn'
-      - run: yarn install
-        name: Install dependencies
-      - run: yarn build
-
   dependabot:
     name: 'Dependabot'
-    needs: [build]
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
     steps:
