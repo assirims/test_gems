@@ -13,7 +13,7 @@ jobs:
   dependabot:
     name: 'Dependabot'
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
+    if: always()  
     steps:
       - name: Install GitHub CLI
         run: |
