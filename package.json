@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "private": "true",
+  "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@popperjs/core": "^2.11.8",
@@ -10,7 +10,11 @@
     "sass": "^1.63.2",
     "trix": "^2.0.5"
   },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  },
   "scripts": {
-    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   }
 }
