@@ -21,7 +21,7 @@ jobs:
           sudo apt install -y gh
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1.3.1
+        uses: dependabot/fetch-metadata@v2.1.0
         with:
           github-token: '${{ secrets.GH_TOKEN }}'
       - name: Enable auto-merge for Dependabot PRs
