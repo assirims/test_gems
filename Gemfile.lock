@@ -250,7 +250,8 @@ GEM
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.2.5)
+    rexml (3.3.0)
+      strscan
     rolify (6.0.1)
     ruby-graphviz (1.2.5)
       rexml
@@ -282,6 +283,7 @@ GEM
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     stringio (3.1.0)
+    strscan (3.1.0)
     thor (1.2.2)
     timeout (0.3.2)
     traceroute (0.8.1)
