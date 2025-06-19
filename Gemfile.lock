@@ -107,7 +107,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.1.2)
       railties (>= 6.0.0)
-    date (3.3.4)
+    date (3.4.1)
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
@@ -167,7 +167,7 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
     minitest (5.23.1)
-    net-imap (0.4.13)
+    net-imap (0.5.9)
       date
       net-protocol
     net-pop (0.1.2)
@@ -286,7 +286,7 @@ GEM
     stringio (3.1.0)
     strscan (3.1.0)
     thor (1.3.1)
-    timeout (0.4.1)
+    timeout (0.4.3)
     traceroute (0.8.1)
       rails (>= 3.0.0)
     turbo-rails (1.4.0)
