@@ -89,17 +89,17 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
-"@rails/actiontext@^7.0.5":
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-7.0.5.tgz#b2dca679c18c359ca69ce5661ecde2948253aaa6"
-  integrity sha512-D/tzDNyO/dPVi2kyokL5QCOB/CyEQ3iI8m5ORB1YlA0aGbP3rjFxUWLywp4nGed16PZY/zXiVD2tSjjs5XkLaQ==
+"@rails/actiontext@^8.1.201":
+  version "8.1.201"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-8.1.201.tgz#0665d8585e9ca2d7d891fa8f2ae8386e422c54a1"
+  integrity sha512-Ol+2BCCjJWYwuByTXLBBaL4+iQCGSeNrVB5Tt9oiuZbxm43ay9bXtYKFLCiuZrZn5bn3OiAcLMB2CQna97YpwQ==
   dependencies:
-    "@rails/activestorage" ">= 7.0.0-alpha1"
+    "@rails/activestorage" ">= 8.1.0-alpha"
 
-"@rails/activestorage@>= 7.0.0-alpha1":
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-7.0.4.tgz#56bc3052f60e8867b40a87ed5ff3c0afe536643e"
-  integrity sha512-K2fV9C0z88fapu58nt9uHzMylsmJWUFuaIFvuZQEf1WTiPMsgTsj1bf8+cD81zXfTXYMZDQNRq4164JmuBKD3A==
+"@rails/activestorage@>= 8.1.0-alpha":
+  version "8.1.201"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-8.1.201.tgz#931260ade5dbc8ddf2a1f6602c37813e087c8758"
+  integrity sha512-7MY8hZRXK9WFJLu84Xu2SSirFCohu9bFPmeUdj+E8d96zxVCvMAlZ1MQABYYp2Yr+r36fUON0ld9FZABKX3iXw==
   dependencies:
     spark-md5 "^3.0.1"
 
